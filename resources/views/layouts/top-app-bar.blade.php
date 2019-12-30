@@ -63,7 +63,7 @@
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button burger">menu</button>
-            <span class="mdc-top-app-bar__title c2"><a href="/c_square/public/" style="text-decoration:none; font-family: 'Bebas Neue', cursive; font-size:2.4rem; color:white;">C-SQUARE</a></span>
+            <span class="mdc-top-app-bar__title c2"><a href="/c_square/public/" style="text-decoration:none; font-family: 'Bebas Neue', cursive; font-size:2.4rem; color:white;">C<sup>2</sup></a></span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <div class="link-div">
@@ -71,16 +71,16 @@
                 <div class="mdc-menu-surface--anchor">
                     <div class="mdc-menu mdc-menu-surface">
                         <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                            <li class="mdc-list-item" role="menuitem">
+                            <li class="mdc-list-item" role="menuitem" onclick="window.location.href = '/c_square/public/course/Web_Development'">
                                 <span class="mdc-list-item__text">Web Development</span>
                             </li>
-                            <li class="mdc-list-item" role="menuitem">
+                            <li class="mdc-list-item" role="menuitem" onclick="window.location.href = '/c_square/public/course/Object_Oriented_Programming'">
                                 <span class="mdc-list-item__text">Object Oriented Programming</span>
                             </li>
-                            <li class="mdc-list-item" role="menuitem">
+                            <li class="mdc-list-item" role="menuitem" onclick="window.location.href = '/c_square/public/course/Github_And_Version_Control'">
                                 <span class="mdc-list-item__text">Github and Version Control</span>
                             </li>
-                            <li class="mdc-list-item" role="menuitem">
+                            <li class="mdc-list-item" role="menuitem" onclick="window.location.href = '/c_square/public/course/Android_Development'">
                                 <span class="mdc-list-item__text">Android Development</span>
                             </li>
                         </ul>

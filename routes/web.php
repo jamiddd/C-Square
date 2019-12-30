@@ -30,3 +30,7 @@ Route::get('/courses', function () {
 Route::get('/about', function () {
     return view('pages.about');
 });
+
+Route::get('/course/{course}', function ($course) {
+    return view('pages.course')->with('course', $course);
+});

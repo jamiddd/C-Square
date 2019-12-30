@@ -26,17 +26,16 @@
 
     .intro-section-header-div {
         padding: 20px;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
         position: absolute;
         top: 20%;
-        right: 5%;
         left: 5%;
     }
 
     .intro-header {
         /* line-height: 1rem; */
         /* background-color: rgba(255, 255, 255, 0.8); */
-        margin: 20px 0px !important;
+        margin: 10px 0px !important;
     }
 
     .intro-subtitle {
@@ -69,8 +68,8 @@
         <div class="intro-section">
             <img class="header-bg" src="{{asset('images/header-bg-compressed.jpg')}}" alt="">
             <div class="intro-section-header-div">
-                <h1 class="intro-header mdc-typography--headline1">LET'S CODE</h1>
-                <h4 class="intro-subtitle mdc-typography--headline4">Code & Create</h4>
+                <h1 class="intro-header mdc-typography--headline2"><span style="color:#651ee8; font-weight:bold;">C</span>ODING <span style="color:#651ee8; font-weight:bold;">C</span>OURSES</h1>
+                <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">For absolute beginners from the scratch</span>
                 <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '/c_square/public/apply'">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Get started</span>
@@ -100,6 +99,27 @@
                 </div>
             </div>
         </div>
-
+        <div class="mdc-layout-grid" style="padding:0px 30px;">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-6">
+                    <img style="object-fit:cover; width:100%; height:100%;" src="{{asset('images/app_development.jpg')}}" alt="">
+                </div>
+                <div class="mdc-layout-grid__cell--span-6" style="padding:40px;">
+                    <span style="font-size:8vw; line-height:9vw;">Learn the best practices</span>
+                    <p>Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
+                </div>
+            </div>
+        </div>
+        <div class="mdc-layout-grid" style="padding:0px 30px;">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-6" style="padding:40px;">
+                    <span style="font-size:8vw; line-height:9vw;">Always Up-To-Date</span>
+                    <p>Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
+                </div>
+                <div class="mdc-layout-grid__cell--span-6">
+                    <img style="object-fit:cover; width:100%; height:100%;" src="{{asset('images/new_devc.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
     </main>
 @endsection
