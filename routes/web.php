@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
+});
+
+Route::get('/apply', function () {
+    return view('pages.apply');
+});
+
+Route::get('/contacts', function () {
+    return view('pages.contacts');
+});
+
+Route::get('/courses', function () {
+    return view('pages.courses');
+});
+
+Route::get('/about', function () {
+    return view('pages.about');
 });
