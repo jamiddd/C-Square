@@ -2,6 +2,9 @@ import {MDCTopAppBar} from '@material/top-app-bar';
 import {MDCRipple} from '@material/ripple';
 import {MDCDrawer} from "@material/drawer";
 import {MDCMenu} from '@material/menu';
+import {MDCTextField} from '@material/textfield';
+import mdcAutoInit from '@material/auto-init';
+import {MDCSelect} from '@material/select';
 // Instantiation
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
 const topAppBar = new MDCTopAppBar(topAppBarElement);
@@ -36,8 +39,18 @@ coursemenutoggle.addEventListener('click', () => {
     coursemenu.setAnchorElement(coursemenutoggle);
 });
 
-// menu.open = true;
 
+const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
+
+mdcAutoInit.register('MDCTextField', MDCTextField);
+window.mdcAutoInit = mdcAutoInit;
+
+// menu.open = true;
+const select = new MDCSelect(document.querySelector('.mdc-select'));
+
+// select.listen('MDCSelect:change', () => {
+//     alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
+//   });
 
 // const anc = document.querySelector('.course-menu-toggle');
 

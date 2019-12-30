@@ -18,12 +18,72 @@
             </div>
             <div class="mdc-layout-grid__cell--span-3">
                 <h5 class="mdc-typography--headline5">Apply Now</h5>
-                <ul style="padding:0px;">
-                    <li class="tdn"><a href="#" style="text-decoration:none;">Facebook</a></li>
-                    <li class="tdn"><a href="#" style="text-decoration:none;">Instagram</a></li>
-                    <li class="tdn"><a href="#" style="text-decoration:none;">Twitter</a></li>
-                    <li class="tdn"><a href="#" style="text-decoration:none;">Pinterest</a></li>
-                </ul>
+                <form action="#" method="POST">
+                    <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField" style="margin-bottom:8px; width:100%;">
+                        <input class="mdc-text-field__input" id="text-field-hero-input">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="text-field-hero-input" class="mdc-floating-label">Name</label>
+                            </div>
+                        <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                    <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField" style="margin-bottom:8px; width:100%;">
+                        <input class="mdc-text-field__input" id="text-field-hero-input-1">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="text-field-hero-input-1" class="mdc-floating-label">Email</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                    {{-- <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField" style="margin-bottom:8px;">
+                        <input class="mdc-text-field__input" id="text-field-hero-input-2">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="text-field-hero-input-2" class="mdc-floating-label">Course</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div> --}}
+                    <div class="mdc-select">
+                        <div class="mdc-select__anchor" style="width:100%; margin-bottom:16px;">
+                          <i class="mdc-select__dropdown-icon"></i>
+                          <div class="mdc-select__selected-text">Courses</div>
+                          <span class="mdc-floating-label mdc-floating-label--float-above">Pick a course</span>
+                          <div class="mdc-line-ripple"></div>
+                        </div>
+
+                        <div class="mdc-select__menu demo-width-class mdc-menu mdc-menu-surface">
+                          <ul class="mdc-list">
+                            <li class="mdc-list-item" data-value=""></li>
+                            <li class="mdc-list-item" data-value="grains">
+                              Android Development
+                            </li>
+                            <li class="mdc-list-item mdc-list-item--selected" data-value="vegetables" aria-selected="true">
+                              Object Oriented Programming
+                            </li>
+                            <li class="mdc-list-item" data-value="fruit">
+                              Github
+                            </li>
+                            <li class="mdc-list-item" data-value="fruit">
+                                Data structure and algorithms
+                            </li>
+                            <li class="mdc-list-item" data-value="fruit">
+                                Web Development
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <button class="mdc-button mdc-button--unelevated">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">APPLY</span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">done</i>
+                      </button>
+                </form>
             </div>
         </div>
     </div>
