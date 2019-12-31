@@ -70,7 +70,7 @@
             <div class="intro-section-header-div">
                 <h1 class="intro-header mdc-typography--headline2"><span style="color:#651ee8; font-weight:bold;">C</span>ODING <span style="color:#651ee8; font-weight:bold;">C</span>OURSES</h1>
                 <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">For absolute beginners from the scratch</span>
-                <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '/c_square/public/apply'">
+                <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '/apply'">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Get started</span>
                     <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
@@ -119,6 +119,54 @@
                 <div class="mdc-layout-grid__cell--span-6">
                     <img style="object-fit:cover; width:100%; height:100%;" src="{{asset('images/new_devc.jpg')}}" alt="">
                 </div>
+            </div>
+        </div>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-3"></div>
+                <div class="mdc-layout-grid__cell--span-3">
+                    <div class="mdc-card mdc-elevation--z9">
+                        <h1 style="margin:16px;">Rs. 2,000/Course</h1>
+                        <div style="background-color:#4287f5; padding:16px;">
+                            <h1 style="color:white; text-decoration:underline;">Basic</h1>
+                            <p style="color:white;">The basic plan covers all the basic and beginner level of all the courses. It is recommended for those who want to start from scratch or want to freshen their fundamentals.</p>
+                            <span style="color:white;">It includes: </span>
+                            <ul style="padding:0px; color:white;">
+                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
+                                    arrow_forward
+                                    </i>1 month of coaching with 3 classes/Week</li>
+                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
+                                    arrow_forward
+                                    </i>Access to unlimited internet for development</li>
+                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
+                                    arrow_forward
+                                    </i>20% OFF on next subscription.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid__cell--span-3">
+                    <div class="mdc-card mdc-elevation--z9">
+                        <h1 style="margin:16px;">Rs. 3,000/Course</h1>
+                        <div style="background-color:#21cf5b; padding:16px;">
+                            <h1 style="color:white; text-decoration:underline;">Intermediate</h1>
+                            <p style="color:white;">The Intermediate plan includes intermediate level courses. It is recommended for all who finished basics and want to make their knowledge strong and also for those who are into professional level Programming.</p>
+                            <span style="color:white;">It includes: </span>
+                            <ul style="padding:0px; color:white;">
+                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
+                                    arrow_forward
+                                    </i>1 month of coaching with 3 classes/Week</li>
+                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
+                                    arrow_forward
+                                    </i>Access to unlimited internet for development</li>
+                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
+                                    arrow_forward
+                                    </i>20% OFF on next subscription.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid__cell--span-3"></div>
             </div>
         </div>
     </main>
