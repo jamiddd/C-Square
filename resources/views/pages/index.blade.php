@@ -46,11 +46,6 @@
     .mar-l {
         margin-left: 10px;
     }
-
-    .front-posts-div {
-        margin: 1% 10%;
-    }
-
     .first-row {
         padding: 8px;
     }
@@ -79,55 +74,61 @@
         </div>
         <div class="mdc-layout-grid front-posts-div">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell">
-                    <div class="first-row">
-                        <span class="first-row-head mdc-typography--headline5">Exclusive Learning</span>
-                        <p class="first-row-text">Learning is fun when doubts get cleared right on time. We will make learning fun and intuitive for anybody who is interested in this journey of coding.</p>
+                <div class="mdc-layout-grid__cell--span-1"></div>
+                <div class="mdc-layout-grid__cell--span-10">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                            <div class="first-row">
+                                <span class="first-row-head mdc-typography--headline5">Exclusive Learning</span>
+                                <p class="first-row-text">Learning is fun when doubts get cleared right on time. We will make learning fun and intuitive for anybody who is interested in this journey of coding.</p>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                            <div class="first-row">
+                                <span class="first-row-head mdc-typography--headline5">All day services</span>
+                                <p class="first-row-text">We are available all day to get you to your success. You just have to be willing to learn it all. Learning has never been so simple and effective. We have a community full of dedicated people to help you in your endavour.</p>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                            <div class="first-row">
+                                <span class="first-row-head mdc-typography--headline5">Range of courses</span>
+                                <p class="first-row-text">We are not just basics. We go all in. Learn anything from our range of courses. We are proud to tell you that, even engineers won't be able to beat you after you join here.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="mdc-layout-grid__cell">
-                    <div class="first-row">
-                        <span class="first-row-head mdc-typography--headline5">All day services</span>
-                        <p class="first-row-text">We are available all day to get you to your success. You just have to be willing to learn it all. Learning has never been so simple and effective. We have a community full of dedicated people to help you in your endavour.</p>
-                    </div>
-                </div>
-                <div class="mdc-layout-grid__cell">
-                    <div class="first-row">
-                        <span class="first-row-head mdc-typography--headline5">Range of courses</span>
-                        <p class="first-row-text">We are not just basics. We go all in. Learn anything from our range of courses. We are proud to tell you that, even engineers won't be able to beat you after you join here.</p>
-                    </div>
-                </div>
+                <div class="mdc-layout-grid__cell--span-1"></div>
             </div>
         </div>
-        <div class="mdc-layout-grid" style="padding:0px 30px;">
+        <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-6">
-                    <img style="object-fit:cover; width:100%; height:100%;" src="{{asset('images/app_development.jpg')}}" alt="">
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                    <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/app_development.jpg')}}" alt="">
                 </div>
-                <div class="mdc-layout-grid__cell--span-6" style="padding:40px;">
-                    <span style="font-size:8vw; line-height:9vw;">Learn the best practices</span>
-                    <p>Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
-                </div>
-            </div>
-        </div>
-        <div class="mdc-layout-grid" style="padding:0px 30px;">
-            <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-6" style="padding:40px;">
-                    <span style="font-size:8vw; line-height:9vw;">Always Up-To-Date</span>
-                    <p>Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
-                </div>
-                <div class="mdc-layout-grid__cell--span-6">
-                    <img style="object-fit:cover; width:100%; height:100%;" src="{{asset('images/new_devc.jpg')}}" alt="">
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
+                    <span style="font-size:6vw; line-height:7vw;">Learn the best practices</span>
+                    <p style="text-align:justify;">Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
                 </div>
             </div>
         </div>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-3"></div>
-                <div class="mdc-layout-grid__cell--span-3">
-                    <div class="mdc-card mdc-elevation--z9">
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
+                    <span style="font-size:6vw; line-height:7vw;">Always Up-To-Date</span>
+                    <p>Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
+                </div>
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                    <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/new_devc.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone"></div>
+                <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                    <div class="mdc-card mdc-elevation--z9" style="height:100%;">
                         <h1 style="margin:16px;">Rs. 2,000/Course</h1>
-                        <div style="background-color:#4287f5; padding:16px;">
+                        <div style="background-color:#4287f5; padding:16px; height:inherit;">
                             <h1 style="color:white; text-decoration:underline;">Basic</h1>
                             <p style="color:white;">The basic plan covers all the basic and beginner level of all the courses. It is recommended for those who want to start from scratch or want to freshen their fundamentals.</p>
                             <span style="color:white;">It includes: </span>
@@ -145,10 +146,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="mdc-layout-grid__cell--span-3">
-                    <div class="mdc-card mdc-elevation--z9">
+                <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                    <div class="mdc-card mdc-elevation--z9" style="height:100%;">
                         <h1 style="margin:16px;">Rs. 3,000/Course</h1>
-                        <div style="background-color:#21cf5b; padding:16px;">
+                        <div style="background-color:#21cf5b; padding:16px; height:inherit;">
                             <h1 style="color:white; text-decoration:underline;">Intermediate</h1>
                             <p style="color:white;">The Intermediate plan includes intermediate level courses. It is recommended for all who finished basics and want to make their knowledge strong and also for those who are into professional level Programming.</p>
                             <span style="color:white;">It includes: </span>
@@ -166,7 +167,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="mdc-layout-grid__cell--span-3"></div>
             </div>
         </div>
     </main>
