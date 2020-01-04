@@ -24,6 +24,12 @@
         width: 100%;
     }
 
+    @media only screen and (max-width: 500px) {
+        .intro-section-header-div {
+            right: 5%;
+        }
+    }
+
     .intro-section-header-div {
         padding: 20px;
         background-color: rgba(255, 255, 255, 0.9);
@@ -61,11 +67,11 @@
     </style>
     <main class="main-content">
         <div class="intro-section">
-            <img class="header-bg" src="{{asset('images/header-bg-compressed.jpg')}}" alt="">
+            <img class="header-bg" src="{{asset('images/back.jpg')}}" alt="">
             <div class="intro-section-header-div">
-                <h1 class="intro-header mdc-typography--headline2"><span style="color:#651ee8; font-weight:bold;">C</span>ODING <span style="color:#651ee8; font-weight:bold;">C</span>OURSES</h1>
+                <h1 class="intro-header mdc-typography--headline2">Coding Course</h1>
                 <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">For absolute beginners from the scratch</span>
-                <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '/apply'">
+                <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '#app-form'">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Get started</span>
                     <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
@@ -122,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid" style="background-color:#444444;">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone"></div>
                 <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">

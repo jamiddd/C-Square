@@ -43,19 +43,42 @@
 <aside class="mdc-drawer mdc-drawer--modal">
     <div class="mdc-drawer__content">
         <nav class="mdc-list">
-            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
-                <span class="mdc-list-item__text">Inbox</span>
+            <a class="mdc-list-item mdc-list-item--activated" href="/" aria-current="page">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+              <span class="mdc-list-item__text">Home</span>
             </a>
-            <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
-                <span class="mdc-list-item__text">Outgoing</span>
+            <a class="mdc-list-item" href="/about">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>
+              <span class="mdc-list-item__text">About</span>
             </a>
-            <a class="mdc-list-item" href="#">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                <span class="mdc-list-item__text">Drafts</span>
+            <a class="mdc-list-item" href="/contacts">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+              <span class="mdc-list-item__text">Contacts</span>
             </a>
-        </nav>
+            {{-- <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+              <span class="mdc-list-item__text">Drafts</span>
+            </a> --}}
+      
+            <hr class="mdc-list-divider">
+            <h6 class="mdc-list-group__subheader">Courses</h6>
+            <a class="mdc-list-item" href="/course/Web_Development">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>
+              <span class="mdc-list-item__text">Web Development</span>
+            </a>
+            <a class="mdc-list-item" href="/course/Android_Development">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>
+              <span class="mdc-list-item__text">Android Development</span>
+            </a>
+            <a class="mdc-list-item" href="/course/Github_And_Version_Control">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>
+              <span class="mdc-list-item__text">Github and Version Control</span>
+            </a>
+            <a class="mdc-list-item" href="/course/Object_Oriented_Programming">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>
+                <span class="mdc-list-item__text">Object Oriented Programming</span>
+            </a>
+          </nav>
     </div>
 </aside>
 <div class="mdc-drawer-scrim"></div>
@@ -89,7 +112,7 @@
             </div>
             <a class="top-app-bar-item" href="/about">About</a>
             <a class="top-app-bar-item" href="/contacts">Contacts</a>
-            <button class="mdc-button" style="background-color:white; color:purple; margin-left:10px;" onclick="window.location.href = '/apply'">
+            <button class="mdc-button" style="background-color:white; color:purple; margin-left:10px; margin-right:16px;" onclick="window.location.href = '#app-form'">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Apply Now</span>
             </button>

@@ -15,6 +15,7 @@
         <style>
             html, body {
                 margin: 0px !important;
+                scroll-behavior: smooth;
             }
 
             body {
