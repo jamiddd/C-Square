@@ -71,7 +71,7 @@
             <div class="intro-section-header-div">
                 <h1 class="intro-header mdc-typography--headline2">Coding Courses</h1>
                 <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">For absolute beginners from the scratch</span>
-                <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '#app-form'">
+                <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '#app-get-started'">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Get started</span>
                     <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
@@ -106,7 +106,7 @@
                 <div class="mdc-layout-grid__cell--span-1"></div>
             </div>
         </div>
-        <div class="mdc-layout-grid">
+        <div id="app-get-started" class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                     <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/app_development.jpg')}}" alt="">
@@ -125,6 +125,17 @@
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                     <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/new_devc.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                    <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/com.jpg')}}" alt="">
+                </div>
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
+                    <span style="font-size:6vw; line-height:7vw;">Community Building</span>
+                    <p style="text-align:justify;">Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
                 </div>
             </div>
         </div>

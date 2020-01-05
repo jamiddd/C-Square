@@ -113,7 +113,7 @@
             </div>
             <a class="top-app-bar-item" href="/about">About</a>
             <a class="top-app-bar-item" href="/contacts">Contacts</a>
-            <button class="mdc-button" style="background-color:white; color:purple; margin-left:10px; margin-right:16px;" onclick="window.location.href = '#app-form'">
+            <button class="mdc-button" style="background-color:white; color:#531ceb; margin-left:10px; margin-right:16px;" onclick="window.location.href = '#app-form'">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Apply Now</span>
             </button>
