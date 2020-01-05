@@ -28,11 +28,10 @@
 
     .top-app-bar-item:hover {
         /* border-bottom: 4px solid white; */
-        background-color: #5729c2;
+        background-color: #4616c9;
         /* height: 64px;
         line-height: 64px;
         padding: 8px 16px;
-        color: white;
         text-decoration: none; */
     }
 
@@ -52,7 +51,7 @@
               <span class="mdc-list-item__text">About</span>
             </a>
             <a class="mdc-list-item" href="/contacts">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contacts</i>
               <span class="mdc-list-item__text">Contacts</span>
             </a>
             {{-- <a class="mdc-list-item" href="#">
@@ -82,11 +81,11 @@
     </div>
 </aside>
 <div class="mdc-drawer-scrim"></div>
-<header class="mdc-top-app-bar">
+<header class="mdc-top-app-bar" id="my-header">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button burger">menu</button>
-            <span class="mdc-top-app-bar__title c2"><a href="/" style="text-decoration:none; font-family: 'Bebas Neue', cursive; font-size:2.4rem; color:white;">CSQUARE</a></span>
+            <span class="c2"><a href="/" style="text-decoration:none; font-family: 'Bebas Neue', cursive; font-size:2.1rem; color:white;">CSQUARE</a></span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <div class="link-div">
@@ -112,7 +111,7 @@
                 </div>
             </div>
             <a class="top-app-bar-item" href="/about">About</a>
-            <a class="top-app-bar-item" href="/contacts">Contacts</a>
+            <a class="top-app-bar-item" href="/contacts">Career</a>
             <button class="mdc-button" style="background-color:white; color:#531ceb; margin-left:10px; margin-right:16px;" onclick="window.location.href = '#app-form'">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Apply Now</span>

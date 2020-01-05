@@ -87,18 +87,33 @@
                             <div class="first-row">
                                 <span class="first-row-head mdc-typography--headline5">Exclusive Learning</span>
                                 <p class="first-row-text">Learning is fun when doubts get cleared right on time. We will make learning fun and intuitive for anybody who is interested in this journey of coding.</p>
+                                <button class="mdc-button mdc-button">
+                                    <div class="mdc-button__ripple"></div>
+                                    <span class="mdc-button__label">Learn More</span>
+                                    <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
+                                </button>
                             </div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                             <div class="first-row">
                                 <span class="first-row-head mdc-typography--headline5">All day services</span>
                                 <p class="first-row-text">We are available all day to get you to your success. You just have to be willing to learn it all. Learning has never been so simple and effective. We have a community full of dedicated people to help you in your endavour.</p>
+                                <button class="mdc-button mdc-button">
+                                    <div class="mdc-button__ripple"></div>
+                                    <span class="mdc-button__label">Learn More</span>
+                                    <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
+                                </button>
                             </div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                             <div class="first-row">
                                 <span class="first-row-head mdc-typography--headline5">Range of courses</span>
                                 <p class="first-row-text">We are not just basics. We go all in. Learn anything from our range of courses. We are proud to tell you that, even engineers won't be able to beat you after you join here.</p>
+                                <button class="mdc-button mdc-button">
+                                    <div class="mdc-button__ripple"></div>
+                                    <span class="mdc-button__label">Learn More</span>
+                                    <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -113,7 +128,7 @@
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
                     <span style="font-size:6vw; line-height:7vw;">Learn the best practices</span>
-                    <p style="text-align:justify;">Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
+                    <p style="text-align:justify;">Learning the right way of programming is essential. Especially important when the world runs on efficiency. To get the best output of work and passion, we'll put your effort in the right direction. The best coding practices can make you a good programmer right away. </p>
                 </div>
             </div>
         </div>
@@ -121,7 +136,7 @@
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
                     <span style="font-size:6vw; line-height:7vw;">Always Up-To-Date</span>
-                    <p>Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
+                    <p>In the new era of technology, being up-to-date is excrutiatingly crucial. You can learn the best and updated topics right here. Our learning curve will always follow the most updated route of programming.</p>
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                     <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/new_devc.jpg')}}" alt="">
@@ -135,54 +150,18 @@
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
                     <span style="font-size:6vw; line-height:7vw;">Community Building</span>
-                    <p style="text-align:justify;">Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling. Knowing something itself isn't enough. You have to perfect it. With proper guidelines and learning curve you would achieve something that is very fulfilling.</p>
+                    <p style="text-align:justify;">As a programmer we always need to be connected to learn new topics everyday and to challenge ourselves on a daily basis. Getting help from your co-learners when you need them will improve the learning process.</p>
                 </div>
             </div>
         </div>
-        <div class="mdc-layout-grid" style="background-color:#444444;">
+        <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone"></div>
-                <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-                    <div class="mdc-card mdc-elevation--z9" style="height:100%;">
-                        <h1 style="margin:16px;">Rs. 2,000/Course</h1>
-                        <div style="background-color:#4287f5; padding:16px; height:inherit;">
-                            <h1 style="color:white; text-decoration:underline;">Basic</h1>
-                            <p style="color:white;">The basic plan covers all the basic and beginner level of all the courses. It is recommended for those who want to start from scratch or want to freshen their fundamentals.</p>
-                            <span style="color:white;">It includes: </span>
-                            <ul style="padding:0px; color:white;">
-                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
-                                    arrow_forward
-                                    </i>1 month of coaching with 3 classes/Week</li>
-                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
-                                    arrow_forward
-                                    </i>Access to unlimited internet for development</li>
-                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
-                                    arrow_forward
-                                    </i>20% OFF on next subscription.</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
+                    <span style="font-size:6vw; line-height:7vw;">Support for Personal Development</span>
+                    <p>We can support you in your personal projects. Bugs be damned.</p>
                 </div>
-                <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-                    <div class="mdc-card mdc-elevation--z9" style="height:100%;">
-                        <h1 style="margin:16px;">Rs. 3,000/Course</h1>
-                        <div style="background-color:#21cf5b; padding:16px; height:inherit;">
-                            <h1 style="color:white; text-decoration:underline;">Intermediate</h1>
-                            <p style="color:white;">The Intermediate plan includes intermediate level courses. It is recommended for all who finished basics and want to make their knowledge strong and also for those who are into professional level Programming.</p>
-                            <span style="color:white;">It includes: </span>
-                            <ul style="padding:0px; color:white;">
-                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
-                                    arrow_forward
-                                    </i>1 month of coaching with 3 classes/Week</li>
-                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
-                                    arrow_forward
-                                    </i>Access to unlimited internet for development</li>
-                                <li style="list-style-type:none; font-weight:bold;"><i class="material-icons" style="font-size:0.7rem;">
-                                    arrow_forward
-                                    </i>20% OFF on next subscription.</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                    <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/xnon.jpg')}}" alt="">
                 </div>
             </div>
         </div>
