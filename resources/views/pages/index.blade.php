@@ -69,7 +69,7 @@
         <div class="intro-section">
             <img class="header-bg" src="{{asset('images/back.jpg')}}" alt="">
             <div class="intro-section-header-div">
-                <h1 class="intro-header mdc-typography--headline2">Coding Course</h1>
+                <h1 class="intro-header mdc-typography--headline2">Coding Courses</h1>
                 <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">For absolute beginners from the scratch</span>
                 <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '#app-form'">
                     <div class="mdc-button__ripple"></div>
@@ -130,8 +130,8 @@
         </div>
         <div class="mdc-layout-grid" style="background-color:#444444;">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone"></div>
-                <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone"></div>
+                <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                     <div class="mdc-card mdc-elevation--z9" style="height:100%;">
                         <h1 style="margin:16px;">Rs. 2,000/Course</h1>
                         <div style="background-color:#4287f5; padding:16px; height:inherit;">
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
                     <div class="mdc-card mdc-elevation--z9" style="height:100%;">
                         <h1 style="margin:16px;">Rs. 3,000/Course</h1>
                         <div style="background-color:#21cf5b; padding:16px; height:inherit;">

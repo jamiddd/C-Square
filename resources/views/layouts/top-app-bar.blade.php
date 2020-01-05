@@ -86,11 +86,12 @@
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button burger">menu</button>
-            <span class="mdc-top-app-bar__title c2"><a href="/" style="text-decoration:none; font-family: 'Bebas Neue', cursive; font-size:2.4rem; color:white;">C<sup>2</sup></a></span>
+            <span class="mdc-top-app-bar__title c2"><a href="/" style="text-decoration:none; font-family: 'Bebas Neue', cursive; font-size:2.4rem; color:white;">CSQUARE</a></span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <div class="link-div">
-                <a class="top-app-bar-item course-menu-toggle" href="#">Course</a>
+                <a class="top-app-bar-item" href="/">Home</a>
+                <a class="top-app-bar-item course-menu-toggle" href="#">Courses</a>
                 <div class="mdc-menu-surface--anchor">
                     <div class="mdc-menu mdc-menu-surface">
                         <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">

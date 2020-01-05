@@ -3,11 +3,12 @@
 <style>
     main {
         flex: 1 0 auto;
+        padding-top:70px;
     }
 </style>
 
 @section('content')
-    <main style="padding-top:70px;">
+    <main>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
               <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-4-phone"></div>
