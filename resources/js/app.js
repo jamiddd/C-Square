@@ -3,10 +3,9 @@ import {MDCRipple} from '@material/ripple';
 import {MDCDrawer} from "@material/drawer";
 import {MDCMenu} from '@material/menu';
 import {MDCTextField} from '@material/textfield';
-import mdcAutoInit from '@material/auto-init';
-import {MDCSelect} from '@material/select';
 import {MDCSnackbar} from '@material/snackbar';
 import * as mdc from 'material-components-web'
+import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
 // import {MDCFormField} from '@material/form-field';
 // import {MDCRadio} from '@material/radio';
 
@@ -52,7 +51,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 // mdcAutoInit.register('MDCTextField', MDCTextField);
 
 // menu.open = true;
-const courseSelect = new MDCSelect(document.querySelector('.mdc-select'));
+// const courseSelect = new MDCSelect(document.querySelector('.mdc-select'));
 
 // select.listen('MDCSelect:change', () => {
 //     alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
@@ -60,6 +59,7 @@ const courseSelect = new MDCSelect(document.querySelector('.mdc-select'));
 window.mdc = mdc
 // const anc = document.querySelector('.course-menu-toggle');
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+const helperText = new MDCTextFieldHelperText(document.querySelector('.mdc-text-field-helper-text'));
 // snackbar.open();
 // mdcAutoInit.register('MDCSnackbar', MDCSnackbar);
 // window.mdcAutoInit = mdcAutoInit;

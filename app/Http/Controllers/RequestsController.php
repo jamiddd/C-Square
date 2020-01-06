@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Request as AppRequest;
 
 class RequestsController extends Controller
 {
@@ -34,7 +35,20 @@ class RequestsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required',
+            'email'=>'required',
+            'course'=>'required',
+            'user_type'=>'required'
+        ]);
+        
+        $new_request = new AppRequest;
+        $new_request->name = $request->input('name');
+        $new_request->email = $request->input('email');
+        $new_request->course = $request->input('course');
+        $new_request->user_type = $request->input('user_type');
+        $new_request->save();
+        return view('pages.notif');
     }
 
     /**

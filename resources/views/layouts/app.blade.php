@@ -60,6 +60,7 @@
         <script src="{{asset('js/app.js')}}"></script>
         <script>
             const MDCSnackbar = mdc.snackbar.MDCSnackbar;
+            const MDCSelect = mdc.select.MDCSelect;
             // const MDCFooFoundation = mdc.foo.MDCFooFoundation;
             var cpbtn = document.getElementById("copyEmailButton");
             cpbtn.onclick = function(){
@@ -72,6 +73,36 @@
                 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
                 snackbar.open();
             }
+
+            const select = new MDCSelect(document.querySelector('.mdc-select'));
+
+            select.listen('MDCSelect:change', () => {
+                console.log(`Selected option at index ${select.selectedIndex} with value "${select.value}"`)
+                document.getElementById("course-input").value = select.value;
+                if (document.getElementById("course-input-1") != null){
+                    document.getElementById("course-input-1").value = select.value;
+                }
+            });
+
+            function validateTextFieldsAlt(){
+                if (document.getElementById('text-field-hero-input').value === "" || document.getElementById('text-field-hero-input-1').value === ""){
+                    document.getElementById("another-submit-btn").disabled = true;     
+                } else {
+                    if (validateEmail(document.getElementById('text-field-hero-input-1').value)){
+                        document.getElementById("another-submit-btn").disabled = false;
+                    } else {
+                        document.getElementById("another-submit-btn").disabled = true;
+                    }
+                }
+            }
+
+            function validateEmail(mail){
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)){
+                    return (true)
+                }
+                return (false)
+            }
+
         </script>
         <script>
             window.mdc.autoInit();

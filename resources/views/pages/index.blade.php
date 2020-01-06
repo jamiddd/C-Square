@@ -73,8 +73,8 @@
         <div class="intro-section">
             <img class="header-bg" src="{{asset('images/back.jpg')}}" alt="">
             <div class="intro-section-header-div">
-                <h1 class="intro-header mdc-typography--headline2">Coding Courses</h1>
-                <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">For absolute beginners from the scratch</span>
+                <h1 class="intro-header mdc-typography--headline2">Code Square</h1>
+                <span class="intro-subtitle mdc-typography--subtitle1" style="display:block;">Computer courses for absolute beginners from the scratch</span>
                 <button class="mar-l mdc-button mdc-button--raised" onclick="window.location.href = '#app-get-started'">
                     <div class="mdc-button__ripple"></div>
                     <span class="mdc-button__label">Get started</span>

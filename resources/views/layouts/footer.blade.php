@@ -20,9 +20,10 @@
             </div>
             <div id="app-form" class="mdc-layout-grid__cell--span-3 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
                 <h5 class="mdc-typography--headline5">Apply Now</h5>
-                <form action="#" method="POST">
+                {!!Form::open(['action' => 'RequestsController@store', 'method' => 'POST'])!!}
+				{!!Form::token()!!}
                     <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField" style="margin-bottom:8px; width:100%;">
-                        <input class="mdc-text-field__input" id="text-field-hero-input">
+                        <input class="mdc-text-field__input" oninput="validateTextFieldsAlt()" id="text-field-hero-input" name="name">
                         <div class="mdc-notched-outline">
                             <div class="mdc-notched-outline__leading"></div>
                             <div class="mdc-notched-outline__notch">
@@ -32,7 +33,7 @@
                         </div>
                     </div>
                     <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField" style="margin-bottom:8px; width:100%;">
-                        <input class="mdc-text-field__input" id="text-field-hero-input-1">
+                        <input class="mdc-text-field__input" oninput="validateTextFieldsAlt()" id="text-field-hero-input-1" name="email">
                         <div class="mdc-notched-outline">
                             <div class="mdc-notched-outline__leading"></div>
                             <div class="mdc-notched-outline__notch">
@@ -61,34 +62,37 @@
 
                         <div class="mdc-select__menu demo-width-class mdc-menu mdc-menu-surface">
                           <ul class="mdc-list">
-                            {{-- <li class="mdc-list-item" data-value=""></li> --}}
-                            <li class="mdc-list-item" data-value="grains">
+                            {{-- <li class="mdc-list-item" data-value="">Select a</li> --}}
+                            <li class="mdc-list-item" data-value="Android Development">
                               Android Development
                             </li>
-                            <li class="mdc-list-item mdc-list-item--selected" data-value="vegetables" aria-selected="true">
+                            <li class="mdc-list-item mdc-list-item--selected" data-value="Object Oriented Programming" aria-selected="true">
                               Object Oriented Programming
                             </li>
-                            <li class="mdc-list-item" data-value="fruit">
-                              Github
+                            <li class="mdc-list-item" data-value="Github and Version Control">
+                              Github and Version Control
                             </li>
-                            <li class="mdc-list-item" data-value="fruit">
+                            {{-- <li class="mdc-list-item" data-value="Data Structure and Algorithms">
                                 Data structure and algorithms
-                            </li>
-                            <li class="mdc-list-item" data-value="fruit">
+                            </li> --}}
+                            <li class="mdc-list-item" data-value="Web Development">
                                 Web Development
                             </li>
-                            <li class="mdc-list-item" data-value="fruit">
+                            {{-- <li class="mdc-list-item" data-value="Database Management">
                                 Database Management
-                            </li>
+                            </li> --}}
                           </ul>
                         </div>
                       </div>
-                      <button class="mdc-button mdc-button--unelevated">
+                      <input type="text" value="" id="course-input" name="course" style="display:none;">
+                      <input type="text" value="Learner" id="user_type" name="user_type" style="display:none;">
+                      <button id="another-submit-btn" class="mdc-button mdc-button--unelevated" disabled>
                         <div class="mdc-button__ripple"></div>
                         <span class="mdc-button__label">APPLY</span>
                         <i class="material-icons mdc-button__icon" aria-hidden="true">done</i>
                       </button>
-                </form>
+                      {!!Form::hidden('_method', 'POST')!!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
