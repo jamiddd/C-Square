@@ -17,6 +17,10 @@
         height:500px;
     }
 
+    .home-style {
+        border-bottom: 4px solid white;
+    }
+
     .header-bg {
         position: absolute;
         height: 500px;

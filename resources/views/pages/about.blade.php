@@ -5,6 +5,10 @@
         flex: 1 0 auto;
         padding-top:70px;
     }
+
+    .about-style {
+        border-bottom: 4px solid white;
+    }
 </style>
 
 @section('content')

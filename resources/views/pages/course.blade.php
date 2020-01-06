@@ -9,6 +9,10 @@
 	.red-color-bg {
 		background-color:#fc035e;
 	}
+
+	.course-style {
+		border-bottom: 4px solid white;
+	}
 </style>
 
 @section('content')
@@ -21,7 +25,7 @@
 			<div
 				class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
 				<div class="mdc-card mdc-elevation--z0">
-					<div id="dynamic-header" style="background-color:#531ceb; padding:8px;">
+					<div id="dynamic-header" style="background-color:	; padding:8px;">
 						<h2 id="course-name" class="mdc-typography" style="color:white; margin:10px 10px;">{{$course[0]}}</h2>
 					</div>
 					<div>

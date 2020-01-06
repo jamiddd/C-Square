@@ -12,6 +12,8 @@
 @import "@material/select/mdc-select";
 @import "@material/elevation/mdc-elevation";
 @import "@material/snackbar/mdc-snackbar";
+@import "@material/form-field/mdc-form-field";
+@import "@material/radio/mdc-radio";
 
 @media (max-width: $mdc-snackbar-mobile-breakpoint) {
     .my-snackbar {

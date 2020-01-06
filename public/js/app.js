@@ -19264,7 +19264,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Instantiation
+ // import {MDCFormField} from '@material/form-field';
+// import {MDCRadio} from '@material/radio';
+// Instantiation
 
 var topAppBarElement = document.querySelector('.mdc-top-app-bar');
 var topAppBar = new _material_top_app_bar__WEBPACK_IMPORTED_MODULE_0__["MDCTopAppBar"](topAppBarElement);
@@ -19295,13 +19297,14 @@ coursemenutoggle.addEventListener('click', function () {
 var textField = new _material_textfield__WEBPACK_IMPORTED_MODULE_4__["MDCTextField"](document.querySelector('.mdc-text-field')); // mdcAutoInit.register('MDCTextField', MDCTextField);
 // menu.open = true;
 
-var select = new _material_select__WEBPACK_IMPORTED_MODULE_6__["MDCSelect"](document.querySelector('.mdc-select')); // select.listen('MDCSelect:change', () => {
+var courseSelect = new _material_select__WEBPACK_IMPORTED_MODULE_6__["MDCSelect"](document.querySelector('.mdc-select')); // select.listen('MDCSelect:change', () => {
 //     alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
 //   });
 
 window.mdc = material_components_web__WEBPACK_IMPORTED_MODULE_8__; // const anc = document.querySelector('.course-menu-toggle');
 
-var snackbar = new _material_snackbar__WEBPACK_IMPORTED_MODULE_7__["MDCSnackbar"](document.querySelector('.mdc-snackbar')); // mdcAutoInit.register('MDCSnackbar', MDCSnackbar);
+var snackbar = new _material_snackbar__WEBPACK_IMPORTED_MODULE_7__["MDCSnackbar"](document.querySelector('.mdc-snackbar')); // snackbar.open();
+// mdcAutoInit.register('MDCSnackbar', MDCSnackbar);
 // window.mdcAutoInit = mdcAutoInit;
 
 /***/ }),

@@ -51,7 +51,7 @@
               <span class="mdc-list-item__text">About</span>
             </a>
             <a class="mdc-list-item" href="/career">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">career</i>
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>
               <span class="mdc-list-item__text">Career</span>
             </a>
             {{-- <a class="mdc-list-item" href="#">
@@ -89,8 +89,8 @@
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <div class="link-div">
-                <a class="top-app-bar-item" href="/">Home</a>
-                <a class="top-app-bar-item course-menu-toggle" href="#">Courses</a>
+                <a class="top-app-bar-item home-style" href="/">Home</a>
+                <a class="top-app-bar-item course-menu-toggle course-style" href="#">Courses</a>
                 <div class="mdc-menu-surface--anchor">
                     <div class="mdc-menu mdc-menu-surface">
                         <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
@@ -110,8 +110,8 @@
                     </div>
                 </div>
             </div>
-            <a class="top-app-bar-item" href="/about">About</a>
-            <a class="top-app-bar-item" href="/career">Career</a>
+            <a class="top-app-bar-item about-style" href="/about">About</a>
+            <a class="top-app-bar-item career-style" href="/career">Career</a>
             <button class="mdc-button" style="background-color:white; color:#531ceb; margin-left:10px; margin-right:16px;" onclick="window.location.href = '#app-form'">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Apply Now</span>

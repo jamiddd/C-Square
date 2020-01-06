@@ -16,7 +16,7 @@
                 <p>Yellow Stone Apartment, Niribili Path, Beharbari 781029, Guwahati, Kamrup-M, Assam.</p>
                 <p>Phone No. - 7627989889, 6003499695</p>
                 
-                <span>Email - <input id="email-id" type="text" value="jamiddeka1@gmail.com"></span><button id="copyEmailButton" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Copy" data-mdc-ripple-is-unbounded="true">file_copy</button>
+                <span>Email - <input id="email-id" value="jamiddeka1@gmail.com"></span><button id="copyEmailButton" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Copy email" style="font-size:1rem;" data-mdc-ripple-is-unbounded="true">file_copy</button>
             </div>
             <div id="app-form" class="mdc-layout-grid__cell--span-3 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
                 <h5 class="mdc-typography--headline5">Apply Now</h5>
@@ -51,7 +51,7 @@
                             <div class="mdc-notched-outline__trailing"></div>
                         </div>
                     </div> --}}
-                    <div class="mdc-select">
+                    <div class="mdc-select" data-mdc-auto-init="MDCSelect">
                         <div class="mdc-select__anchor" style="width:100%; margin-bottom:16px;">
                           <i class="mdc-select__dropdown-icon"></i>
                           <div class="mdc-select__selected-text">Courses</div>
