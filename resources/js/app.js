@@ -5,6 +5,9 @@ import {MDCMenu} from '@material/menu';
 import {MDCTextField} from '@material/textfield';
 import mdcAutoInit from '@material/auto-init';
 import {MDCSelect} from '@material/select';
+import {MDCSnackbar} from '@material/snackbar';
+import * as mdc from 'material-components-web'
+
 // Instantiation
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
 const topAppBar = new MDCTopAppBar(topAppBarElement);
@@ -42,8 +45,7 @@ coursemenutoggle.addEventListener('click', () => {
 
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
-mdcAutoInit.register('MDCTextField', MDCTextField);
-window.mdcAutoInit = mdcAutoInit;
+// mdcAutoInit.register('MDCTextField', MDCTextField);
 
 // menu.open = true;
 const select = new MDCSelect(document.querySelector('.mdc-select'));
@@ -51,6 +53,10 @@ const select = new MDCSelect(document.querySelector('.mdc-select'));
 // select.listen('MDCSelect:change', () => {
 //     alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
 //   });
-
+window.mdc = mdc
 // const anc = document.querySelector('.course-menu-toggle');
+const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+// snackbar.open();
+// mdcAutoInit.register('MDCSnackbar', MDCSnackbar);
+// window.mdcAutoInit = mdcAutoInit;
 

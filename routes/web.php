@@ -19,8 +19,8 @@ Route::get('/apply', function () {
     return view('pages.apply');
 });
 
-Route::get('/contacts', function () {
-    return view('pages.contacts');
+Route::get('/career', function () {
+    return view('pages.career');
 });
 
 Route::get('/courses', function () {

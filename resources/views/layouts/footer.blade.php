@@ -15,7 +15,8 @@
                 <h5 class="mdc-typography--headline5">Contact Us</h5>
                 <p>Yellow Stone Apartment, Niribili Path, Beharbari 781029, Guwahati, Kamrup-M, Assam.</p>
                 <p>Phone No. - 7627989889, 6003499695</p>
-                <span>Email - <span id="myEmail">jamiddeka1@gmail.com</span></span><button id="copyEmailButton" onclick="copyToClipboard()" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Copy" data-mdc-ripple-is-unbounded="true">file_copy</button>
+                
+                <span>Email - <input id="email-id" type="text" value="jamiddeka1@gmail.com"></span><button id="copyEmailButton" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Copy" data-mdc-ripple-is-unbounded="true">file_copy</button>
             </div>
             <div id="app-form" class="mdc-layout-grid__cell--span-3 mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
                 <h5 class="mdc-typography--headline5">Apply Now</h5>
@@ -93,27 +94,5 @@
     </div>
 </div>
 <script>
-    function copyToClipboard() {
-        var copyEmailBtn = document.querySelector('#copyEmailButton');
-        copyEmailBtn.addEventListener('click', function(event) {
-        // Select the email link anchor text
-        var emailLink = document.querySelector('#myEmail');
-        var range = document.createRange();
-        range.selectNode(emailLink);
-        window.getSelection().addRange(range);
 
-        try {
-            // Now that we've selected the anchor text, execute the copy command
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copy email command was ' + msg);
-        } catch(err) {
-            console.log('Oops, unable to copy');
-        }
-
-        // Remove the selections - NOTE: Should use
-        // removeRange(range) when it is supported
-        window.getSelection().removeAllRanges();
-        });
-    }
 </script>

@@ -6,6 +6,9 @@
 
         <title>C Square</title>
 
+         <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
@@ -37,9 +40,41 @@
         @include('layouts.top-app-bar')
         @yield('content')
         @include('layouts.footer')
+        
+        <div class="mdc-snackbar" data-mdc-auto-init="MDCSnackbar">
+            <div class="mdc-snackbar__surface">
+              <div class="mdc-snackbar__label"
+                   role="status"
+                   aria-live="polite">
+                Email copied successfully.
+              </div>
+              <div class="mdc-snackbar__actions">
+                <button type="button" class="mdc-button mdc-snackbar__action"></button>
+              </div>
+            </div>
+          </div>
+        
+        <script>
+        
+        </script>
         <script src="{{asset('js/app.js')}}"></script>
         <script>
-            window.mdcAutoInit();
+            const MDCSnackbar = mdc.snackbar.MDCSnackbar;
+            // const MDCFooFoundation = mdc.foo.MDCFooFoundation;
+            var cpbtn = document.getElementById("copyEmailButton");
+            cpbtn.onclick = function(){
+                var copyText = document.getElementById("email-id");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+                document.execCommand("copy");
+                console.log(copyText.value)
+
+                const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+                snackbar.open();
+            }
+        </script>
+        <script>
+            window.mdc.autoInit();
         </script>
     </body>
 </html>

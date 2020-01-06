@@ -50,9 +50,9 @@
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>
               <span class="mdc-list-item__text">About</span>
             </a>
-            <a class="mdc-list-item" href="/contacts">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contacts</i>
-              <span class="mdc-list-item__text">Contacts</span>
+            <a class="mdc-list-item" href="/career">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">career</i>
+              <span class="mdc-list-item__text">Career</span>
             </a>
             {{-- <a class="mdc-list-item" href="#">
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <a class="top-app-bar-item" href="/about">About</a>
-            <a class="top-app-bar-item" href="/contacts">Career</a>
+            <a class="top-app-bar-item" href="/career">Career</a>
             <button class="mdc-button" style="background-color:white; color:#531ceb; margin-left:10px; margin-right:16px;" onclick="window.location.href = '#app-form'">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Apply Now</span>

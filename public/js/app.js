@@ -86,6 +86,100 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@material/animation/util.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@material/animation/util.js ***!
+  \**************************************************/
+/*! exports provided: getCorrectPropertyName, getCorrectEventName */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCorrectPropertyName", function() { return getCorrectPropertyName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCorrectEventName", function() { return getCorrectEventName; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssPropertyNameMap = {
+    animation: {
+        prefixed: '-webkit-animation',
+        standard: 'animation',
+    },
+    transform: {
+        prefixed: '-webkit-transform',
+        standard: 'transform',
+    },
+    transition: {
+        prefixed: '-webkit-transition',
+        standard: 'transition',
+    },
+};
+var jsEventTypeMap = {
+    animationend: {
+        cssProperty: 'animation',
+        prefixed: 'webkitAnimationEnd',
+        standard: 'animationend',
+    },
+    animationiteration: {
+        cssProperty: 'animation',
+        prefixed: 'webkitAnimationIteration',
+        standard: 'animationiteration',
+    },
+    animationstart: {
+        cssProperty: 'animation',
+        prefixed: 'webkitAnimationStart',
+        standard: 'animationstart',
+    },
+    transitionend: {
+        cssProperty: 'transition',
+        prefixed: 'webkitTransitionEnd',
+        standard: 'transitionend',
+    },
+};
+function isWindow(windowObj) {
+    return Boolean(windowObj.document) && typeof windowObj.document.createElement === 'function';
+}
+function getCorrectPropertyName(windowObj, cssProperty) {
+    if (isWindow(windowObj) && cssProperty in cssPropertyNameMap) {
+        var el = windowObj.document.createElement('div');
+        var _a = cssPropertyNameMap[cssProperty], standard = _a.standard, prefixed = _a.prefixed;
+        var isStandard = standard in el.style;
+        return isStandard ? standard : prefixed;
+    }
+    return cssProperty;
+}
+function getCorrectEventName(windowObj, eventType) {
+    if (isWindow(windowObj) && eventType in jsEventTypeMap) {
+        var el = windowObj.document.createElement('div');
+        var _a = jsEventTypeMap[eventType], standard = _a.standard, prefixed = _a.prefixed, cssProperty = _a.cssProperty;
+        var isStandard = cssProperty in el.style;
+        return isStandard ? standard : prefixed;
+    }
+    return eventType;
+}
+//# sourceMappingURL=util.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@material/auto-init/constants.js":
 /*!*******************************************************!*\
   !*** ./node_modules/@material/auto-init/constants.js ***!
@@ -457,6 +551,3023 @@ var MDCFoundation = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./node_modules/@material/base/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/@material/base/index.js ***!
+  \**********************************************/
+/*! exports provided: MDCComponent, MDCFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/base/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCComponent", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCComponent"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/checkbox/component.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/checkbox/component.js ***!
+  \******************************************************/
+/*! exports provided: MDCCheckbox */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCCheckbox", function() { return MDCCheckbox; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_animation_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/animation/util */ "./node_modules/@material/animation/util.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/dom/events */ "./node_modules/@material/dom/events.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/dom/ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material/ripple/foundation */ "./node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/checkbox/foundation.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+
+var CB_PROTO_PROPS = ['checked', 'indeterminate'];
+var MDCCheckbox = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCCheckbox, _super);
+    function MDCCheckbox() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.ripple_ = _this.createRipple_();
+        return _this;
+    }
+    MDCCheckbox.attachTo = function (root) {
+        return new MDCCheckbox(root);
+    };
+    Object.defineProperty(MDCCheckbox.prototype, "ripple", {
+        get: function () {
+            return this.ripple_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckbox.prototype, "checked", {
+        get: function () {
+            return this.nativeControl_.checked;
+        },
+        set: function (checked) {
+            this.nativeControl_.checked = checked;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckbox.prototype, "indeterminate", {
+        get: function () {
+            return this.nativeControl_.indeterminate;
+        },
+        set: function (indeterminate) {
+            this.nativeControl_.indeterminate = indeterminate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckbox.prototype, "disabled", {
+        get: function () {
+            return this.nativeControl_.disabled;
+        },
+        set: function (disabled) {
+            this.foundation_.setDisabled(disabled);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckbox.prototype, "value", {
+        get: function () {
+            return this.nativeControl_.value;
+        },
+        set: function (value) {
+            this.nativeControl_.value = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCCheckbox.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleChange_ = function () { return _this.foundation_.handleChange(); };
+        this.handleAnimationEnd_ = function () { return _this.foundation_.handleAnimationEnd(); };
+        this.nativeControl_.addEventListener('change', this.handleChange_);
+        this.listen(Object(_material_animation_util__WEBPACK_IMPORTED_MODULE_1__["getCorrectEventName"])(window, 'animationend'), this.handleAnimationEnd_);
+        this.installPropertyChangeHooks_();
+    };
+    MDCCheckbox.prototype.destroy = function () {
+        this.ripple_.destroy();
+        this.nativeControl_.removeEventListener('change', this.handleChange_);
+        this.unlisten(Object(_material_animation_util__WEBPACK_IMPORTED_MODULE_1__["getCorrectEventName"])(window, 'animationend'), this.handleAnimationEnd_);
+        this.uninstallPropertyChangeHooks_();
+        _super.prototype.destroy.call(this);
+    };
+    MDCCheckbox.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            forceLayout: function () { return _this.root_.offsetWidth; },
+            hasNativeControl: function () { return !!_this.nativeControl_; },
+            isAttachedToDOM: function () { return Boolean(_this.root_.parentNode); },
+            isChecked: function () { return _this.checked; },
+            isIndeterminate: function () { return _this.indeterminate; },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            removeNativeControlAttr: function (attr) { return _this.nativeControl_.removeAttribute(attr); },
+            setNativeControlAttr: function (attr, value) { return _this.nativeControl_.setAttribute(attr, value); },
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_7__["MDCCheckboxFoundation"](adapter);
+    };
+    MDCCheckbox.prototype.createRipple_ = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_5__["MDCRipple"].createAdapter(this), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_3__["applyPassive"])()); }, isSurfaceActive: function () { return Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_4__["matches"])(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_3__["applyPassive"])()); } });
+        return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_5__["MDCRipple"](this.root_, new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_6__["MDCRippleFoundation"](adapter));
+    };
+    MDCCheckbox.prototype.installPropertyChangeHooks_ = function () {
+        var _this = this;
+        var nativeCb = this.nativeControl_;
+        var cbProto = Object.getPrototypeOf(nativeCb);
+        CB_PROTO_PROPS.forEach(function (controlState) {
+            var desc = Object.getOwnPropertyDescriptor(cbProto, controlState);
+            // We have to check for this descriptor, since some browsers (Safari) don't support its return.
+            // See: https://bugs.webkit.org/show_bug.cgi?id=49739
+            if (!validDescriptor(desc)) {
+                return;
+            }
+            // Type cast is needed for compatibility with Closure Compiler.
+            var nativeGetter = desc.get;
+            var nativeCbDesc = {
+                configurable: desc.configurable,
+                enumerable: desc.enumerable,
+                get: nativeGetter,
+                set: function (state) {
+                    desc.set.call(nativeCb, state);
+                    _this.foundation_.handleChange();
+                },
+            };
+            Object.defineProperty(nativeCb, controlState, nativeCbDesc);
+        });
+    };
+    MDCCheckbox.prototype.uninstallPropertyChangeHooks_ = function () {
+        var nativeCb = this.nativeControl_;
+        var cbProto = Object.getPrototypeOf(nativeCb);
+        CB_PROTO_PROPS.forEach(function (controlState) {
+            var desc = Object.getOwnPropertyDescriptor(cbProto, controlState);
+            if (!validDescriptor(desc)) {
+                return;
+            }
+            Object.defineProperty(nativeCb, controlState, desc);
+        });
+    };
+    Object.defineProperty(MDCCheckbox.prototype, "nativeControl_", {
+        get: function () {
+            var NATIVE_CONTROL_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_7__["MDCCheckboxFoundation"].strings.NATIVE_CONTROL_SELECTOR;
+            var el = this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
+            if (!el) {
+                throw new Error("Checkbox component requires a " + NATIVE_CONTROL_SELECTOR + " element");
+            }
+            return el;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return MDCCheckbox;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_2__["MDCComponent"]));
+
+function validDescriptor(inputPropDesc) {
+    return !!inputPropDesc && typeof inputPropDesc.set === 'function';
+}
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/checkbox/constants.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/checkbox/constants.js ***!
+  \******************************************************/
+/*! exports provided: cssClasses, strings, numbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ANIM_CHECKED_INDETERMINATE: 'mdc-checkbox--anim-checked-indeterminate',
+    ANIM_CHECKED_UNCHECKED: 'mdc-checkbox--anim-checked-unchecked',
+    ANIM_INDETERMINATE_CHECKED: 'mdc-checkbox--anim-indeterminate-checked',
+    ANIM_INDETERMINATE_UNCHECKED: 'mdc-checkbox--anim-indeterminate-unchecked',
+    ANIM_UNCHECKED_CHECKED: 'mdc-checkbox--anim-unchecked-checked',
+    ANIM_UNCHECKED_INDETERMINATE: 'mdc-checkbox--anim-unchecked-indeterminate',
+    BACKGROUND: 'mdc-checkbox__background',
+    CHECKED: 'mdc-checkbox--checked',
+    CHECKMARK: 'mdc-checkbox__checkmark',
+    CHECKMARK_PATH: 'mdc-checkbox__checkmark-path',
+    DISABLED: 'mdc-checkbox--disabled',
+    INDETERMINATE: 'mdc-checkbox--indeterminate',
+    MIXEDMARK: 'mdc-checkbox__mixedmark',
+    NATIVE_CONTROL: 'mdc-checkbox__native-control',
+    ROOT: 'mdc-checkbox',
+    SELECTED: 'mdc-checkbox--selected',
+    UPGRADED: 'mdc-checkbox--upgraded',
+};
+var strings = {
+    ARIA_CHECKED_ATTR: 'aria-checked',
+    ARIA_CHECKED_INDETERMINATE_VALUE: 'mixed',
+    NATIVE_CONTROL_SELECTOR: '.mdc-checkbox__native-control',
+    TRANSITION_STATE_CHECKED: 'checked',
+    TRANSITION_STATE_INDETERMINATE: 'indeterminate',
+    TRANSITION_STATE_INIT: 'init',
+    TRANSITION_STATE_UNCHECKED: 'unchecked',
+};
+var numbers = {
+    ANIM_END_LATCH_MS: 250,
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/checkbox/foundation.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material/checkbox/foundation.js ***!
+  \*******************************************************/
+/*! exports provided: MDCCheckboxFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCCheckboxFoundation", function() { return MDCCheckboxFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/checkbox/constants.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCCheckboxFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCCheckboxFoundation, _super);
+    function MDCCheckboxFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCCheckboxFoundation.defaultAdapter, adapter)) || this;
+        _this.currentCheckState_ = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_INIT;
+        _this.currentAnimationClass_ = '';
+        _this.animEndLatchTimer_ = 0;
+        _this.enableAnimationEndHandler_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCCheckboxFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckboxFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckboxFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCCheckboxFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                forceLayout: function () { return undefined; },
+                hasNativeControl: function () { return false; },
+                isAttachedToDOM: function () { return false; },
+                isChecked: function () { return false; },
+                isIndeterminate: function () { return false; },
+                removeClass: function () { return undefined; },
+                removeNativeControlAttr: function () { return undefined; },
+                setNativeControlAttr: function () { return undefined; },
+                setNativeControlDisabled: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCCheckboxFoundation.prototype.init = function () {
+        this.currentCheckState_ = this.determineCheckState_();
+        this.updateAriaChecked_();
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].UPGRADED);
+    };
+    MDCCheckboxFoundation.prototype.destroy = function () {
+        clearTimeout(this.animEndLatchTimer_);
+    };
+    MDCCheckboxFoundation.prototype.setDisabled = function (disabled) {
+        this.adapter_.setNativeControlDisabled(disabled);
+        if (disabled) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].DISABLED);
+        }
+        else {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].DISABLED);
+        }
+    };
+    /**
+     * Handles the animationend event for the checkbox
+     */
+    MDCCheckboxFoundation.prototype.handleAnimationEnd = function () {
+        var _this = this;
+        if (!this.enableAnimationEndHandler_) {
+            return;
+        }
+        clearTimeout(this.animEndLatchTimer_);
+        this.animEndLatchTimer_ = setTimeout(function () {
+            _this.adapter_.removeClass(_this.currentAnimationClass_);
+            _this.enableAnimationEndHandler_ = false;
+        }, _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ANIM_END_LATCH_MS);
+    };
+    /**
+     * Handles the change event for the checkbox
+     */
+    MDCCheckboxFoundation.prototype.handleChange = function () {
+        this.transitionCheckState_();
+    };
+    MDCCheckboxFoundation.prototype.transitionCheckState_ = function () {
+        if (!this.adapter_.hasNativeControl()) {
+            return;
+        }
+        var oldState = this.currentCheckState_;
+        var newState = this.determineCheckState_();
+        if (oldState === newState) {
+            return;
+        }
+        this.updateAriaChecked_();
+        var TRANSITION_STATE_UNCHECKED = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_UNCHECKED;
+        var SELECTED = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SELECTED;
+        if (newState === TRANSITION_STATE_UNCHECKED) {
+            this.adapter_.removeClass(SELECTED);
+        }
+        else {
+            this.adapter_.addClass(SELECTED);
+        }
+        // Check to ensure that there isn't a previously existing animation class, in case for example
+        // the user interacted with the checkbox before the animation was finished.
+        if (this.currentAnimationClass_.length > 0) {
+            clearTimeout(this.animEndLatchTimer_);
+            this.adapter_.forceLayout();
+            this.adapter_.removeClass(this.currentAnimationClass_);
+        }
+        this.currentAnimationClass_ = this.getTransitionAnimationClass_(oldState, newState);
+        this.currentCheckState_ = newState;
+        // Check for parentNode so that animations are only run when the element is attached
+        // to the DOM.
+        if (this.adapter_.isAttachedToDOM() && this.currentAnimationClass_.length > 0) {
+            this.adapter_.addClass(this.currentAnimationClass_);
+            this.enableAnimationEndHandler_ = true;
+        }
+    };
+    MDCCheckboxFoundation.prototype.determineCheckState_ = function () {
+        var TRANSITION_STATE_INDETERMINATE = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_INDETERMINATE, TRANSITION_STATE_CHECKED = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_CHECKED, TRANSITION_STATE_UNCHECKED = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_UNCHECKED;
+        if (this.adapter_.isIndeterminate()) {
+            return TRANSITION_STATE_INDETERMINATE;
+        }
+        return this.adapter_.isChecked() ? TRANSITION_STATE_CHECKED : TRANSITION_STATE_UNCHECKED;
+    };
+    MDCCheckboxFoundation.prototype.getTransitionAnimationClass_ = function (oldState, newState) {
+        var TRANSITION_STATE_INIT = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_INIT, TRANSITION_STATE_CHECKED = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_CHECKED, TRANSITION_STATE_UNCHECKED = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TRANSITION_STATE_UNCHECKED;
+        var _a = MDCCheckboxFoundation.cssClasses, ANIM_UNCHECKED_CHECKED = _a.ANIM_UNCHECKED_CHECKED, ANIM_UNCHECKED_INDETERMINATE = _a.ANIM_UNCHECKED_INDETERMINATE, ANIM_CHECKED_UNCHECKED = _a.ANIM_CHECKED_UNCHECKED, ANIM_CHECKED_INDETERMINATE = _a.ANIM_CHECKED_INDETERMINATE, ANIM_INDETERMINATE_CHECKED = _a.ANIM_INDETERMINATE_CHECKED, ANIM_INDETERMINATE_UNCHECKED = _a.ANIM_INDETERMINATE_UNCHECKED;
+        switch (oldState) {
+            case TRANSITION_STATE_INIT:
+                if (newState === TRANSITION_STATE_UNCHECKED) {
+                    return '';
+                }
+                return newState === TRANSITION_STATE_CHECKED ? ANIM_INDETERMINATE_CHECKED : ANIM_INDETERMINATE_UNCHECKED;
+            case TRANSITION_STATE_UNCHECKED:
+                return newState === TRANSITION_STATE_CHECKED ? ANIM_UNCHECKED_CHECKED : ANIM_UNCHECKED_INDETERMINATE;
+            case TRANSITION_STATE_CHECKED:
+                return newState === TRANSITION_STATE_UNCHECKED ? ANIM_CHECKED_UNCHECKED : ANIM_CHECKED_INDETERMINATE;
+            default: // TRANSITION_STATE_INDETERMINATE
+                return newState === TRANSITION_STATE_CHECKED ? ANIM_INDETERMINATE_CHECKED : ANIM_INDETERMINATE_UNCHECKED;
+        }
+    };
+    MDCCheckboxFoundation.prototype.updateAriaChecked_ = function () {
+        // Ensure aria-checked is set to mixed if checkbox is in indeterminate state.
+        if (this.adapter_.isIndeterminate()) {
+            this.adapter_.setNativeControlAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_CHECKED_ATTR, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_CHECKED_INDETERMINATE_VALUE);
+        }
+        else {
+            // The on/off state does not need to keep track of aria-checked, since
+            // the screenreader uses the checked property on the checkbox element.
+            this.adapter_.removeNativeControlAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_CHECKED_ATTR);
+        }
+    };
+    return MDCCheckboxFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCCheckboxFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/checkbox/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@material/checkbox/index.js ***!
+  \**************************************************/
+/*! exports provided: MDCCheckbox, cssClasses, strings, numbers, MDCCheckboxFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/checkbox/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCCheckbox", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCCheckbox"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/checkbox/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/checkbox/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCCheckboxFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCCheckboxFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip-set/component.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material/chips/chip-set/component.js ***!
+  \************************************************************/
+/*! exports provided: MDCChipSet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCChipSet", function() { return MDCChipSet; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _chip_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../chip/component */ "./node_modules/@material/chips/chip/component.js");
+/* harmony import */ var _chip_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../chip/foundation */ "./node_modules/@material/chips/chip/foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/chips/chip-set/foundation.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+var _a = _chip_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCChipFoundation"].strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
+var CHIP_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCChipSetFoundation"].strings.CHIP_SELECTOR;
+var idCounter = 0;
+var MDCChipSet = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCChipSet, _super);
+    function MDCChipSet() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCChipSet.attachTo = function (root) {
+        return new MDCChipSet(root);
+    };
+    Object.defineProperty(MDCChipSet.prototype, "chips", {
+        get: function () {
+            return this.chips_.slice();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChipSet.prototype, "selectedChipIds", {
+        /**
+         * @return An array of the IDs of all selected chips.
+         */
+        get: function () {
+            return this.foundation_.getSelectedChipIds();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @param chipFactory A function which creates a new MDCChip.
+     */
+    MDCChipSet.prototype.initialize = function (chipFactory) {
+        if (chipFactory === void 0) { chipFactory = function (el) { return new _chip_component__WEBPACK_IMPORTED_MODULE_2__["MDCChip"](el); }; }
+        this.chipFactory_ = chipFactory;
+        this.chips_ = this.instantiateChips_(this.chipFactory_);
+    };
+    MDCChipSet.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.chips_.forEach(function (chip) {
+            if (chip.id && chip.selected) {
+                _this.foundation_.select(chip.id);
+            }
+        });
+        this.handleChipInteraction_ = function (evt) { return _this.foundation_.handleChipInteraction(evt.detail.chipId); };
+        this.handleChipSelection_ = function (evt) {
+            _this.foundation_.handleChipSelection(evt.detail.chipId, evt.detail.selected, evt.detail.shouldIgnore);
+        };
+        this.handleChipRemoval_ = function (evt) { return _this.foundation_.handleChipRemoval(evt.detail.chipId); };
+        this.handleChipNavigation_ = function (evt) { return _this.foundation_.handleChipNavigation(evt.detail.chipId, evt.detail.key, evt.detail.source); };
+        this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
+        this.listen(SELECTION_EVENT, this.handleChipSelection_);
+        this.listen(REMOVAL_EVENT, this.handleChipRemoval_);
+        this.listen(NAVIGATION_EVENT, this.handleChipNavigation_);
+    };
+    MDCChipSet.prototype.destroy = function () {
+        this.chips_.forEach(function (chip) {
+            chip.destroy();
+        });
+        this.unlisten(INTERACTION_EVENT, this.handleChipInteraction_);
+        this.unlisten(SELECTION_EVENT, this.handleChipSelection_);
+        this.unlisten(REMOVAL_EVENT, this.handleChipRemoval_);
+        this.unlisten(NAVIGATION_EVENT, this.handleChipNavigation_);
+        _super.prototype.destroy.call(this);
+    };
+    /**
+     * Adds a new chip object to the chip set from the given chip element.
+     */
+    MDCChipSet.prototype.addChip = function (chipEl) {
+        chipEl.id = chipEl.id || "mdc-chip-" + ++idCounter;
+        this.chips_.push(this.chipFactory_(chipEl));
+    };
+    MDCChipSet.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            focusChipPrimaryActionAtIndex: function (index) {
+                _this.chips_[index].focusPrimaryAction();
+            },
+            focusChipTrailingActionAtIndex: function (index) {
+                _this.chips_[index].focusTrailingAction();
+            },
+            getChipListCount: function () { return _this.chips_.length; },
+            getIndexOfChipById: function (chipId) {
+                return _this.findChipIndex_(chipId);
+            },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
+            removeChipAtIndex: function (index) {
+                if (index >= 0 && index < _this.chips_.length) {
+                    _this.chips_[index].destroy();
+                    _this.chips_[index].remove();
+                    _this.chips_.splice(index, 1);
+                }
+            },
+            removeFocusFromChipAtIndex: function (index) {
+                _this.chips_[index].removeFocus();
+            },
+            selectChipAtIndex: function (index, selected, shouldNotifyClients) {
+                if (index >= 0 && index < _this.chips_.length) {
+                    _this.chips_[index].setSelectedFromChipSet(selected, shouldNotifyClients);
+                }
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCChipSetFoundation"](adapter);
+    };
+    /**
+     * Instantiates chip components on all of the chip set's child chip elements.
+     */
+    MDCChipSet.prototype.instantiateChips_ = function (chipFactory) {
+        var chipElements = [].slice.call(this.root_.querySelectorAll(CHIP_SELECTOR));
+        return chipElements.map(function (el) {
+            el.id = el.id || "mdc-chip-" + ++idCounter;
+            return chipFactory(el);
+        });
+    };
+    /**
+     * Returns the index of the chip with the given id, or -1 if the chip does not exist.
+     */
+    MDCChipSet.prototype.findChipIndex_ = function (chipId) {
+        for (var i = 0; i < this.chips_.length; i++) {
+            if (this.chips_[i].id === chipId) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    return MDCChipSet;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip-set/constants.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material/chips/chip-set/constants.js ***!
+  \************************************************************/
+/*! exports provided: strings, cssClasses */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    CHIP_SELECTOR: '.mdc-chip',
+};
+var cssClasses = {
+    CHOICE: 'mdc-chip-set--choice',
+    FILTER: 'mdc-chip-set--filter',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip-set/foundation.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material/chips/chip-set/foundation.js ***!
+  \*************************************************************/
+/*! exports provided: MDCChipSetFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCChipSetFoundation", function() { return MDCChipSetFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _chip_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../chip/constants */ "./node_modules/@material/chips/chip/constants.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/chips/chip-set/constants.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+var MDCChipSetFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCChipSetFoundation, _super);
+    function MDCChipSetFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCChipSetFoundation.defaultAdapter, adapter)) || this;
+        /**
+         * The ids of the selected chips in the set. Only used for choice chip set or filter chip set.
+         */
+        _this.selectedChipIds_ = [];
+        return _this;
+    }
+    Object.defineProperty(MDCChipSetFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChipSetFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChipSetFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                focusChipPrimaryActionAtIndex: function () { return undefined; },
+                focusChipTrailingActionAtIndex: function () { return undefined; },
+                getChipListCount: function () { return -1; },
+                getIndexOfChipById: function () { return -1; },
+                hasClass: function () { return false; },
+                isRTL: function () { return false; },
+                removeChipAtIndex: function () { return undefined; },
+                removeFocusFromChipAtIndex: function () { return undefined; },
+                selectChipAtIndex: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Returns an array of the IDs of all selected chips.
+     */
+    MDCChipSetFoundation.prototype.getSelectedChipIds = function () {
+        return this.selectedChipIds_.slice();
+    };
+    /**
+     * Selects the chip with the given id. Deselects all other chips if the chip set is of the choice variant.
+     * Does not notify clients of the updated selection state.
+     */
+    MDCChipSetFoundation.prototype.select = function (chipId) {
+        this.select_(chipId, false);
+    };
+    /**
+     * Handles a chip interaction event
+     */
+    MDCChipSetFoundation.prototype.handleChipInteraction = function (chipId) {
+        var index = this.adapter_.getIndexOfChipById(chipId);
+        this.removeFocusFromChipsExcept_(index);
+        if (this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].CHOICE) || this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FILTER)) {
+            this.toggleSelect_(chipId);
+        }
+    };
+    /**
+     * Handles a chip selection event, used to handle discrepancy when selection state is set directly on the Chip.
+     */
+    MDCChipSetFoundation.prototype.handleChipSelection = function (chipId, selected, shouldIgnore) {
+        // Early exit if we should ignore the event
+        if (shouldIgnore) {
+            return;
+        }
+        var chipIsSelected = this.selectedChipIds_.indexOf(chipId) >= 0;
+        if (selected && !chipIsSelected) {
+            this.select(chipId);
+        }
+        else if (!selected && chipIsSelected) {
+            this.deselect_(chipId);
+        }
+    };
+    /**
+     * Handles the event when a chip is removed.
+     */
+    MDCChipSetFoundation.prototype.handleChipRemoval = function (chipId) {
+        var index = this.adapter_.getIndexOfChipById(chipId);
+        this.deselectAndNotifyClients_(chipId);
+        this.adapter_.removeChipAtIndex(index);
+        var maxIndex = this.adapter_.getChipListCount() - 1;
+        var nextIndex = Math.min(index, maxIndex);
+        this.removeFocusFromChipsExcept_(nextIndex);
+        // After removing a chip, we should focus the trailing action for the next chip.
+        this.adapter_.focusChipTrailingActionAtIndex(nextIndex);
+    };
+    /**
+     * Handles a chip navigation event.
+     */
+    MDCChipSetFoundation.prototype.handleChipNavigation = function (chipId, key, source) {
+        var maxIndex = this.adapter_.getChipListCount() - 1;
+        var index = this.adapter_.getIndexOfChipById(chipId);
+        // Early exit if the index is out of range or the key is unusable
+        if (index === -1 || !_chip_constants__WEBPACK_IMPORTED_MODULE_2__["navigationKeys"].has(key)) {
+            return;
+        }
+        var isRTL = this.adapter_.isRTL();
+        var shouldIncrement = key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && !isRTL
+            || key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && isRTL
+            || key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_DOWN_KEY;
+        var isHome = key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].HOME_KEY;
+        var isEnd = key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY;
+        if (shouldIncrement) {
+            index++;
+        }
+        else if (isHome) {
+            index = 0;
+        }
+        else if (isEnd) {
+            index = maxIndex;
+        }
+        else {
+            index--;
+        }
+        // Early exit if the index is out of bounds
+        if (index < 0 || index > maxIndex) {
+            return;
+        }
+        this.removeFocusFromChipsExcept_(index);
+        this.focusChipAction_(index, key, source);
+    };
+    MDCChipSetFoundation.prototype.focusChipAction_ = function (index, key, source) {
+        var shouldJumpChips = _chip_constants__WEBPACK_IMPORTED_MODULE_2__["jumpChipKeys"].has(key);
+        if (shouldJumpChips && source === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].PRIMARY) {
+            return this.adapter_.focusChipPrimaryActionAtIndex(index);
+        }
+        if (shouldJumpChips && source === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].TRAILING) {
+            return this.adapter_.focusChipTrailingActionAtIndex(index);
+        }
+        var dir = this.getDirection_(key);
+        if (dir === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT) {
+            return this.adapter_.focusChipTrailingActionAtIndex(index);
+        }
+        if (dir === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT) {
+            return this.adapter_.focusChipPrimaryActionAtIndex(index);
+        }
+    };
+    MDCChipSetFoundation.prototype.getDirection_ = function (key) {
+        var isRTL = this.adapter_.isRTL();
+        if (key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && !isRTL || key === _chip_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && isRTL) {
+            return _chip_constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT;
+        }
+        return _chip_constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT;
+    };
+    /**
+     * Deselects the chip with the given id and optionally notifies clients.
+     */
+    MDCChipSetFoundation.prototype.deselect_ = function (chipId, shouldNotifyClients) {
+        if (shouldNotifyClients === void 0) { shouldNotifyClients = false; }
+        var index = this.selectedChipIds_.indexOf(chipId);
+        if (index >= 0) {
+            this.selectedChipIds_.splice(index, 1);
+            var chipIndex = this.adapter_.getIndexOfChipById(chipId);
+            this.adapter_.selectChipAtIndex(chipIndex, /** isSelected */ false, shouldNotifyClients);
+        }
+    };
+    /**
+     * Deselects the chip with the given id and notifies clients.
+     */
+    MDCChipSetFoundation.prototype.deselectAndNotifyClients_ = function (chipId) {
+        this.deselect_(chipId, true);
+    };
+    /**
+     * Toggles selection of the chip with the given id.
+     */
+    MDCChipSetFoundation.prototype.toggleSelect_ = function (chipId) {
+        if (this.selectedChipIds_.indexOf(chipId) >= 0) {
+            this.deselectAndNotifyClients_(chipId);
+        }
+        else {
+            this.selectAndNotifyClients_(chipId);
+        }
+    };
+    MDCChipSetFoundation.prototype.removeFocusFromChipsExcept_ = function (index) {
+        var chipCount = this.adapter_.getChipListCount();
+        for (var i = 0; i < chipCount; i++) {
+            if (i !== index) {
+                this.adapter_.removeFocusFromChipAtIndex(i);
+            }
+        }
+    };
+    MDCChipSetFoundation.prototype.selectAndNotifyClients_ = function (chipId) {
+        this.select_(chipId, true);
+    };
+    MDCChipSetFoundation.prototype.select_ = function (chipId, shouldNotifyClients) {
+        if (this.selectedChipIds_.indexOf(chipId) >= 0) {
+            return;
+        }
+        if (this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].CHOICE) && this.selectedChipIds_.length > 0) {
+            var previouslySelectedChip = this.selectedChipIds_[0];
+            var previouslySelectedIndex = this.adapter_.getIndexOfChipById(previouslySelectedChip);
+            this.selectedChipIds_ = [];
+            this.adapter_.selectChipAtIndex(previouslySelectedIndex, /** isSelected */ false, shouldNotifyClients);
+        }
+        this.selectedChipIds_.push(chipId);
+        var index = this.adapter_.getIndexOfChipById(chipId);
+        this.adapter_.selectChipAtIndex(index, /** isSelected */ true, shouldNotifyClients);
+    };
+    return MDCChipSetFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCChipSetFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip-set/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/chips/chip-set/index.js ***!
+  \********************************************************/
+/*! exports provided: MDCChipSet, MDCChipSetFoundation, chipSetCssClasses, chipSetStrings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/chips/chip-set/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChipSet", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCChipSet"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/chips/chip-set/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChipSetFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCChipSetFoundation"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/chips/chip-set/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipSetCssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipSetStrings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip/component.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/chips/chip/component.js ***!
+  \********************************************************/
+/*! exports provided: MDCChip */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCChip", function() { return MDCChip; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/ripple/foundation */ "./node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/chips/chip/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/chips/chip/foundation.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var INTERACTION_EVENTS = ['click', 'keydown'];
+var MDCChip = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCChip, _super);
+    function MDCChip() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(MDCChip.prototype, "selected", {
+        /**
+         * @return Whether the chip is selected.
+         */
+        get: function () {
+            return this.foundation_.isSelected();
+        },
+        /**
+         * Sets selected state on the chip.
+         */
+        set: function (selected) {
+            this.foundation_.setSelected(selected);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChip.prototype, "shouldRemoveOnTrailingIconClick", {
+        /**
+         * @return Whether a trailing icon click should trigger exit/removal of the chip.
+         */
+        get: function () {
+            return this.foundation_.getShouldRemoveOnTrailingIconClick();
+        },
+        /**
+         * Sets whether a trailing icon click should trigger exit/removal of the chip.
+         */
+        set: function (shouldRemove) {
+            this.foundation_.setShouldRemoveOnTrailingIconClick(shouldRemove);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChip.prototype, "ripple", {
+        get: function () {
+            return this.ripple_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChip.prototype, "id", {
+        get: function () {
+            return this.root_.id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCChip.attachTo = function (root) {
+        return new MDCChip(root);
+    };
+    MDCChip.prototype.initialize = function (rippleFactory) {
+        var _this = this;
+        if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"](el, foundation); }; }
+        this.leadingIcon_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].LEADING_ICON_SELECTOR);
+        this.trailingIcon_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].TRAILING_ICON_SELECTOR);
+        this.checkmark_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].CHECKMARK_SELECTOR);
+        this.primaryAction_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].PRIMARY_ACTION_SELECTOR);
+        this.trailingAction_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].TRAILING_ACTION_SELECTOR);
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var rippleAdapter = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"].createAdapter(this), { computeBoundingRect: function () { return _this.foundation_.getDimensions(); } });
+        this.ripple_ = rippleFactory(this.root_, new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCRippleFoundation"](rippleAdapter));
+    };
+    MDCChip.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleInteraction_ = function (evt) { return _this.foundation_.handleInteraction(evt); };
+        this.handleTransitionEnd_ = function (evt) { return _this.foundation_.handleTransitionEnd(evt); };
+        this.handleTrailingIconInteraction_ = function (evt) {
+            return _this.foundation_.handleTrailingIconInteraction(evt);
+        };
+        this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
+        INTERACTION_EVENTS.forEach(function (evtType) {
+            _this.listen(evtType, _this.handleInteraction_);
+        });
+        this.listen('transitionend', this.handleTransitionEnd_);
+        this.listen('keydown', this.handleKeydown_);
+        if (this.trailingIcon_) {
+            INTERACTION_EVENTS.forEach(function (evtType) {
+                _this.trailingIcon_.addEventListener(evtType, _this.handleTrailingIconInteraction_);
+            });
+        }
+    };
+    MDCChip.prototype.destroy = function () {
+        var _this = this;
+        this.ripple_.destroy();
+        INTERACTION_EVENTS.forEach(function (evtType) {
+            _this.unlisten(evtType, _this.handleInteraction_);
+        });
+        this.unlisten('transitionend', this.handleTransitionEnd_);
+        this.unlisten('keydown', this.handleKeydown_);
+        if (this.trailingIcon_) {
+            INTERACTION_EVENTS.forEach(function (evtType) {
+                _this.trailingIcon_.removeEventListener(evtType, _this.handleTrailingIconInteraction_);
+            });
+        }
+        _super.prototype.destroy.call(this);
+    };
+    /**
+     * Begins the exit animation which leads to removal of the chip.
+     */
+    MDCChip.prototype.beginExit = function () {
+        this.foundation_.beginExit();
+    };
+    MDCChip.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            addClassToLeadingIcon: function (className) {
+                if (_this.leadingIcon_) {
+                    _this.leadingIcon_.classList.add(className);
+                }
+            },
+            eventTargetHasClass: function (target, className) { return target ? target.classList.contains(className) : false; },
+            focusPrimaryAction: function () {
+                if (_this.primaryAction_) {
+                    _this.primaryAction_.focus();
+                }
+            },
+            focusTrailingAction: function () {
+                if (_this.trailingAction_) {
+                    _this.trailingAction_.focus();
+                }
+            },
+            getCheckmarkBoundingClientRect: function () { return _this.checkmark_ ? _this.checkmark_.getBoundingClientRect() : null; },
+            getComputedStyleValue: function (propertyName) { return window.getComputedStyle(_this.root_).getPropertyValue(propertyName); },
+            getRootBoundingClientRect: function () { return _this.root_.getBoundingClientRect(); },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            hasLeadingIcon: function () { return !!_this.leadingIcon_; },
+            hasTrailingAction: function () { return !!_this.trailingAction_; },
+            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
+            notifyInteraction: function () { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
+            notifyNavigation: function (key, source) { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].NAVIGATION_EVENT, { chipId: _this.id, key: key, source: source }, true /* shouldBubble */); },
+            notifyRemoval: function () {
+                _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].REMOVAL_EVENT, { chipId: _this.id, root: _this.root_ }, true /* shouldBubble */);
+            },
+            notifySelection: function (selected, shouldIgnore) { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].SELECTION_EVENT, { chipId: _this.id, selected: selected, shouldIgnore: shouldIgnore }, true /* shouldBubble */); },
+            notifyTrailingIconInteraction: function () { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].TRAILING_ICON_INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            removeClassFromLeadingIcon: function (className) {
+                if (_this.leadingIcon_) {
+                    _this.leadingIcon_.classList.remove(className);
+                }
+            },
+            setPrimaryActionAttr: function (attr, value) {
+                if (_this.primaryAction_) {
+                    _this.primaryAction_.setAttribute(attr, value);
+                }
+            },
+            setStyleProperty: function (propertyName, value) { return _this.root_.style.setProperty(propertyName, value); },
+            setTrailingActionAttr: function (attr, value) {
+                if (_this.trailingAction_) {
+                    _this.trailingAction_.setAttribute(attr, value);
+                }
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCChipFoundation"](adapter);
+    };
+    MDCChip.prototype.setSelectedFromChipSet = function (selected, shouldNotifyClients) {
+        this.foundation_.setSelectedFromChipSet(selected, shouldNotifyClients);
+    };
+    MDCChip.prototype.focusPrimaryAction = function () {
+        this.foundation_.focusPrimaryAction();
+    };
+    MDCChip.prototype.focusTrailingAction = function () {
+        this.foundation_.focusTrailingAction();
+    };
+    MDCChip.prototype.removeFocus = function () {
+        this.foundation_.removeFocus();
+    };
+    MDCChip.prototype.remove = function () {
+        var parent = this.root_.parentNode;
+        if (parent !== null) {
+            parent.removeChild(this.root_);
+        }
+    };
+    return MDCChip;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip/constants.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/chips/chip/constants.js ***!
+  \********************************************************/
+/*! exports provided: Direction, EventSource, strings, cssClasses, navigationKeys, jumpChipKeys */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return Direction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventSource", function() { return EventSource; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "navigationKeys", function() { return navigationKeys; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jumpChipKeys", function() { return jumpChipKeys; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var Direction;
+(function (Direction) {
+    Direction[Direction["RIGHT"] = 0] = "RIGHT";
+    Direction[Direction["LEFT"] = 1] = "LEFT";
+})(Direction || (Direction = {}));
+var EventSource;
+(function (EventSource) {
+    EventSource[EventSource["PRIMARY"] = 0] = "PRIMARY";
+    EventSource[EventSource["TRAILING"] = 1] = "TRAILING";
+    EventSource[EventSource["NONE"] = 2] = "NONE";
+})(EventSource || (EventSource = {}));
+var strings = {
+    ARIA_CHECKED: 'aria-checked',
+    ARROW_DOWN_KEY: 'ArrowDown',
+    ARROW_LEFT_KEY: 'ArrowLeft',
+    ARROW_RIGHT_KEY: 'ArrowRight',
+    ARROW_UP_KEY: 'ArrowUp',
+    BACKSPACE_KEY: 'Backspace',
+    CHECKMARK_SELECTOR: '.mdc-chip__checkmark',
+    DELETE_KEY: 'Delete',
+    END_KEY: 'End',
+    ENTER_KEY: 'Enter',
+    ENTRY_ANIMATION_NAME: 'mdc-chip-entry',
+    HOME_KEY: 'Home',
+    INTERACTION_EVENT: 'MDCChip:interaction',
+    LEADING_ICON_SELECTOR: '.mdc-chip__icon--leading',
+    NAVIGATION_EVENT: 'MDCChip:navigation',
+    PRIMARY_ACTION_SELECTOR: '.mdc-chip__primary-action',
+    REMOVAL_EVENT: 'MDCChip:removal',
+    SELECTION_EVENT: 'MDCChip:selection',
+    SPACEBAR_KEY: ' ',
+    TAB_INDEX: 'tabindex',
+    TRAILING_ACTION_SELECTOR: '.mdc-chip__trailing-action',
+    TRAILING_ICON_INTERACTION_EVENT: 'MDCChip:trailingIconInteraction',
+    TRAILING_ICON_SELECTOR: '.mdc-chip__icon--trailing',
+};
+var cssClasses = {
+    CHECKMARK: 'mdc-chip__checkmark',
+    CHIP_EXIT: 'mdc-chip--exit',
+    DELETABLE: 'mdc-chip--deletable',
+    HIDDEN_LEADING_ICON: 'mdc-chip__icon--leading-hidden',
+    LEADING_ICON: 'mdc-chip__icon--leading',
+    PRIMARY_ACTION: 'mdc-chip__primary-action',
+    SELECTED: 'mdc-chip--selected',
+    TEXT: 'mdc-chip__text',
+    TRAILING_ACTION: 'mdc-chip__trailing-action',
+    TRAILING_ICON: 'mdc-chip__icon--trailing',
+};
+var navigationKeys = new Set();
+// IE11 has no support for new Set with iterable so we need to initialize this by hand
+navigationKeys.add(strings.ARROW_LEFT_KEY);
+navigationKeys.add(strings.ARROW_RIGHT_KEY);
+navigationKeys.add(strings.ARROW_DOWN_KEY);
+navigationKeys.add(strings.ARROW_UP_KEY);
+navigationKeys.add(strings.END_KEY);
+navigationKeys.add(strings.HOME_KEY);
+var jumpChipKeys = new Set();
+// IE11 has no support for new Set with iterable so we need to initialize this by hand
+jumpChipKeys.add(strings.ARROW_UP_KEY);
+jumpChipKeys.add(strings.ARROW_DOWN_KEY);
+jumpChipKeys.add(strings.HOME_KEY);
+jumpChipKeys.add(strings.END_KEY);
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip/foundation.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/chips/chip/foundation.js ***!
+  \*********************************************************/
+/*! exports provided: MDCChipFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCChipFoundation", function() { return MDCChipFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/chips/chip/constants.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var emptyClientRect = {
+    bottom: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+};
+var MDCChipFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCChipFoundation, _super);
+    function MDCChipFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCChipFoundation.defaultAdapter, adapter)) || this;
+        /**
+         * Whether a trailing icon click should immediately trigger exit/removal of the chip.
+         */
+        _this.shouldRemoveOnTrailingIconClick_ = true;
+        return _this;
+    }
+    Object.defineProperty(MDCChipFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChipFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCChipFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                addClassToLeadingIcon: function () { return undefined; },
+                eventTargetHasClass: function () { return false; },
+                focusPrimaryAction: function () { return undefined; },
+                focusTrailingAction: function () { return undefined; },
+                getCheckmarkBoundingClientRect: function () { return emptyClientRect; },
+                getComputedStyleValue: function () { return ''; },
+                getRootBoundingClientRect: function () { return emptyClientRect; },
+                hasClass: function () { return false; },
+                hasLeadingIcon: function () { return false; },
+                hasTrailingAction: function () { return false; },
+                isRTL: function () { return false; },
+                notifyInteraction: function () { return undefined; },
+                notifyNavigation: function () { return undefined; },
+                notifyRemoval: function () { return undefined; },
+                notifySelection: function () { return undefined; },
+                notifyTrailingIconInteraction: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                removeClassFromLeadingIcon: function () { return undefined; },
+                setPrimaryActionAttr: function () { return undefined; },
+                setStyleProperty: function () { return undefined; },
+                setTrailingActionAttr: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCChipFoundation.prototype.isSelected = function () {
+        return this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SELECTED);
+    };
+    MDCChipFoundation.prototype.setSelected = function (selected) {
+        this.setSelected_(selected);
+        this.notifySelection_(selected);
+    };
+    MDCChipFoundation.prototype.setSelectedFromChipSet = function (selected, shouldNotifyClients) {
+        this.setSelected_(selected);
+        if (shouldNotifyClients) {
+            this.notifyIgnoredSelection_(selected);
+        }
+    };
+    MDCChipFoundation.prototype.getShouldRemoveOnTrailingIconClick = function () {
+        return this.shouldRemoveOnTrailingIconClick_;
+    };
+    MDCChipFoundation.prototype.setShouldRemoveOnTrailingIconClick = function (shouldRemove) {
+        this.shouldRemoveOnTrailingIconClick_ = shouldRemove;
+    };
+    MDCChipFoundation.prototype.getDimensions = function () {
+        var _this = this;
+        var getRootRect = function () { return _this.adapter_.getRootBoundingClientRect(); };
+        var getCheckmarkRect = function () { return _this.adapter_.getCheckmarkBoundingClientRect(); };
+        // When a chip has a checkmark and not a leading icon, the bounding rect changes in size depending on the current
+        // size of the checkmark.
+        if (!this.adapter_.hasLeadingIcon()) {
+            var checkmarkRect = getCheckmarkRect();
+            if (checkmarkRect) {
+                var rootRect = getRootRect();
+                // Checkmark is a square, meaning the client rect's width and height are identical once the animation completes.
+                // However, the checkbox is initially hidden by setting the width to 0.
+                // To account for an initial width of 0, we use the checkbox's height instead (which equals the end-state width)
+                // when adding it to the root client rect's width.
+                return {
+                    bottom: rootRect.bottom,
+                    height: rootRect.height,
+                    left: rootRect.left,
+                    right: rootRect.right,
+                    top: rootRect.top,
+                    width: rootRect.width + checkmarkRect.height,
+                };
+            }
+        }
+        return getRootRect();
+    };
+    /**
+     * Begins the exit animation which leads to removal of the chip.
+     */
+    MDCChipFoundation.prototype.beginExit = function () {
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CHIP_EXIT);
+    };
+    /**
+     * Handles an interaction event on the root element.
+     */
+    MDCChipFoundation.prototype.handleInteraction = function (evt) {
+        if (this.shouldHandleInteraction_(evt)) {
+            this.adapter_.notifyInteraction();
+            this.focusPrimaryAction_();
+        }
+    };
+    /**
+     * Handles a transition end event on the root element.
+     */
+    MDCChipFoundation.prototype.handleTransitionEnd = function (evt) {
+        var _this = this;
+        // Handle transition end event on the chip when it is about to be removed.
+        var shouldHandle = this.adapter_.eventTargetHasClass(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CHIP_EXIT);
+        var widthIsAnimating = evt.propertyName === 'width';
+        var opacityIsAnimating = evt.propertyName === 'opacity';
+        if (shouldHandle && opacityIsAnimating) {
+            // See: https://css-tricks.com/using-css-transitions-auto-dimensions/#article-header-id-5
+            var chipWidth_1 = this.adapter_.getComputedStyleValue('width');
+            // On the next frame (once we get the computed width), explicitly set the chip's width
+            // to its current pixel width, so we aren't transitioning out of 'auto'.
+            requestAnimationFrame(function () {
+                _this.adapter_.setStyleProperty('width', chipWidth_1);
+                // To mitigate jitter, start transitioning padding and margin before width.
+                _this.adapter_.setStyleProperty('padding', '0');
+                _this.adapter_.setStyleProperty('margin', '0');
+                // On the next frame (once width is explicitly set), transition width to 0.
+                requestAnimationFrame(function () {
+                    _this.adapter_.setStyleProperty('width', '0');
+                });
+            });
+            return;
+        }
+        if (shouldHandle && widthIsAnimating) {
+            this.removeFocus_();
+            this.adapter_.notifyRemoval();
+        }
+        // Handle a transition end event on the leading icon or checkmark, since the transition end event bubbles.
+        if (!opacityIsAnimating) {
+            return;
+        }
+        var shouldHideLeadingIcon = this.adapter_.eventTargetHasClass(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].LEADING_ICON)
+            && this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SELECTED);
+        var shouldShowLeadingIcon = this.adapter_.eventTargetHasClass(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CHECKMARK)
+            && !this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SELECTED);
+        if (shouldHideLeadingIcon) {
+            return this.adapter_.addClassToLeadingIcon(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HIDDEN_LEADING_ICON);
+        }
+        if (shouldShowLeadingIcon) {
+            return this.adapter_.removeClassFromLeadingIcon(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].HIDDEN_LEADING_ICON);
+        }
+    };
+    /**
+     * Handles an interaction event on the trailing icon element. This is used to
+     * prevent the ripple from activating on interaction with the trailing icon.
+     */
+    MDCChipFoundation.prototype.handleTrailingIconInteraction = function (evt) {
+        if (this.shouldHandleInteraction_(evt)) {
+            this.adapter_.notifyTrailingIconInteraction();
+            this.removeChip_(evt);
+        }
+    };
+    /**
+     * Handles a keydown event from the root element.
+     */
+    MDCChipFoundation.prototype.handleKeydown = function (evt) {
+        if (this.shouldRemoveChip_(evt)) {
+            return this.removeChip_(evt);
+        }
+        var key = evt.key;
+        // Early exit if the key is not usable
+        if (!_constants__WEBPACK_IMPORTED_MODULE_2__["navigationKeys"].has(key)) {
+            return;
+        }
+        // Prevent default behavior for movement keys which could include scrolling
+        evt.preventDefault();
+        this.focusNextAction_(evt);
+    };
+    MDCChipFoundation.prototype.removeFocus = function () {
+        this.adapter_.setPrimaryActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '-1');
+        this.adapter_.setTrailingActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '-1');
+    };
+    MDCChipFoundation.prototype.focusPrimaryAction = function () {
+        this.focusPrimaryAction_();
+    };
+    MDCChipFoundation.prototype.focusTrailingAction = function () {
+        if (!this.adapter_.hasTrailingAction()) {
+            return this.focusPrimaryAction_();
+        }
+        this.focusTrailingAction_();
+    };
+    MDCChipFoundation.prototype.focusNextAction_ = function (evt) {
+        var key = evt.key;
+        var hasTrailingAction = this.adapter_.hasTrailingAction();
+        var dir = this.getDirection_(key);
+        var source = this.getEvtSource_(evt);
+        // Early exit if the key should jump keys or the chip only has one action (i.e. no trailing action)
+        if (_constants__WEBPACK_IMPORTED_MODULE_2__["jumpChipKeys"].has(key) || !hasTrailingAction) {
+            this.adapter_.notifyNavigation(key, source);
+            return;
+        }
+        if (source === _constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].PRIMARY && dir === _constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT) {
+            return this.focusTrailingAction_();
+        }
+        if (source === _constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].TRAILING && dir === _constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT) {
+            return this.focusPrimaryAction_();
+        }
+        this.adapter_.notifyNavigation(key, _constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].NONE);
+    };
+    MDCChipFoundation.prototype.getEvtSource_ = function (evt) {
+        if (this.adapter_.eventTargetHasClass(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].PRIMARY_ACTION)) {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].PRIMARY;
+        }
+        if (this.adapter_.eventTargetHasClass(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].TRAILING_ACTION)) {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].TRAILING;
+        }
+        return _constants__WEBPACK_IMPORTED_MODULE_2__["EventSource"].NONE;
+    };
+    MDCChipFoundation.prototype.getDirection_ = function (key) {
+        var isRTL = this.adapter_.isRTL();
+        if (key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && !isRTL || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && isRTL) {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT;
+        }
+        return _constants__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT;
+    };
+    MDCChipFoundation.prototype.focusPrimaryAction_ = function () {
+        this.adapter_.setPrimaryActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '0');
+        this.adapter_.focusPrimaryAction();
+        this.adapter_.setTrailingActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '-1');
+    };
+    MDCChipFoundation.prototype.focusTrailingAction_ = function () {
+        this.adapter_.setTrailingActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '0');
+        this.adapter_.focusTrailingAction();
+        this.adapter_.setPrimaryActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '-1');
+    };
+    MDCChipFoundation.prototype.removeFocus_ = function () {
+        this.adapter_.setTrailingActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '-1');
+        this.adapter_.setPrimaryActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TAB_INDEX, '-1');
+    };
+    MDCChipFoundation.prototype.removeChip_ = function (evt) {
+        evt.stopPropagation();
+        if (this.shouldRemoveOnTrailingIconClick_) {
+            this.beginExit();
+        }
+    };
+    MDCChipFoundation.prototype.shouldHandleInteraction_ = function (evt) {
+        if (evt.type === 'click') {
+            return true;
+        }
+        var keyEvt = evt;
+        return keyEvt.key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY || keyEvt.key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACEBAR_KEY;
+    };
+    MDCChipFoundation.prototype.shouldRemoveChip_ = function (evt) {
+        var isDeletable = this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].DELETABLE);
+        return isDeletable && (evt.key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].BACKSPACE_KEY || evt.key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].DELETE_KEY);
+    };
+    MDCChipFoundation.prototype.setSelected_ = function (selected) {
+        if (selected) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SELECTED);
+            this.adapter_.setPrimaryActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_CHECKED, 'true');
+        }
+        else {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SELECTED);
+            this.adapter_.setPrimaryActionAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_CHECKED, 'false');
+        }
+    };
+    MDCChipFoundation.prototype.notifySelection_ = function (selected) {
+        this.adapter_.notifySelection(selected, false);
+    };
+    MDCChipFoundation.prototype.notifyIgnoredSelection_ = function (selected) {
+        this.adapter_.notifySelection(selected, true);
+    };
+    return MDCChipFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCChipFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/chip/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/chips/chip/index.js ***!
+  \****************************************************/
+/*! exports provided: MDCChip, MDCChipFoundation, chipCssClasses, chipStrings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/chips/chip/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChip", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCChip"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/chips/chip/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChipFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCChipFoundation"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/chips/chip/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipCssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipStrings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/chips/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@material/chips/index.js ***!
+  \***********************************************/
+/*! exports provided: MDCChip, MDCChipFoundation, chipCssClasses, chipStrings, MDCChipSet, MDCChipSetFoundation, chipSetCssClasses, chipSetStrings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _chip_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chip/index */ "./node_modules/@material/chips/chip/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChip", function() { return _chip_index__WEBPACK_IMPORTED_MODULE_0__["MDCChip"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChipFoundation", function() { return _chip_index__WEBPACK_IMPORTED_MODULE_0__["MDCChipFoundation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipCssClasses", function() { return _chip_index__WEBPACK_IMPORTED_MODULE_0__["chipCssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipStrings", function() { return _chip_index__WEBPACK_IMPORTED_MODULE_0__["chipStrings"]; });
+
+/* harmony import */ var _chip_set_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chip-set/index */ "./node_modules/@material/chips/chip-set/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChipSet", function() { return _chip_set_index__WEBPACK_IMPORTED_MODULE_1__["MDCChipSet"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCChipSetFoundation", function() { return _chip_set_index__WEBPACK_IMPORTED_MODULE_1__["MDCChipSetFoundation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipSetCssClasses", function() { return _chip_set_index__WEBPACK_IMPORTED_MODULE_1__["chipSetCssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "chipSetStrings", function() { return _chip_set_index__WEBPACK_IMPORTED_MODULE_1__["chipSetStrings"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/data-table/component.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/data-table/component.js ***!
+  \********************************************************/
+/*! exports provided: MDCDataTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCDataTable", function() { return MDCDataTable; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_checkbox_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/checkbox/component */ "./node_modules/@material/checkbox/component.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/dom/ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/data-table/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/data-table/foundation.js");
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCDataTable = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCDataTable, _super);
+    function MDCDataTable() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCDataTable.attachTo = function (root) {
+        return new MDCDataTable(root);
+    };
+    MDCDataTable.prototype.initialize = function (checkboxFactory) {
+        if (checkboxFactory === void 0) { checkboxFactory = function (el) { return new _material_checkbox_component__WEBPACK_IMPORTED_MODULE_2__["MDCCheckbox"](el); }; }
+        this.checkboxFactory_ = checkboxFactory;
+    };
+    MDCDataTable.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.headerRow_ = this.root_.querySelector("." + _constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].HEADER_ROW);
+        this.handleHeaderRowCheckboxChange_ = function () { return _this.foundation_.handleHeaderRowCheckboxChange(); };
+        this.headerRow_.addEventListener('change', this.handleHeaderRowCheckboxChange_);
+        this.content_ = this.root_.querySelector("." + _constants__WEBPACK_IMPORTED_MODULE_4__["cssClasses"].CONTENT);
+        this.handleRowCheckboxChange_ = function (event) { return _this.foundation_.handleRowCheckboxChange(event); };
+        this.content_.addEventListener('change', this.handleRowCheckboxChange_);
+        this.layout();
+    };
+    /**
+     * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
+     */
+    MDCDataTable.prototype.layout = function () {
+        this.foundation_.layout();
+    };
+    /**
+     * @return Returns array of row elements.
+     */
+    MDCDataTable.prototype.getRows = function () {
+        return this.foundation_.getRows();
+    };
+    /**
+     * @return Returns array of selected row ids.
+     */
+    MDCDataTable.prototype.getSelectedRowIds = function () {
+        return this.foundation_.getSelectedRowIds();
+    };
+    /**
+     * Sets selected row ids. Overwrites previously selected rows.
+     * @param rowIds Array of row ids that needs to be selected.
+     */
+    MDCDataTable.prototype.setSelectedRowIds = function (rowIds) {
+        this.foundation_.setSelectedRowIds(rowIds);
+    };
+    MDCDataTable.prototype.destroy = function () {
+        this.headerRow_.removeEventListener('change', this.handleHeaderRowCheckboxChange_);
+        this.content_.removeEventListener('change', this.handleRowCheckboxChange_);
+        this.headerRowCheckbox_.destroy();
+        this.rowCheckboxList_.forEach(function (checkbox) { return checkbox.destroy(); });
+    };
+    MDCDataTable.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            addClassAtRowIndex: function (rowIndex, className) { return _this.getRows()[rowIndex].classList.add(className); },
+            getRowCount: function () { return _this.getRows().length; },
+            getRowElements: function () { return [].slice.call(_this.root_.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ROW_SELECTOR)); },
+            getRowIdAtIndex: function (rowIndex) { return _this.getRows()[rowIndex].getAttribute(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].DATA_ROW_ID_ATTR); },
+            getRowIndexByChildElement: function (el) {
+                return _this.getRows().indexOf(Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__["closest"])(el, _constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ROW_SELECTOR));
+            },
+            getSelectedRowCount: function () { return _this.root_.querySelectorAll(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ROW_SELECTED_SELECTOR).length; },
+            isCheckboxAtRowIndexChecked: function (rowIndex) { return _this.rowCheckboxList_[rowIndex].checked; },
+            isHeaderRowCheckboxChecked: function () { return _this.headerRowCheckbox_.checked; },
+            isRowsSelectable: function () { return !!_this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ROW_CHECKBOX_SELECTOR); },
+            notifyRowSelectionChanged: function (data) {
+                _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["events"].ROW_SELECTION_CHANGED, {
+                    row: _this.getRowByIndex_(data.rowIndex),
+                    rowId: _this.getRowIdByIndex_(data.rowIndex),
+                    rowIndex: data.rowIndex,
+                    selected: data.selected,
+                }, 
+                /** shouldBubble */ true);
+            },
+            notifySelectedAll: function () { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["events"].SELECTED_ALL, {}, /** shouldBubble */ true); },
+            notifyUnselectedAll: function () { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_4__["events"].UNSELECTED_ALL, {}, /** shouldBubble */ true); },
+            registerHeaderRowCheckbox: function () {
+                if (_this.headerRowCheckbox_) {
+                    _this.headerRowCheckbox_.destroy();
+                }
+                var checkboxEl = _this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].HEADER_ROW_CHECKBOX_SELECTOR);
+                _this.headerRowCheckbox_ = _this.checkboxFactory_(checkboxEl);
+            },
+            registerRowCheckboxes: function () {
+                if (_this.rowCheckboxList_) {
+                    _this.rowCheckboxList_.forEach(function (checkbox) { return checkbox.destroy(); });
+                }
+                _this.rowCheckboxList_ = [];
+                _this.getRows().forEach(function (rowEl) {
+                    var checkbox = _this.checkboxFactory_(rowEl.querySelector(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].ROW_CHECKBOX_SELECTOR));
+                    _this.rowCheckboxList_.push(checkbox);
+                });
+            },
+            removeClassAtRowIndex: function (rowIndex, className) {
+                _this.getRows()[rowIndex].classList.remove(className);
+            },
+            setAttributeAtRowIndex: function (rowIndex, attr, value) {
+                _this.getRows()[rowIndex].setAttribute(attr, value);
+            },
+            setHeaderRowCheckboxChecked: function (checked) {
+                _this.headerRowCheckbox_.checked = checked;
+            },
+            setHeaderRowCheckboxIndeterminate: function (indeterminate) {
+                _this.headerRowCheckbox_.indeterminate = indeterminate;
+            },
+            setRowCheckboxCheckedAtIndex: function (rowIndex, checked) {
+                _this.rowCheckboxList_[rowIndex].checked = checked;
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCDataTableFoundation"](adapter);
+    };
+    MDCDataTable.prototype.getRowByIndex_ = function (index) {
+        return this.getRows()[index];
+    };
+    MDCDataTable.prototype.getRowIdByIndex_ = function (index) {
+        return this.getRowByIndex_(index).getAttribute(_constants__WEBPACK_IMPORTED_MODULE_4__["strings"].DATA_ROW_ID_ATTR);
+    };
+    return MDCDataTable;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/data-table/constants.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/data-table/constants.js ***!
+  \********************************************************/
+/*! exports provided: cssClasses, strings, events */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "events", function() { return events; });
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    CELL: 'mdc-data-table__cell',
+    CELL_NUMERIC: 'mdc-data-table__cell--numeric',
+    CONTENT: 'mdc-data-table__content',
+    HEADER_ROW: 'mdc-data-table__header-row',
+    HEADER_ROW_CHECKBOX: 'mdc-data-table__header-row-checkbox',
+    ROOT: 'mdc-data-table',
+    ROW: 'mdc-data-table__row',
+    ROW_CHECKBOX: 'mdc-data-table__row-checkbox',
+    ROW_SELECTED: 'mdc-data-table__row--selected',
+};
+var strings = {
+    ARIA_SELECTED: 'aria-selected',
+    DATA_ROW_ID_ATTR: 'data-row-id',
+    HEADER_ROW_CHECKBOX_SELECTOR: "." + cssClasses.HEADER_ROW_CHECKBOX,
+    ROW_CHECKBOX_SELECTOR: "." + cssClasses.ROW_CHECKBOX,
+    ROW_SELECTED_SELECTOR: "." + cssClasses.ROW_SELECTED,
+    ROW_SELECTOR: "." + cssClasses.ROW,
+};
+var events = {
+    ROW_SELECTION_CHANGED: 'MDCDataTable:rowSelectionChanged',
+    SELECTED_ALL: 'MDCDataTable:selectedAll',
+    UNSELECTED_ALL: 'MDCDataTable:unselectedAll',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/data-table/foundation.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/data-table/foundation.js ***!
+  \*********************************************************/
+/*! exports provided: MDCDataTableFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCDataTableFoundation", function() { return MDCDataTableFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/data-table/constants.js");
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCDataTableFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCDataTableFoundation, _super);
+    function MDCDataTableFoundation(adapter) {
+        return _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCDataTableFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCDataTableFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClassAtRowIndex: function () { return undefined; },
+                getRowCount: function () { return 0; },
+                getRowElements: function () { return []; },
+                getRowIdAtIndex: function () { return ''; },
+                getRowIndexByChildElement: function () { return 0; },
+                getSelectedRowCount: function () { return 0; },
+                isCheckboxAtRowIndexChecked: function () { return false; },
+                isHeaderRowCheckboxChecked: function () { return false; },
+                isRowsSelectable: function () { return false; },
+                notifyRowSelectionChanged: function () { return undefined; },
+                notifySelectedAll: function () { return undefined; },
+                notifyUnselectedAll: function () { return undefined; },
+                registerHeaderRowCheckbox: function () { return undefined; },
+                registerRowCheckboxes: function () { return undefined; },
+                removeClassAtRowIndex: function () { return undefined; },
+                setAttributeAtRowIndex: function () { return undefined; },
+                setHeaderRowCheckboxChecked: function () { return undefined; },
+                setHeaderRowCheckboxIndeterminate: function () { return undefined; },
+                setRowCheckboxCheckedAtIndex: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
+     * Use this if registering checkbox is synchronous.
+     */
+    MDCDataTableFoundation.prototype.layout = function () {
+        if (this.adapter_.isRowsSelectable()) {
+            this.adapter_.registerHeaderRowCheckbox();
+            this.adapter_.registerRowCheckboxes();
+            this.setHeaderRowCheckboxState_();
+        }
+    };
+    /**
+     * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
+     * Use this if registering checkbox is asynchronous.
+     */
+    MDCDataTableFoundation.prototype.layoutAsync = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.adapter_.isRowsSelectable()) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.adapter_.registerHeaderRowCheckbox()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.adapter_.registerRowCheckboxes()];
+                    case 2:
+                        _a.sent();
+                        this.setHeaderRowCheckboxState_();
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @return Returns array of row elements.
+     */
+    MDCDataTableFoundation.prototype.getRows = function () {
+        return this.adapter_.getRowElements();
+    };
+    /**
+     * Sets selected row ids. Overwrites previously selected rows.
+     * @param rowIds Array of row ids that needs to be selected.
+     */
+    MDCDataTableFoundation.prototype.setSelectedRowIds = function (rowIds) {
+        for (var rowIndex = 0; rowIndex < this.adapter_.getRowCount(); rowIndex++) {
+            var rowId = this.adapter_.getRowIdAtIndex(rowIndex);
+            var isSelected = false;
+            if (rowId && rowIds.indexOf(rowId) >= 0) {
+                isSelected = true;
+            }
+            this.adapter_.setRowCheckboxCheckedAtIndex(rowIndex, isSelected);
+            this.selectRowAtIndex_(rowIndex, isSelected);
+        }
+        this.setHeaderRowCheckboxState_();
+    };
+    /**
+     * @return Returns array of selected row ids.
+     */
+    MDCDataTableFoundation.prototype.getSelectedRowIds = function () {
+        var selectedRowIds = [];
+        for (var rowIndex = 0; rowIndex < this.adapter_.getRowCount(); rowIndex++) {
+            if (this.adapter_.isCheckboxAtRowIndexChecked(rowIndex)) {
+                selectedRowIds.push(this.adapter_.getRowIdAtIndex(rowIndex));
+            }
+        }
+        return selectedRowIds;
+    };
+    /**
+     * Handles header row checkbox change event.
+     */
+    MDCDataTableFoundation.prototype.handleHeaderRowCheckboxChange = function () {
+        var isHeaderChecked = this.adapter_.isHeaderRowCheckboxChecked();
+        for (var rowIndex = 0; rowIndex < this.adapter_.getRowCount(); rowIndex++) {
+            this.adapter_.setRowCheckboxCheckedAtIndex(rowIndex, isHeaderChecked);
+            this.selectRowAtIndex_(rowIndex, isHeaderChecked);
+        }
+        if (isHeaderChecked) {
+            this.adapter_.notifySelectedAll();
+        }
+        else {
+            this.adapter_.notifyUnselectedAll();
+        }
+    };
+    /**
+     * Handles change event originated from row checkboxes.
+     */
+    MDCDataTableFoundation.prototype.handleRowCheckboxChange = function (event) {
+        var rowIndex = this.adapter_.getRowIndexByChildElement(event.target);
+        if (rowIndex === -1) {
+            return;
+        }
+        var selected = this.adapter_.isCheckboxAtRowIndexChecked(rowIndex);
+        this.selectRowAtIndex_(rowIndex, selected);
+        this.setHeaderRowCheckboxState_();
+        var rowId = this.adapter_.getRowIdAtIndex(rowIndex);
+        this.adapter_.notifyRowSelectionChanged({ rowId: rowId, rowIndex: rowIndex, selected: selected });
+    };
+    /**
+     * Updates header row checkbox state based on number of rows selected.
+     */
+    MDCDataTableFoundation.prototype.setHeaderRowCheckboxState_ = function () {
+        if (this.adapter_.getSelectedRowCount() === this.adapter_.getRowCount()) {
+            this.adapter_.setHeaderRowCheckboxChecked(true);
+            this.adapter_.setHeaderRowCheckboxIndeterminate(false);
+        }
+        else if (this.adapter_.getSelectedRowCount() === 0) {
+            this.adapter_.setHeaderRowCheckboxIndeterminate(false);
+            this.adapter_.setHeaderRowCheckboxChecked(false);
+        }
+        else {
+            this.adapter_.setHeaderRowCheckboxIndeterminate(true);
+            this.adapter_.setHeaderRowCheckboxChecked(false);
+        }
+    };
+    /**
+     * Sets the attributes of row element based on selection state.
+     */
+    MDCDataTableFoundation.prototype.selectRowAtIndex_ = function (rowIndex, selected) {
+        if (selected) {
+            this.adapter_.addClassAtRowIndex(rowIndex, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ROW_SELECTED);
+            this.adapter_.setAttributeAtRowIndex(rowIndex, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_SELECTED, 'true');
+        }
+        else {
+            this.adapter_.removeClassAtRowIndex(rowIndex, _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ROW_SELECTED);
+            this.adapter_.setAttributeAtRowIndex(rowIndex, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_SELECTED, 'false');
+        }
+    };
+    return MDCDataTableFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/data-table/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/data-table/index.js ***!
+  \****************************************************/
+/*! exports provided: MDCDataTable, MDCDataTableFoundation, cssClasses, strings, events */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/data-table/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCDataTable", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCDataTable"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/data-table/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCDataTableFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_1__["MDCDataTableFoundation"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/data-table/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "events", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["events"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/dialog/component.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/dialog/component.js ***!
+  \****************************************************/
+/*! exports provided: MDCDialog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCDialog", function() { return MDCDialog; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/dialog/foundation.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./node_modules/@material/dialog/util.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var strings = _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCDialogFoundation"].strings;
+var MDCDialog = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCDialog, _super);
+    function MDCDialog() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(MDCDialog.prototype, "isOpen", {
+        get: function () {
+            return this.foundation_.isOpen();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDialog.prototype, "escapeKeyAction", {
+        get: function () {
+            return this.foundation_.getEscapeKeyAction();
+        },
+        set: function (action) {
+            this.foundation_.setEscapeKeyAction(action);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDialog.prototype, "scrimClickAction", {
+        get: function () {
+            return this.foundation_.getScrimClickAction();
+        },
+        set: function (action) {
+            this.foundation_.setScrimClickAction(action);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDialog.prototype, "autoStackButtons", {
+        get: function () {
+            return this.foundation_.getAutoStackButtons();
+        },
+        set: function (autoStack) {
+            this.foundation_.setAutoStackButtons(autoStack);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCDialog.attachTo = function (root) {
+        return new MDCDialog(root);
+    };
+    MDCDialog.prototype.initialize = function (focusTrapFactory) {
+        var e_1, _a;
+        var container = this.root_.querySelector(strings.CONTAINER_SELECTOR);
+        if (!container) {
+            throw new Error("Dialog component requires a " + strings.CONTAINER_SELECTOR + " container element");
+        }
+        this.container_ = container;
+        this.content_ = this.root_.querySelector(strings.CONTENT_SELECTOR);
+        this.buttons_ = [].slice.call(this.root_.querySelectorAll(strings.BUTTON_SELECTOR));
+        this.defaultButton_ = this.root_.querySelector("[" + strings.BUTTON_DEFAULT_ATTRIBUTE + "]");
+        this.focusTrapFactory_ = focusTrapFactory;
+        this.buttonRipples_ = [];
+        try {
+            for (var _b = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](this.buttons_), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var buttonEl = _c.value;
+                this.buttonRipples_.push(new _material_ripple_component__WEBPACK_IMPORTED_MODULE_3__["MDCRipple"](buttonEl));
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+    };
+    MDCDialog.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.focusTrap_ = _util__WEBPACK_IMPORTED_MODULE_5__["createFocusTrapInstance"](this.container_, this.focusTrapFactory_, this.getInitialFocusEl_() || undefined);
+        this.handleClick_ = this.foundation_.handleClick.bind(this.foundation_);
+        this.handleKeydown_ = this.foundation_.handleKeydown.bind(this.foundation_);
+        this.handleDocumentKeydown_ = this.foundation_.handleDocumentKeydown.bind(this.foundation_);
+        this.handleLayout_ = this.layout.bind(this);
+        var LAYOUT_EVENTS = ['resize', 'orientationchange'];
+        this.handleOpening_ = function () {
+            LAYOUT_EVENTS.forEach(function (evtType) { return window.addEventListener(evtType, _this.handleLayout_); });
+            document.addEventListener('keydown', _this.handleDocumentKeydown_);
+        };
+        this.handleClosing_ = function () {
+            LAYOUT_EVENTS.forEach(function (evtType) { return window.removeEventListener(evtType, _this.handleLayout_); });
+            document.removeEventListener('keydown', _this.handleDocumentKeydown_);
+        };
+        this.listen('click', this.handleClick_);
+        this.listen('keydown', this.handleKeydown_);
+        this.listen(strings.OPENING_EVENT, this.handleOpening_);
+        this.listen(strings.CLOSING_EVENT, this.handleClosing_);
+    };
+    MDCDialog.prototype.destroy = function () {
+        this.unlisten('click', this.handleClick_);
+        this.unlisten('keydown', this.handleKeydown_);
+        this.unlisten(strings.OPENING_EVENT, this.handleOpening_);
+        this.unlisten(strings.CLOSING_EVENT, this.handleClosing_);
+        this.handleClosing_();
+        this.buttonRipples_.forEach(function (ripple) { return ripple.destroy(); });
+        _super.prototype.destroy.call(this);
+    };
+    MDCDialog.prototype.layout = function () {
+        this.foundation_.layout();
+    };
+    MDCDialog.prototype.open = function () {
+        this.foundation_.open();
+    };
+    MDCDialog.prototype.close = function (action) {
+        if (action === void 0) { action = ''; }
+        this.foundation_.close(action);
+    };
+    MDCDialog.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addBodyClass: function (className) { return document.body.classList.add(className); },
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            areButtonsStacked: function () { return _util__WEBPACK_IMPORTED_MODULE_5__["areTopsMisaligned"](_this.buttons_); },
+            clickDefaultButton: function () { return _this.defaultButton_ && _this.defaultButton_.click(); },
+            eventTargetMatches: function (target, selector) { return target ? Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["matches"])(target, selector) : false; },
+            getActionFromEvent: function (evt) {
+                if (!evt.target) {
+                    return '';
+                }
+                var element = Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["closest"])(evt.target, "[" + strings.ACTION_ATTRIBUTE + "]");
+                return element && element.getAttribute(strings.ACTION_ATTRIBUTE);
+            },
+            getInitialFocusEl: function () { return _this.getInitialFocusEl_(); },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            isContentScrollable: function () { return _util__WEBPACK_IMPORTED_MODULE_5__["isScrollable"](_this.content_); },
+            notifyClosed: function (action) { return _this.emit(strings.CLOSED_EVENT, action ? { action: action } : {}); },
+            notifyClosing: function (action) { return _this.emit(strings.CLOSING_EVENT, action ? { action: action } : {}); },
+            notifyOpened: function () { return _this.emit(strings.OPENED_EVENT, {}); },
+            notifyOpening: function () { return _this.emit(strings.OPENING_EVENT, {}); },
+            releaseFocus: function () { return _this.focusTrap_.deactivate(); },
+            removeBodyClass: function (className) { return document.body.classList.remove(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            reverseButtons: function () {
+                _this.buttons_.reverse();
+                _this.buttons_.forEach(function (button) {
+                    button.parentElement.appendChild(button);
+                });
+            },
+            trapFocus: function () { return _this.focusTrap_.activate(); },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCDialogFoundation"](adapter);
+    };
+    MDCDialog.prototype.getInitialFocusEl_ = function () {
+        return document.querySelector("[" + strings.INITIAL_FOCUS_ATTRIBUTE + "]");
+    };
+    return MDCDialog;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/dialog/constants.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/dialog/constants.js ***!
+  \****************************************************/
+/*! exports provided: cssClasses, strings, numbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    CLOSING: 'mdc-dialog--closing',
+    OPEN: 'mdc-dialog--open',
+    OPENING: 'mdc-dialog--opening',
+    SCROLLABLE: 'mdc-dialog--scrollable',
+    SCROLL_LOCK: 'mdc-dialog-scroll-lock',
+    STACKED: 'mdc-dialog--stacked',
+};
+var strings = {
+    ACTION_ATTRIBUTE: 'data-mdc-dialog-action',
+    BUTTON_DEFAULT_ATTRIBUTE: 'data-mdc-dialog-button-default',
+    BUTTON_SELECTOR: '.mdc-dialog__button',
+    CLOSED_EVENT: 'MDCDialog:closed',
+    CLOSE_ACTION: 'close',
+    CLOSING_EVENT: 'MDCDialog:closing',
+    CONTAINER_SELECTOR: '.mdc-dialog__container',
+    CONTENT_SELECTOR: '.mdc-dialog__content',
+    DESTROY_ACTION: 'destroy',
+    INITIAL_FOCUS_ATTRIBUTE: 'data-mdc-dialog-initial-focus',
+    OPENED_EVENT: 'MDCDialog:opened',
+    OPENING_EVENT: 'MDCDialog:opening',
+    SCRIM_SELECTOR: '.mdc-dialog__scrim',
+    SUPPRESS_DEFAULT_PRESS_SELECTOR: [
+        'textarea',
+        '.mdc-menu .mdc-list-item',
+    ].join(', '),
+    SURFACE_SELECTOR: '.mdc-dialog__surface',
+};
+var numbers = {
+    DIALOG_ANIMATION_CLOSE_TIME_MS: 75,
+    DIALOG_ANIMATION_OPEN_TIME_MS: 150,
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/dialog/foundation.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/dialog/foundation.js ***!
+  \*****************************************************/
+/*! exports provided: MDCDialogFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCDialogFoundation", function() { return MDCDialogFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/dialog/constants.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCDialogFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCDialogFoundation, _super);
+    function MDCDialogFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCDialogFoundation.defaultAdapter, adapter)) || this;
+        _this.isOpen_ = false;
+        _this.animationFrame_ = 0;
+        _this.animationTimer_ = 0;
+        _this.layoutFrame_ = 0;
+        _this.escapeKeyAction_ = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].CLOSE_ACTION;
+        _this.scrimClickAction_ = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].CLOSE_ACTION;
+        _this.autoStackButtons_ = true;
+        _this.areButtonsStacked_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCDialogFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDialogFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDialogFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCDialogFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addBodyClass: function () { return undefined; },
+                addClass: function () { return undefined; },
+                areButtonsStacked: function () { return false; },
+                clickDefaultButton: function () { return undefined; },
+                eventTargetMatches: function () { return false; },
+                getActionFromEvent: function () { return ''; },
+                getInitialFocusEl: function () { return null; },
+                hasClass: function () { return false; },
+                isContentScrollable: function () { return false; },
+                notifyClosed: function () { return undefined; },
+                notifyClosing: function () { return undefined; },
+                notifyOpened: function () { return undefined; },
+                notifyOpening: function () { return undefined; },
+                releaseFocus: function () { return undefined; },
+                removeBodyClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                reverseButtons: function () { return undefined; },
+                trapFocus: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCDialogFoundation.prototype.init = function () {
+        if (this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].STACKED)) {
+            this.setAutoStackButtons(false);
+        }
+    };
+    MDCDialogFoundation.prototype.destroy = function () {
+        if (this.isOpen_) {
+            this.close(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].DESTROY_ACTION);
+        }
+        if (this.animationTimer_) {
+            clearTimeout(this.animationTimer_);
+            this.handleAnimationTimerEnd_();
+        }
+        if (this.layoutFrame_) {
+            cancelAnimationFrame(this.layoutFrame_);
+            this.layoutFrame_ = 0;
+        }
+    };
+    MDCDialogFoundation.prototype.open = function () {
+        var _this = this;
+        this.isOpen_ = true;
+        this.adapter_.notifyOpening();
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING);
+        // Wait a frame once display is no longer "none", to establish basis for animation
+        this.runNextAnimationFrame_(function () {
+            _this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN);
+            _this.adapter_.addBodyClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SCROLL_LOCK);
+            _this.layout();
+            _this.animationTimer_ = setTimeout(function () {
+                _this.handleAnimationTimerEnd_();
+                _this.adapter_.trapFocus(_this.adapter_.getInitialFocusEl());
+                _this.adapter_.notifyOpened();
+            }, _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].DIALOG_ANIMATION_OPEN_TIME_MS);
+        });
+    };
+    MDCDialogFoundation.prototype.close = function (action) {
+        var _this = this;
+        if (action === void 0) { action = ''; }
+        if (!this.isOpen_) {
+            // Avoid redundant close calls (and events), e.g. from keydown on elements that inherently emit click
+            return;
+        }
+        this.isOpen_ = false;
+        this.adapter_.notifyClosing(action);
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING);
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN);
+        this.adapter_.removeBodyClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SCROLL_LOCK);
+        cancelAnimationFrame(this.animationFrame_);
+        this.animationFrame_ = 0;
+        clearTimeout(this.animationTimer_);
+        this.animationTimer_ = setTimeout(function () {
+            _this.adapter_.releaseFocus();
+            _this.handleAnimationTimerEnd_();
+            _this.adapter_.notifyClosed(action);
+        }, _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].DIALOG_ANIMATION_CLOSE_TIME_MS);
+    };
+    MDCDialogFoundation.prototype.isOpen = function () {
+        return this.isOpen_;
+    };
+    MDCDialogFoundation.prototype.getEscapeKeyAction = function () {
+        return this.escapeKeyAction_;
+    };
+    MDCDialogFoundation.prototype.setEscapeKeyAction = function (action) {
+        this.escapeKeyAction_ = action;
+    };
+    MDCDialogFoundation.prototype.getScrimClickAction = function () {
+        return this.scrimClickAction_;
+    };
+    MDCDialogFoundation.prototype.setScrimClickAction = function (action) {
+        this.scrimClickAction_ = action;
+    };
+    MDCDialogFoundation.prototype.getAutoStackButtons = function () {
+        return this.autoStackButtons_;
+    };
+    MDCDialogFoundation.prototype.setAutoStackButtons = function (autoStack) {
+        this.autoStackButtons_ = autoStack;
+    };
+    MDCDialogFoundation.prototype.layout = function () {
+        var _this = this;
+        if (this.layoutFrame_) {
+            cancelAnimationFrame(this.layoutFrame_);
+        }
+        this.layoutFrame_ = requestAnimationFrame(function () {
+            _this.layoutInternal_();
+            _this.layoutFrame_ = 0;
+        });
+    };
+    /** Handles click on the dialog root element. */
+    MDCDialogFoundation.prototype.handleClick = function (evt) {
+        var isScrim = this.adapter_.eventTargetMatches(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SCRIM_SELECTOR);
+        // Check for scrim click first since it doesn't require querying ancestors.
+        if (isScrim && this.scrimClickAction_ !== '') {
+            this.close(this.scrimClickAction_);
+        }
+        else {
+            var action = this.adapter_.getActionFromEvent(evt);
+            if (action) {
+                this.close(action);
+            }
+        }
+    };
+    /** Handles keydown on the dialog root element. */
+    MDCDialogFoundation.prototype.handleKeydown = function (evt) {
+        var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
+        if (!isEnter) {
+            return;
+        }
+        var action = this.adapter_.getActionFromEvent(evt);
+        if (action) {
+            // Action button callback is handled in `handleClick`,
+            // since space/enter keydowns on buttons trigger click events.
+            return;
+        }
+        var isDefault = !this.adapter_.eventTargetMatches(evt.target, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SUPPRESS_DEFAULT_PRESS_SELECTOR);
+        if (isEnter && isDefault) {
+            this.adapter_.clickDefaultButton();
+        }
+    };
+    /** Handles keydown on the document. */
+    MDCDialogFoundation.prototype.handleDocumentKeydown = function (evt) {
+        var isEscape = evt.key === 'Escape' || evt.keyCode === 27;
+        if (isEscape && this.escapeKeyAction_ !== '') {
+            this.close(this.escapeKeyAction_);
+        }
+    };
+    MDCDialogFoundation.prototype.layoutInternal_ = function () {
+        if (this.autoStackButtons_) {
+            this.detectStackedButtons_();
+        }
+        this.detectScrollableContent_();
+    };
+    MDCDialogFoundation.prototype.handleAnimationTimerEnd_ = function () {
+        this.animationTimer_ = 0;
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING);
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING);
+    };
+    /**
+     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+     */
+    MDCDialogFoundation.prototype.runNextAnimationFrame_ = function (callback) {
+        var _this = this;
+        cancelAnimationFrame(this.animationFrame_);
+        this.animationFrame_ = requestAnimationFrame(function () {
+            _this.animationFrame_ = 0;
+            clearTimeout(_this.animationTimer_);
+            _this.animationTimer_ = setTimeout(callback, 0);
+        });
+    };
+    MDCDialogFoundation.prototype.detectStackedButtons_ = function () {
+        // Remove the class first to let us measure the buttons' natural positions.
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].STACKED);
+        var areButtonsStacked = this.adapter_.areButtonsStacked();
+        if (areButtonsStacked) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].STACKED);
+        }
+        if (areButtonsStacked !== this.areButtonsStacked_) {
+            this.adapter_.reverseButtons();
+            this.areButtonsStacked_ = areButtonsStacked;
+        }
+    };
+    MDCDialogFoundation.prototype.detectScrollableContent_ = function () {
+        // Remove the class first to let us measure the natural height of the content.
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SCROLLABLE);
+        if (this.adapter_.isContentScrollable()) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].SCROLLABLE);
+        }
+    };
+    return MDCDialogFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCDialogFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/dialog/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/@material/dialog/index.js ***!
+  \************************************************/
+/*! exports provided: util, MDCDialog, cssClasses, strings, numbers, MDCDialogFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/@material/dialog/util.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "util", function() { return _util__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component */ "./node_modules/@material/dialog/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCDialog", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["MDCDialog"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/dialog/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/dialog/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCDialogFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCDialogFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/dialog/util.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@material/dialog/util.js ***!
+  \***********************************************/
+/*! exports provided: createFocusTrapInstance, isScrollable, areTopsMisaligned */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFocusTrapInstance", function() { return createFocusTrapInstance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isScrollable", function() { return isScrollable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "areTopsMisaligned", function() { return areTopsMisaligned; });
+/* harmony import */ var focus_trap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! focus-trap */ "./node_modules/focus-trap/index.js");
+/* harmony import */ var focus_trap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(focus_trap__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl) {
+    if (focusTrapFactory === void 0) { focusTrapFactory = focus_trap__WEBPACK_IMPORTED_MODULE_0___default.a; }
+    return focusTrapFactory(surfaceEl, {
+        clickOutsideDeactivates: true,
+        escapeDeactivates: false,
+        initialFocus: initialFocusEl,
+    });
+}
+function isScrollable(el) {
+    return el ? el.scrollHeight > el.offsetHeight : false;
+}
+function areTopsMisaligned(els) {
+    var tops = new Set();
+    [].forEach.call(els, function (el) { return tops.add(el.offsetTop); });
+    return tops.size > 1;
+}
+//# sourceMappingURL=util.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@material/dom/events.js":
 /*!**********************************************!*\
   !*** ./node_modules/@material/dom/events.js ***!
@@ -518,6 +3629,48 @@ function applyPassive(globalObj, forceRefresh) {
     return supportsPassive_ ? { passive: true } : false;
 }
 //# sourceMappingURL=events.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/dom/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/@material/dom/index.js ***!
+  \*********************************************/
+/*! exports provided: events, ponyfill */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./events */ "./node_modules/@material/dom/events.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "events", function() { return _events__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _ponyfill__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "ponyfill", function() { return _ponyfill__WEBPACK_IMPORTED_MODULE_1__; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -1435,6 +4588,894 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./node_modules/@material/floating-label/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/floating-label/index.js ***!
+  \********************************************************/
+/*! exports provided: MDCFloatingLabel, cssClasses, MDCFloatingLabelFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/floating-label/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFloatingLabel", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCFloatingLabel"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/floating-label/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/floating-label/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFloatingLabelFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFloatingLabelFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/form-field/component.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/form-field/component.js ***!
+  \********************************************************/
+/*! exports provided: MDCFormField */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFormField", function() { return MDCFormField; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/form-field/foundation.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCFormField = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCFormField, _super);
+    function MDCFormField() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCFormField.attachTo = function (root) {
+        return new MDCFormField(root);
+    };
+    Object.defineProperty(MDCFormField.prototype, "input", {
+        get: function () {
+            return this.input_;
+        },
+        set: function (input) {
+            this.input_ = input;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormField.prototype, "label_", {
+        get: function () {
+            var LABEL_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFormFieldFoundation"].strings.LABEL_SELECTOR;
+            return this.root_.querySelector(LABEL_SELECTOR);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCFormField.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            activateInputRipple: function () {
+                if (_this.input_ && _this.input_.ripple) {
+                    _this.input_.ripple.activate();
+                }
+            },
+            deactivateInputRipple: function () {
+                if (_this.input_ && _this.input_.ripple) {
+                    _this.input_.ripple.deactivate();
+                }
+            },
+            deregisterInteractionHandler: function (evtType, handler) {
+                if (_this.label_) {
+                    _this.label_.removeEventListener(evtType, handler);
+                }
+            },
+            registerInteractionHandler: function (evtType, handler) {
+                if (_this.label_) {
+                    _this.label_.addEventListener(evtType, handler);
+                }
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFormFieldFoundation"](adapter);
+    };
+    return MDCFormField;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/form-field/constants.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/form-field/constants.js ***!
+  \********************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ROOT: 'mdc-form-field',
+};
+var strings = {
+    LABEL_SELECTOR: '.mdc-form-field > label',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/form-field/foundation.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/form-field/foundation.js ***!
+  \*********************************************************/
+/*! exports provided: MDCFormFieldFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFormFieldFoundation", function() { return MDCFormFieldFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/form-field/constants.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCFormFieldFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCFormFieldFoundation, _super);
+    function MDCFormFieldFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCFormFieldFoundation.defaultAdapter, adapter)) || this;
+        _this.clickHandler_ = function () { return _this.handleClick_(); };
+        return _this;
+    }
+    Object.defineProperty(MDCFormFieldFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormFieldFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormFieldFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                activateInputRipple: function () { return undefined; },
+                deactivateInputRipple: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+                registerInteractionHandler: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCFormFieldFoundation.prototype.init = function () {
+        this.adapter_.registerInteractionHandler('click', this.clickHandler_);
+    };
+    MDCFormFieldFoundation.prototype.destroy = function () {
+        this.adapter_.deregisterInteractionHandler('click', this.clickHandler_);
+    };
+    MDCFormFieldFoundation.prototype.handleClick_ = function () {
+        var _this = this;
+        this.adapter_.activateInputRipple();
+        requestAnimationFrame(function () { return _this.adapter_.deactivateInputRipple(); });
+    };
+    return MDCFormFieldFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCFormFieldFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/form-field/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/form-field/index.js ***!
+  \****************************************************/
+/*! exports provided: MDCFormField, cssClasses, strings, MDCFormFieldFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/form-field/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFormField", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCFormField"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/form-field/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/form-field/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFormFieldFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFormFieldFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/grid-list/component.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material/grid-list/component.js ***!
+  \*******************************************************/
+/*! exports provided: MDCGridList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCGridList", function() { return MDCGridList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/grid-list/foundation.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCGridList = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCGridList, _super);
+    function MDCGridList() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCGridList.attachTo = function (root) {
+        return new MDCGridList(root);
+    };
+    MDCGridList.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
+            getNumberOfTiles: function () {
+                return _this.root_.querySelectorAll(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCGridListFoundation"].strings.TILE_SELECTOR).length;
+            },
+            getOffsetWidth: function () { return _this.root_.offsetWidth; },
+            getOffsetWidthForTileAtIndex: function (index) {
+                var tileEl = _this.root_.querySelectorAll(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCGridListFoundation"].strings.TILE_SELECTOR)[index];
+                return tileEl.offsetWidth;
+            },
+            registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
+            setStyleForTilesElement: function (property, value) {
+                var tilesEl = _this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCGridListFoundation"].strings.TILES_SELECTOR);
+                tilesEl.style[property] = value;
+            },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCGridListFoundation"](adapter);
+    };
+    return MDCGridList;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/grid-list/constants.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material/grid-list/constants.js ***!
+  \*******************************************************/
+/*! exports provided: strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    TILES_SELECTOR: '.mdc-grid-list__tiles',
+    TILE_SELECTOR: '.mdc-grid-tile',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/grid-list/foundation.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material/grid-list/foundation.js ***!
+  \********************************************************/
+/*! exports provided: MDCGridListFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCGridListFoundation", function() { return MDCGridListFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/grid-list/constants.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCGridListFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCGridListFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCGridListFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCGridListFoundation.defaultAdapter, adapter)) || this;
+        _this.resizeFrame_ = 0;
+        _this.resizeHandler_ = _this.alignCenter.bind(_this);
+        return _this;
+    }
+    Object.defineProperty(MDCGridListFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCGridListFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                deregisterResizeHandler: function () { return undefined; },
+                getNumberOfTiles: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                getOffsetWidthForTileAtIndex: function () { return 0; },
+                registerResizeHandler: function () { return undefined; },
+                setStyleForTilesElement: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCGridListFoundation.prototype.init = function () {
+        this.alignCenter();
+        this.adapter_.registerResizeHandler(this.resizeHandler_);
+    };
+    MDCGridListFoundation.prototype.destroy = function () {
+        this.adapter_.deregisterResizeHandler(this.resizeHandler_);
+    };
+    MDCGridListFoundation.prototype.alignCenter = function () {
+        var _this = this;
+        cancelAnimationFrame(this.resizeFrame_);
+        this.resizeFrame_ = requestAnimationFrame(function () {
+            _this.alignCenter_();
+            _this.resizeFrame_ = 0;
+        });
+    };
+    MDCGridListFoundation.prototype.alignCenter_ = function () {
+        if (this.adapter_.getNumberOfTiles() === 0) {
+            return;
+        }
+        var gridWidth = this.adapter_.getOffsetWidth();
+        var itemWidth = this.adapter_.getOffsetWidthForTileAtIndex(0);
+        var tilesWidth = itemWidth * Math.floor(gridWidth / itemWidth);
+        this.adapter_.setStyleForTilesElement('width', tilesWidth + "px");
+    };
+    return MDCGridListFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCGridListFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/grid-list/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@material/grid-list/index.js ***!
+  \***************************************************/
+/*! exports provided: MDCGridList, strings, MDCGridListFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/grid-list/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCGridList", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCGridList"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/grid-list/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/grid-list/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCGridListFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCGridListFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/icon-button/component.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/icon-button/component.js ***!
+  \*********************************************************/
+/*! exports provided: MDCIconButtonToggle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCIconButtonToggle", function() { return MDCIconButtonToggle; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/icon-button/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+var strings = _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCIconButtonToggleFoundation"].strings;
+var MDCIconButtonToggle = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCIconButtonToggle, _super);
+    function MDCIconButtonToggle() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.ripple_ = _this.createRipple_();
+        return _this;
+    }
+    MDCIconButtonToggle.attachTo = function (root) {
+        return new MDCIconButtonToggle(root);
+    };
+    MDCIconButtonToggle.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleClick_ = function () { return _this.foundation_.handleClick(); };
+        this.listen('click', this.handleClick_);
+    };
+    MDCIconButtonToggle.prototype.destroy = function () {
+        this.unlisten('click', this.handleClick_);
+        this.ripple_.destroy();
+        _super.prototype.destroy.call(this);
+    };
+    MDCIconButtonToggle.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            notifyChange: function (evtData) { return _this.emit(strings.CHANGE_EVENT, evtData); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            setAttr: function (attrName, attrValue) { return _this.root_.setAttribute(attrName, attrValue); },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCIconButtonToggleFoundation"](adapter);
+    };
+    Object.defineProperty(MDCIconButtonToggle.prototype, "ripple", {
+        get: function () {
+            return this.ripple_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCIconButtonToggle.prototype, "on", {
+        get: function () {
+            return this.foundation_.isOn();
+        },
+        set: function (isOn) {
+            this.foundation_.toggle(isOn);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCIconButtonToggle.prototype.createRipple_ = function () {
+        var ripple = new _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"](this.root_);
+        ripple.unbounded = true;
+        return ripple;
+    };
+    return MDCIconButtonToggle;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/icon-button/constants.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/icon-button/constants.js ***!
+  \*********************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ICON_BUTTON_ON: 'mdc-icon-button--on',
+    ROOT: 'mdc-icon-button',
+};
+var strings = {
+    ARIA_PRESSED: 'aria-pressed',
+    CHANGE_EVENT: 'MDCIconButtonToggle:change',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/icon-button/foundation.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@material/icon-button/foundation.js ***!
+  \**********************************************************/
+/*! exports provided: MDCIconButtonToggleFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCIconButtonToggleFoundation", function() { return MDCIconButtonToggleFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/icon-button/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCIconButtonToggleFoundation, _super);
+    function MDCIconButtonToggleFoundation(adapter) {
+        return _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCIconButtonToggleFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCIconButtonToggleFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCIconButtonToggleFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCIconButtonToggleFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                notifyChange: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                setAttr: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCIconButtonToggleFoundation.prototype.init = function () {
+        this.adapter_.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_PRESSED, "" + this.isOn());
+    };
+    MDCIconButtonToggleFoundation.prototype.handleClick = function () {
+        this.toggle();
+        this.adapter_.notifyChange({ isOn: this.isOn() });
+    };
+    MDCIconButtonToggleFoundation.prototype.isOn = function () {
+        return this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ICON_BUTTON_ON);
+    };
+    MDCIconButtonToggleFoundation.prototype.toggle = function (isOn) {
+        if (isOn === void 0) { isOn = !this.isOn(); }
+        if (isOn) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ICON_BUTTON_ON);
+        }
+        else {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ICON_BUTTON_ON);
+        }
+        this.adapter_.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_PRESSED, "" + isOn);
+    };
+    return MDCIconButtonToggleFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCIconButtonToggleFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/icon-button/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/icon-button/index.js ***!
+  \*****************************************************/
+/*! exports provided: MDCIconButtonToggle, cssClasses, strings, MDCIconButtonToggleFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/icon-button/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCIconButtonToggle", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCIconButtonToggle"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/icon-button/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/icon-button/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCIconButtonToggleFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCIconButtonToggleFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@material/line-ripple/component.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@material/line-ripple/component.js ***!
@@ -1668,6 +5709,406 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
 // tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 /* harmony default export */ __webpack_exports__["default"] = (MDCLineRippleFoundation);
 //# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/line-ripple/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/line-ripple/index.js ***!
+  \*****************************************************/
+/*! exports provided: MDCLineRipple, cssClasses, MDCLineRippleFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/line-ripple/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCLineRipple", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCLineRipple"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/line-ripple/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/line-ripple/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCLineRippleFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCLineRippleFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/linear-progress/component.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material/linear-progress/component.js ***!
+  \*************************************************************/
+/*! exports provided: MDCLinearProgress */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCLinearProgress", function() { return MDCLinearProgress; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/linear-progress/foundation.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCLinearProgress = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCLinearProgress, _super);
+    function MDCLinearProgress() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCLinearProgress.attachTo = function (root) {
+        return new MDCLinearProgress(root);
+    };
+    Object.defineProperty(MDCLinearProgress.prototype, "determinate", {
+        set: function (value) {
+            this.foundation_.setDeterminate(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgress.prototype, "progress", {
+        set: function (value) {
+            this.foundation_.setProgress(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgress.prototype, "buffer", {
+        set: function (value) {
+            this.foundation_.setBuffer(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgress.prototype, "reverse", {
+        set: function (value) {
+            this.foundation_.setReverse(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCLinearProgress.prototype.open = function () {
+        this.foundation_.open();
+    };
+    MDCLinearProgress.prototype.close = function () {
+        this.foundation_.close();
+    };
+    MDCLinearProgress.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            forceLayout: function () { return _this.root_.offsetWidth; },
+            getBuffer: function () { return _this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCLinearProgressFoundation"].strings.BUFFER_SELECTOR); },
+            getPrimaryBar: function () { return _this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCLinearProgressFoundation"].strings.PRIMARY_BAR_SELECTOR); },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            setStyle: function (el, styleProperty, value) { return el.style.setProperty(styleProperty, value); },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCLinearProgressFoundation"](adapter);
+    };
+    return MDCLinearProgress;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/linear-progress/constants.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material/linear-progress/constants.js ***!
+  \*************************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    CLOSED_CLASS: 'mdc-linear-progress--closed',
+    INDETERMINATE_CLASS: 'mdc-linear-progress--indeterminate',
+    REVERSED_CLASS: 'mdc-linear-progress--reversed',
+};
+var strings = {
+    BUFFER_SELECTOR: '.mdc-linear-progress__buffer',
+    PRIMARY_BAR_SELECTOR: '.mdc-linear-progress__primary-bar',
+};
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/linear-progress/foundation.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@material/linear-progress/foundation.js ***!
+  \**************************************************************/
+/*! exports provided: MDCLinearProgressFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCLinearProgressFoundation", function() { return MDCLinearProgressFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_animation_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/animation/util */ "./node_modules/@material/animation/util.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/linear-progress/constants.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+var MDCLinearProgressFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCLinearProgressFoundation, _super);
+    function MDCLinearProgressFoundation(adapter) {
+        return _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCLinearProgressFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCLinearProgressFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgressFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgressFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                forceLayout: function () { return undefined; },
+                getBuffer: function () { return null; },
+                getPrimaryBar: function () { return null; },
+                hasClass: function () { return false; },
+                removeClass: function () { return undefined; },
+                setStyle: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCLinearProgressFoundation.prototype.init = function () {
+        this.isDeterminate_ = !this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].INDETERMINATE_CLASS);
+        this.isReversed_ = this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].REVERSED_CLASS);
+        this.progress_ = 0;
+        this.buffer_ = 1;
+    };
+    MDCLinearProgressFoundation.prototype.setDeterminate = function (isDeterminate) {
+        this.isDeterminate_ = isDeterminate;
+        if (this.isDeterminate_) {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].INDETERMINATE_CLASS);
+            this.setScale_(this.adapter_.getPrimaryBar(), this.progress_);
+            this.setScale_(this.adapter_.getBuffer(), this.buffer_);
+        }
+        else {
+            if (this.isReversed_) {
+                // Adding/removing REVERSED_CLASS starts a translate animation, while
+                // adding INDETERMINATE_CLASS starts a scale animation. Here, we reset
+                // the translate animation in order to keep it in sync with the new
+                // scale animation that will start from adding INDETERMINATE_CLASS
+                // below.
+                this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].REVERSED_CLASS);
+                this.adapter_.forceLayout();
+                this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].REVERSED_CLASS);
+            }
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].INDETERMINATE_CLASS);
+            this.setScale_(this.adapter_.getPrimaryBar(), 1);
+            this.setScale_(this.adapter_.getBuffer(), 1);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.setProgress = function (value) {
+        this.progress_ = value;
+        if (this.isDeterminate_) {
+            this.setScale_(this.adapter_.getPrimaryBar(), value);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.setBuffer = function (value) {
+        this.buffer_ = value;
+        if (this.isDeterminate_) {
+            this.setScale_(this.adapter_.getBuffer(), value);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.setReverse = function (isReversed) {
+        this.isReversed_ = isReversed;
+        if (!this.isDeterminate_) {
+            // Adding INDETERMINATE_CLASS starts a scale animation, while
+            // adding/removing REVERSED_CLASS starts a translate animation. Here, we
+            // reset the scale animation in order to keep it in sync with the new
+            // translate animation that will start from adding/removing REVERSED_CLASS
+            // below.
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].INDETERMINATE_CLASS);
+            this.adapter_.forceLayout();
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].INDETERMINATE_CLASS);
+        }
+        if (this.isReversed_) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].REVERSED_CLASS);
+        }
+        else {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].REVERSED_CLASS);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.open = function () {
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].CLOSED_CLASS);
+    };
+    MDCLinearProgressFoundation.prototype.close = function () {
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].CLOSED_CLASS);
+    };
+    MDCLinearProgressFoundation.prototype.setScale_ = function (el, scaleValue) {
+        if (!el) {
+            return;
+        }
+        var value = "scaleX(" + scaleValue + ")";
+        this.adapter_.setStyle(el, Object(_material_animation_util__WEBPACK_IMPORTED_MODULE_1__["getCorrectPropertyName"])(window, 'transform'), value);
+    };
+    return MDCLinearProgressFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCLinearProgressFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/linear-progress/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/linear-progress/index.js ***!
+  \*********************************************************/
+/*! exports provided: MDCLinearProgress, cssClasses, strings, MDCLinearProgressFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/linear-progress/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCLinearProgress", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCLinearProgress"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/linear-progress/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/linear-progress/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCLinearProgressFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCLinearProgressFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -2497,6 +6938,57 @@ var MDCListFoundation = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./node_modules/@material/list/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/@material/list/index.js ***!
+  \**********************************************/
+/*! exports provided: MDCList, strings, cssClasses, numbers, MDCListFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/list/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCList", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCList"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/list/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/list/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCListFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCListFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@material/menu-surface/component.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@material/menu-surface/component.js ***!
@@ -3238,6 +7730,65 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
 // tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 /* harmony default export */ __webpack_exports__["default"] = (MDCMenuSurfaceFoundation);
 //# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/menu-surface/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/menu-surface/index.js ***!
+  \******************************************************/
+/*! exports provided: util, MDCMenuSurface, cssClasses, strings, numbers, CornerBit, Corner, MDCMenuSurfaceFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/@material/menu-surface/util.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "util", function() { return _util__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component */ "./node_modules/@material/menu-surface/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCMenuSurface", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["MDCMenuSurface"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/menu-surface/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CornerBit", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["CornerBit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Corner", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["Corner"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/menu-surface/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCMenuSurfaceFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCMenuSurfaceFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -4111,6 +8662,375 @@ var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
 // tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 /* harmony default export */ __webpack_exports__["default"] = (MDCNotchedOutlineFoundation);
 //# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/notched-outline/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material/notched-outline/index.js ***!
+  \*********************************************************/
+/*! exports provided: MDCNotchedOutline, cssClasses, numbers, strings, MDCNotchedOutlineFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/notched-outline/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCNotchedOutline", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCNotchedOutline"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/notched-outline/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/notched-outline/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCNotchedOutlineFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCNotchedOutlineFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/radio/component.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@material/radio/component.js ***!
+  \***************************************************/
+/*! exports provided: MDCRadio */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCRadio", function() { return MDCRadio; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/events */ "./node_modules/@material/dom/events.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/ripple/foundation */ "./node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/radio/foundation.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCRadio = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCRadio, _super);
+    function MDCRadio() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.ripple_ = _this.createRipple_();
+        return _this;
+    }
+    MDCRadio.attachTo = function (root) {
+        return new MDCRadio(root);
+    };
+    Object.defineProperty(MDCRadio.prototype, "checked", {
+        get: function () {
+            return this.nativeControl_.checked;
+        },
+        set: function (checked) {
+            this.nativeControl_.checked = checked;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadio.prototype, "disabled", {
+        get: function () {
+            return this.nativeControl_.disabled;
+        },
+        set: function (disabled) {
+            this.foundation_.setDisabled(disabled);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadio.prototype, "value", {
+        get: function () {
+            return this.nativeControl_.value;
+        },
+        set: function (value) {
+            this.nativeControl_.value = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadio.prototype, "ripple", {
+        get: function () {
+            return this.ripple_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCRadio.prototype.destroy = function () {
+        this.ripple_.destroy();
+        _super.prototype.destroy.call(this);
+    };
+    MDCRadio.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCRadioFoundation"](adapter);
+    };
+    MDCRadio.prototype.createRipple_ = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_3__["MDCRipple"].createAdapter(this), { registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])()); }, deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])()); }, 
+            // Radio buttons technically go "active" whenever there is *any* keyboard interaction.
+            // This is not the UI we desire.
+            isSurfaceActive: function () { return false; }, isUnbounded: function () { return true; } });
+        // tslint:enable:object-literal-sort-keys
+        return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_3__["MDCRipple"](this.root_, new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCRippleFoundation"](adapter));
+    };
+    Object.defineProperty(MDCRadio.prototype, "nativeControl_", {
+        get: function () {
+            var NATIVE_CONTROL_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCRadioFoundation"].strings.NATIVE_CONTROL_SELECTOR;
+            var el = this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
+            if (!el) {
+                throw new Error("Radio component requires a " + NATIVE_CONTROL_SELECTOR + " element");
+            }
+            return el;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return MDCRadio;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/radio/constants.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@material/radio/constants.js ***!
+  \***************************************************/
+/*! exports provided: strings, cssClasses */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    NATIVE_CONTROL_SELECTOR: '.mdc-radio__native-control',
+};
+var cssClasses = {
+    DISABLED: 'mdc-radio--disabled',
+    ROOT: 'mdc-radio',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/radio/foundation.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/radio/foundation.js ***!
+  \****************************************************/
+/*! exports provided: MDCRadioFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCRadioFoundation", function() { return MDCRadioFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/radio/constants.js");
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCRadioFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCRadioFoundation, _super);
+    function MDCRadioFoundation(adapter) {
+        return _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCRadioFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCRadioFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadioFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadioFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                setNativeControlDisabled: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCRadioFoundation.prototype.setDisabled = function (disabled) {
+        var DISABLED = MDCRadioFoundation.cssClasses.DISABLED;
+        this.adapter_.setNativeControlDisabled(disabled);
+        if (disabled) {
+            this.adapter_.addClass(DISABLED);
+        }
+        else {
+            this.adapter_.removeClass(DISABLED);
+        }
+    };
+    return MDCRadioFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCRadioFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/radio/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@material/radio/index.js ***!
+  \***********************************************/
+/*! exports provided: MDCRadio, strings, cssClasses, MDCRadioFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/radio/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCRadio", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCRadio"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/radio/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/radio/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCRadioFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCRadioFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -6437,6 +11357,4221 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/slider/component.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/slider/component.js ***!
+  \****************************************************/
+/*! exports provided: MDCSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSlider", function() { return MDCSlider; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/events */ "./node_modules/@material/dom/events.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/slider/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/slider/foundation.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+var MDCSlider = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSlider, _super);
+    function MDCSlider() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSlider.attachTo = function (root) {
+        return new MDCSlider(root);
+    };
+    Object.defineProperty(MDCSlider.prototype, "value", {
+        get: function () {
+            return this.foundation_.getValue();
+        },
+        set: function (value) {
+            this.foundation_.setValue(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSlider.prototype, "min", {
+        get: function () {
+            return this.foundation_.getMin();
+        },
+        set: function (min) {
+            this.foundation_.setMin(min);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSlider.prototype, "max", {
+        get: function () {
+            return this.foundation_.getMax();
+        },
+        set: function (max) {
+            this.foundation_.setMax(max);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSlider.prototype, "step", {
+        get: function () {
+            return this.foundation_.getStep();
+        },
+        set: function (step) {
+            this.foundation_.setStep(step);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSlider.prototype, "disabled", {
+        get: function () {
+            return this.foundation_.isDisabled();
+        },
+        set: function (disabled) {
+            this.foundation_.setDisabled(disabled);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSlider.prototype.initialize = function () {
+        this.thumbContainer_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].THUMB_CONTAINER_SELECTOR);
+        this.track_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].TRACK_SELECTOR);
+        this.pinValueMarker_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].PIN_VALUE_MARKER_SELECTOR);
+        this.trackMarkerContainer_ = this.root_.querySelector(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].TRACK_MARKER_CONTAINER_SELECTOR);
+    };
+    MDCSlider.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            getAttribute: function (name) { return _this.root_.getAttribute(name); },
+            setAttribute: function (name, value) { return _this.root_.setAttribute(name, value); },
+            removeAttribute: function (name) { return _this.root_.removeAttribute(name); },
+            computeBoundingRect: function () { return _this.root_.getBoundingClientRect(); },
+            getTabIndex: function () { return _this.root_.tabIndex; },
+            registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])()); },
+            deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])()); },
+            registerThumbContainerInteractionHandler: function (evtType, handler) {
+                _this.thumbContainer_.addEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+            },
+            deregisterThumbContainerInteractionHandler: function (evtType, handler) {
+                _this.thumbContainer_.removeEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+            },
+            registerBodyInteractionHandler: function (evtType, handler) { return document.body.addEventListener(evtType, handler); },
+            deregisterBodyInteractionHandler: function (evtType, handler) { return document.body.removeEventListener(evtType, handler); },
+            registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
+            deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
+            notifyInput: function () { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].INPUT_EVENT, _this); },
+            notifyChange: function () { return _this.emit(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CHANGE_EVENT, _this); },
+            setThumbContainerStyleProperty: function (propertyName, value) {
+                _this.thumbContainer_.style.setProperty(propertyName, value);
+            },
+            setTrackStyleProperty: function (propertyName, value) { return _this.track_.style.setProperty(propertyName, value); },
+            setMarkerValue: function (value) { return _this.pinValueMarker_.innerText = value.toLocaleString(); },
+            setTrackMarkers: function (step, max, min) {
+                var stepStr = step.toLocaleString();
+                var maxStr = max.toLocaleString();
+                var minStr = min.toLocaleString();
+                // keep calculation in css for better rounding/subpixel behavior
+                var markerAmount = "((" + maxStr + " - " + minStr + ") / " + stepStr + ")";
+                var markerWidth = "2px";
+                var markerBkgdImage = "linear-gradient(to right, currentColor " + markerWidth + ", transparent 0)";
+                var markerBkgdLayout = "0 center / calc((100% - " + markerWidth + ") / " + markerAmount + ") 100% repeat-x";
+                var markerBkgdShorthand = markerBkgdImage + " " + markerBkgdLayout;
+                _this.trackMarkerContainer_.style.setProperty('background', markerBkgdShorthand);
+            },
+            isRTL: function () { return getComputedStyle(_this.root_).direction === 'rtl'; },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCSliderFoundation"](adapter);
+    };
+    MDCSlider.prototype.initialSyncWithDOM = function () {
+        var origValueNow = this.parseFloat_(this.root_.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_VALUENOW), this.value);
+        var min = this.parseFloat_(this.root_.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_VALUEMIN), this.min);
+        var max = this.parseFloat_(this.root_.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_VALUEMAX), this.max);
+        // min and max need to be set in the right order to avoid throwing an error
+        // when the new min is greater than the default max.
+        if (min >= this.max) {
+            this.max = max;
+            this.min = min;
+        }
+        else {
+            this.min = min;
+            this.max = max;
+        }
+        this.step = this.parseFloat_(this.root_.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].STEP_DATA_ATTR), this.step);
+        this.value = origValueNow;
+        this.disabled = (this.root_.hasAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_DISABLED) &&
+            this.root_.getAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_DISABLED) !== 'false');
+        this.foundation_.setupTrackMarker();
+    };
+    MDCSlider.prototype.layout = function () {
+        this.foundation_.layout();
+    };
+    MDCSlider.prototype.stepUp = function (amount) {
+        if (amount === void 0) { amount = (this.step || 1); }
+        this.value += amount;
+    };
+    MDCSlider.prototype.stepDown = function (amount) {
+        if (amount === void 0) { amount = (this.step || 1); }
+        this.value -= amount;
+    };
+    MDCSlider.prototype.parseFloat_ = function (str, defaultValue) {
+        var num = parseFloat(str); // tslint:disable-line:ban
+        var isNumeric = typeof num === 'number' && isFinite(num);
+        return isNumeric ? num : defaultValue;
+    };
+    return MDCSlider;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/slider/constants.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/slider/constants.js ***!
+  \****************************************************/
+/*! exports provided: cssClasses, strings, numbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ACTIVE: 'mdc-slider--active',
+    DISABLED: 'mdc-slider--disabled',
+    DISCRETE: 'mdc-slider--discrete',
+    FOCUS: 'mdc-slider--focus',
+    HAS_TRACK_MARKER: 'mdc-slider--display-markers',
+    IN_TRANSIT: 'mdc-slider--in-transit',
+    IS_DISCRETE: 'mdc-slider--discrete',
+};
+var strings = {
+    ARIA_DISABLED: 'aria-disabled',
+    ARIA_VALUEMAX: 'aria-valuemax',
+    ARIA_VALUEMIN: 'aria-valuemin',
+    ARIA_VALUENOW: 'aria-valuenow',
+    CHANGE_EVENT: 'MDCSlider:change',
+    INPUT_EVENT: 'MDCSlider:input',
+    PIN_VALUE_MARKER_SELECTOR: '.mdc-slider__pin-value-marker',
+    STEP_DATA_ATTR: 'data-step',
+    THUMB_CONTAINER_SELECTOR: '.mdc-slider__thumb-container',
+    TRACK_MARKER_CONTAINER_SELECTOR: '.mdc-slider__track-marker-container',
+    TRACK_SELECTOR: '.mdc-slider__track',
+};
+var numbers = {
+    PAGE_FACTOR: 4,
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/slider/foundation.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/slider/foundation.js ***!
+  \*****************************************************/
+/*! exports provided: MDCSliderFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSliderFoundation", function() { return MDCSliderFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_animation_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/animation/util */ "./node_modules/@material/animation/util.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/slider/constants.js");
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+var DOWN_EVENTS = ['mousedown', 'pointerdown', 'touchstart'];
+var UP_EVENTS = ['mouseup', 'pointerup', 'touchend'];
+var MOVE_EVENT_MAP = {
+    mousedown: 'mousemove',
+    pointerdown: 'pointermove',
+    touchstart: 'touchmove',
+};
+var KEY_IDS = {
+    ARROW_DOWN: 'ArrowDown',
+    ARROW_LEFT: 'ArrowLeft',
+    ARROW_RIGHT: 'ArrowRight',
+    ARROW_UP: 'ArrowUp',
+    END: 'End',
+    HOME: 'Home',
+    PAGE_DOWN: 'PageDown',
+    PAGE_UP: 'PageUp',
+};
+var MDCSliderFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSliderFoundation, _super);
+    function MDCSliderFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCSliderFoundation.defaultAdapter, adapter)) || this;
+        /**
+         * We set this to NaN since we want it to be a number, but we can't use '0' or '-1'
+         * because those could be valid tabindices set by the client code.
+         */
+        _this.savedTabIndex_ = NaN;
+        _this.active_ = false;
+        _this.inTransit_ = false;
+        _this.isDiscrete_ = false;
+        _this.hasTrackMarker_ = false;
+        _this.handlingThumbTargetEvt_ = false;
+        _this.min_ = 0;
+        _this.max_ = 100;
+        _this.step_ = 0;
+        _this.value_ = 0;
+        _this.disabled_ = false;
+        _this.preventFocusState_ = false;
+        _this.thumbContainerPointerHandler_ = function () { return _this.handlingThumbTargetEvt_ = true; };
+        _this.interactionStartHandler_ = function (evt) { return _this.handleDown_(evt); };
+        _this.keydownHandler_ = function (evt) { return _this.handleKeydown_(evt); };
+        _this.focusHandler_ = function () { return _this.handleFocus_(); };
+        _this.blurHandler_ = function () { return _this.handleBlur_(); };
+        _this.resizeHandler_ = function () { return _this.layout(); };
+        return _this;
+    }
+    Object.defineProperty(MDCSliderFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSliderFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSliderFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSliderFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                hasClass: function () { return false; },
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                getAttribute: function () { return null; },
+                setAttribute: function () { return undefined; },
+                removeAttribute: function () { return undefined; },
+                computeBoundingRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                getTabIndex: function () { return 0; },
+                registerInteractionHandler: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+                registerThumbContainerInteractionHandler: function () { return undefined; },
+                deregisterThumbContainerInteractionHandler: function () { return undefined; },
+                registerBodyInteractionHandler: function () { return undefined; },
+                deregisterBodyInteractionHandler: function () { return undefined; },
+                registerResizeHandler: function () { return undefined; },
+                deregisterResizeHandler: function () { return undefined; },
+                notifyInput: function () { return undefined; },
+                notifyChange: function () { return undefined; },
+                setThumbContainerStyleProperty: function () { return undefined; },
+                setTrackStyleProperty: function () { return undefined; },
+                setMarkerValue: function () { return undefined; },
+                setTrackMarkers: function () { return undefined; },
+                isRTL: function () { return false; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSliderFoundation.prototype.init = function () {
+        var _this = this;
+        this.isDiscrete_ = this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].IS_DISCRETE);
+        this.hasTrackMarker_ = this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].HAS_TRACK_MARKER);
+        DOWN_EVENTS.forEach(function (evtName) {
+            _this.adapter_.registerInteractionHandler(evtName, _this.interactionStartHandler_);
+            _this.adapter_.registerThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
+        });
+        this.adapter_.registerInteractionHandler('keydown', this.keydownHandler_);
+        this.adapter_.registerInteractionHandler('focus', this.focusHandler_);
+        this.adapter_.registerInteractionHandler('blur', this.blurHandler_);
+        this.adapter_.registerResizeHandler(this.resizeHandler_);
+        this.layout();
+        // At last step, provide a reasonable default value to discrete slider
+        if (this.isDiscrete_ && this.getStep() === 0) {
+            this.step_ = 1;
+        }
+    };
+    MDCSliderFoundation.prototype.destroy = function () {
+        var _this = this;
+        DOWN_EVENTS.forEach(function (evtName) {
+            _this.adapter_.deregisterInteractionHandler(evtName, _this.interactionStartHandler_);
+            _this.adapter_.deregisterThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
+        });
+        this.adapter_.deregisterInteractionHandler('keydown', this.keydownHandler_);
+        this.adapter_.deregisterInteractionHandler('focus', this.focusHandler_);
+        this.adapter_.deregisterInteractionHandler('blur', this.blurHandler_);
+        this.adapter_.deregisterResizeHandler(this.resizeHandler_);
+    };
+    MDCSliderFoundation.prototype.setupTrackMarker = function () {
+        if (this.isDiscrete_ && this.hasTrackMarker_ && this.getStep() !== 0) {
+            this.adapter_.setTrackMarkers(this.getStep(), this.getMax(), this.getMin());
+        }
+    };
+    MDCSliderFoundation.prototype.layout = function () {
+        this.rect_ = this.adapter_.computeBoundingRect();
+        this.updateUIForCurrentValue_();
+    };
+    MDCSliderFoundation.prototype.getValue = function () {
+        return this.value_;
+    };
+    MDCSliderFoundation.prototype.setValue = function (value) {
+        this.setValue_(value, false);
+    };
+    MDCSliderFoundation.prototype.getMax = function () {
+        return this.max_;
+    };
+    MDCSliderFoundation.prototype.setMax = function (max) {
+        if (max < this.min_) {
+            throw new Error('Cannot set max to be less than the slider\'s minimum value');
+        }
+        this.max_ = max;
+        this.setValue_(this.value_, false, true);
+        this.adapter_.setAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_VALUEMAX, String(this.max_));
+        this.setupTrackMarker();
+    };
+    MDCSliderFoundation.prototype.getMin = function () {
+        return this.min_;
+    };
+    MDCSliderFoundation.prototype.setMin = function (min) {
+        if (min > this.max_) {
+            throw new Error('Cannot set min to be greater than the slider\'s maximum value');
+        }
+        this.min_ = min;
+        this.setValue_(this.value_, false, true);
+        this.adapter_.setAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_VALUEMIN, String(this.min_));
+        this.setupTrackMarker();
+    };
+    MDCSliderFoundation.prototype.getStep = function () {
+        return this.step_;
+    };
+    MDCSliderFoundation.prototype.setStep = function (step) {
+        if (step < 0) {
+            throw new Error('Step cannot be set to a negative number');
+        }
+        if (this.isDiscrete_ && (typeof (step) !== 'number' || step < 1)) {
+            step = 1;
+        }
+        this.step_ = step;
+        this.setValue_(this.value_, false, true);
+        this.setupTrackMarker();
+    };
+    MDCSliderFoundation.prototype.isDisabled = function () {
+        return this.disabled_;
+    };
+    MDCSliderFoundation.prototype.setDisabled = function (disabled) {
+        this.disabled_ = disabled;
+        this.toggleClass_(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].DISABLED, this.disabled_);
+        if (this.disabled_) {
+            this.savedTabIndex_ = this.adapter_.getTabIndex();
+            this.adapter_.setAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_DISABLED, 'true');
+            this.adapter_.removeAttribute('tabindex');
+        }
+        else {
+            this.adapter_.removeAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_DISABLED);
+            if (!isNaN(this.savedTabIndex_)) {
+                this.adapter_.setAttribute('tabindex', String(this.savedTabIndex_));
+            }
+        }
+    };
+    /**
+     * Called when the user starts interacting with the slider
+     */
+    MDCSliderFoundation.prototype.handleDown_ = function (downEvent) {
+        var _this = this;
+        if (this.disabled_) {
+            return;
+        }
+        this.preventFocusState_ = true;
+        this.setInTransit_(!this.handlingThumbTargetEvt_);
+        this.handlingThumbTargetEvt_ = false;
+        this.setActive_(true);
+        var moveHandler = function (moveEvent) {
+            _this.handleMove_(moveEvent);
+        };
+        var moveEventType = MOVE_EVENT_MAP[downEvent.type];
+        // Note: upHandler is [de]registered on ALL potential pointer-related release event types, since some browsers
+        // do not always fire these consistently in pairs.
+        // (See https://github.com/material-components/material-components-web/issues/1192)
+        var upHandler = function () {
+            _this.handleUp_();
+            _this.adapter_.deregisterBodyInteractionHandler(moveEventType, moveHandler);
+            UP_EVENTS.forEach(function (evtName) { return _this.adapter_.deregisterBodyInteractionHandler(evtName, upHandler); });
+        };
+        this.adapter_.registerBodyInteractionHandler(moveEventType, moveHandler);
+        UP_EVENTS.forEach(function (evtName) { return _this.adapter_.registerBodyInteractionHandler(evtName, upHandler); });
+        this.setValueFromEvt_(downEvent);
+    };
+    /**
+     * Called when the user moves the slider
+     */
+    MDCSliderFoundation.prototype.handleMove_ = function (evt) {
+        evt.preventDefault();
+        this.setValueFromEvt_(evt);
+    };
+    /**
+     * Called when the user's interaction with the slider ends
+     */
+    MDCSliderFoundation.prototype.handleUp_ = function () {
+        this.setActive_(false);
+        this.adapter_.notifyChange();
+    };
+    /**
+     * Returns the pageX of the event
+     */
+    MDCSliderFoundation.prototype.getPageX_ = function (evt) {
+        if (evt.targetTouches && evt.targetTouches.length > 0) {
+            return evt.targetTouches[0].pageX;
+        }
+        return evt.pageX;
+    };
+    /**
+     * Sets the slider value from an event
+     */
+    MDCSliderFoundation.prototype.setValueFromEvt_ = function (evt) {
+        var pageX = this.getPageX_(evt);
+        var value = this.computeValueFromPageX_(pageX);
+        this.setValue_(value, true);
+    };
+    /**
+     * Computes the new value from the pageX position
+     */
+    MDCSliderFoundation.prototype.computeValueFromPageX_ = function (pageX) {
+        var _a = this, max = _a.max_, min = _a.min_;
+        var xPos = pageX - this.rect_.left;
+        var pctComplete = xPos / this.rect_.width;
+        if (this.adapter_.isRTL()) {
+            pctComplete = 1 - pctComplete;
+        }
+        // Fit the percentage complete between the range [min,max]
+        // by remapping from [0, 1] to [min, min+(max-min)].
+        return min + pctComplete * (max - min);
+    };
+    /**
+     * Handles keydown events
+     */
+    MDCSliderFoundation.prototype.handleKeydown_ = function (evt) {
+        var keyId = this.getKeyId_(evt);
+        var value = this.getValueForKeyId_(keyId);
+        if (isNaN(value)) {
+            return;
+        }
+        // Prevent page from scrolling due to key presses that would normally scroll the page
+        evt.preventDefault();
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FOCUS);
+        this.setValue_(value, true);
+        this.adapter_.notifyChange();
+    };
+    /**
+     * Returns the computed name of the event
+     */
+    MDCSliderFoundation.prototype.getKeyId_ = function (kbdEvt) {
+        if (kbdEvt.key === KEY_IDS.ARROW_LEFT || kbdEvt.keyCode === 37) {
+            return KEY_IDS.ARROW_LEFT;
+        }
+        if (kbdEvt.key === KEY_IDS.ARROW_RIGHT || kbdEvt.keyCode === 39) {
+            return KEY_IDS.ARROW_RIGHT;
+        }
+        if (kbdEvt.key === KEY_IDS.ARROW_UP || kbdEvt.keyCode === 38) {
+            return KEY_IDS.ARROW_UP;
+        }
+        if (kbdEvt.key === KEY_IDS.ARROW_DOWN || kbdEvt.keyCode === 40) {
+            return KEY_IDS.ARROW_DOWN;
+        }
+        if (kbdEvt.key === KEY_IDS.HOME || kbdEvt.keyCode === 36) {
+            return KEY_IDS.HOME;
+        }
+        if (kbdEvt.key === KEY_IDS.END || kbdEvt.keyCode === 35) {
+            return KEY_IDS.END;
+        }
+        if (kbdEvt.key === KEY_IDS.PAGE_UP || kbdEvt.keyCode === 33) {
+            return KEY_IDS.PAGE_UP;
+        }
+        if (kbdEvt.key === KEY_IDS.PAGE_DOWN || kbdEvt.keyCode === 34) {
+            return KEY_IDS.PAGE_DOWN;
+        }
+        return '';
+    };
+    /**
+     * Computes the value given a keyboard key ID
+     */
+    MDCSliderFoundation.prototype.getValueForKeyId_ = function (keyId) {
+        var _a = this, max = _a.max_, min = _a.min_, step = _a.step_;
+        var delta = step || (max - min) / 100;
+        var valueNeedsToBeFlipped = this.adapter_.isRTL() && (keyId === KEY_IDS.ARROW_LEFT || keyId === KEY_IDS.ARROW_RIGHT);
+        if (valueNeedsToBeFlipped) {
+            delta = -delta;
+        }
+        switch (keyId) {
+            case KEY_IDS.ARROW_LEFT:
+            case KEY_IDS.ARROW_DOWN:
+                return this.value_ - delta;
+            case KEY_IDS.ARROW_RIGHT:
+            case KEY_IDS.ARROW_UP:
+                return this.value_ + delta;
+            case KEY_IDS.HOME:
+                return this.min_;
+            case KEY_IDS.END:
+                return this.max_;
+            case KEY_IDS.PAGE_UP:
+                return this.value_ + delta * _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].PAGE_FACTOR;
+            case KEY_IDS.PAGE_DOWN:
+                return this.value_ - delta * _constants__WEBPACK_IMPORTED_MODULE_3__["numbers"].PAGE_FACTOR;
+            default:
+                return NaN;
+        }
+    };
+    MDCSliderFoundation.prototype.handleFocus_ = function () {
+        if (this.preventFocusState_) {
+            return;
+        }
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FOCUS);
+    };
+    MDCSliderFoundation.prototype.handleBlur_ = function () {
+        this.preventFocusState_ = false;
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].FOCUS);
+    };
+    /**
+     * Sets the value of the slider
+     */
+    MDCSliderFoundation.prototype.setValue_ = function (value, shouldFireInput, force) {
+        if (force === void 0) { force = false; }
+        if (value === this.value_ && !force) {
+            return;
+        }
+        var _a = this, min = _a.min_, max = _a.max_;
+        var valueSetToBoundary = value === min || value === max;
+        if (this.step_ && !valueSetToBoundary) {
+            value = this.quantize_(value);
+        }
+        if (value < min) {
+            value = min;
+        }
+        else if (value > max) {
+            value = max;
+        }
+        this.value_ = value;
+        this.adapter_.setAttribute(_constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ARIA_VALUENOW, String(this.value_));
+        this.updateUIForCurrentValue_();
+        if (shouldFireInput) {
+            this.adapter_.notifyInput();
+            if (this.isDiscrete_) {
+                this.adapter_.setMarkerValue(value);
+            }
+        }
+    };
+    /**
+     * Calculates the quantized value
+     */
+    MDCSliderFoundation.prototype.quantize_ = function (value) {
+        var numSteps = Math.round(value / this.step_);
+        return numSteps * this.step_;
+    };
+    MDCSliderFoundation.prototype.updateUIForCurrentValue_ = function () {
+        var _this = this;
+        var _a = this, max = _a.max_, min = _a.min_, value = _a.value_;
+        var pctComplete = (value - min) / (max - min);
+        var translatePx = pctComplete * this.rect_.width;
+        if (this.adapter_.isRTL()) {
+            translatePx = this.rect_.width - translatePx;
+        }
+        var transformProp = Object(_material_animation_util__WEBPACK_IMPORTED_MODULE_1__["getCorrectPropertyName"])(window, 'transform');
+        var transitionendEvtName = Object(_material_animation_util__WEBPACK_IMPORTED_MODULE_1__["getCorrectEventName"])(window, 'transitionend');
+        if (this.inTransit_) {
+            var onTransitionEnd_1 = function () {
+                _this.setInTransit_(false);
+                _this.adapter_.deregisterThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
+            };
+            this.adapter_.registerThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
+        }
+        requestAnimationFrame(function () {
+            // NOTE(traviskaufman): It would be nice to use calc() here,
+            // but IE cannot handle calcs in transforms correctly.
+            // See: https://goo.gl/NC2itk
+            // Also note that the -50% offset is used to center the slider thumb.
+            _this.adapter_.setThumbContainerStyleProperty(transformProp, "translateX(" + translatePx + "px) translateX(-50%)");
+            _this.adapter_.setTrackStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
+        });
+    };
+    /**
+     * Toggles the active state of the slider
+     */
+    MDCSliderFoundation.prototype.setActive_ = function (active) {
+        this.active_ = active;
+        this.toggleClass_(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].ACTIVE, this.active_);
+    };
+    /**
+     * Toggles the inTransit state of the slider
+     */
+    MDCSliderFoundation.prototype.setInTransit_ = function (inTransit) {
+        this.inTransit_ = inTransit;
+        this.toggleClass_(_constants__WEBPACK_IMPORTED_MODULE_3__["cssClasses"].IN_TRANSIT, this.inTransit_);
+    };
+    /**
+     * Conditionally adds or removes a class based on shouldBePresent
+     */
+    MDCSliderFoundation.prototype.toggleClass_ = function (className, shouldBePresent) {
+        if (shouldBePresent) {
+            this.adapter_.addClass(className);
+        }
+        else {
+            this.adapter_.removeClass(className);
+        }
+    };
+    return MDCSliderFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSliderFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/slider/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/@material/slider/index.js ***!
+  \************************************************/
+/*! exports provided: MDCSlider, cssClasses, strings, numbers, MDCSliderFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/slider/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSlider", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCSlider"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/slider/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/slider/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSliderFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCSliderFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/snackbar/component.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/snackbar/component.js ***!
+  \******************************************************/
+/*! exports provided: MDCSnackbar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSnackbar", function() { return MDCSnackbar; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/snackbar/constants.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/snackbar/foundation.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./node_modules/@material/snackbar/util.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var SURFACE_SELECTOR = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].SURFACE_SELECTOR, LABEL_SELECTOR = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].LABEL_SELECTOR, ACTION_SELECTOR = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].ACTION_SELECTOR, DISMISS_SELECTOR = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].DISMISS_SELECTOR, OPENING_EVENT = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].OPENING_EVENT, OPENED_EVENT = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].OPENED_EVENT, CLOSING_EVENT = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CLOSING_EVENT, CLOSED_EVENT = _constants__WEBPACK_IMPORTED_MODULE_3__["strings"].CLOSED_EVENT;
+var MDCSnackbar = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSnackbar, _super);
+    function MDCSnackbar() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSnackbar.attachTo = function (root) {
+        return new MDCSnackbar(root);
+    };
+    MDCSnackbar.prototype.initialize = function (announcerFactory) {
+        if (announcerFactory === void 0) { announcerFactory = function () { return _util__WEBPACK_IMPORTED_MODULE_5__["announce"]; }; }
+        this.announce_ = announcerFactory();
+    };
+    MDCSnackbar.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.surfaceEl_ = this.root_.querySelector(SURFACE_SELECTOR);
+        this.labelEl_ = this.root_.querySelector(LABEL_SELECTOR);
+        this.actionEl_ = this.root_.querySelector(ACTION_SELECTOR);
+        this.handleKeyDown_ = function (evt) { return _this.foundation_.handleKeyDown(evt); };
+        this.handleSurfaceClick_ = function (evt) {
+            var target = evt.target;
+            if (_this.isActionButton_(target)) {
+                _this.foundation_.handleActionButtonClick(evt);
+            }
+            else if (_this.isActionIcon_(target)) {
+                _this.foundation_.handleActionIconClick(evt);
+            }
+        };
+        this.registerKeyDownHandler_(this.handleKeyDown_);
+        this.registerSurfaceClickHandler_(this.handleSurfaceClick_);
+    };
+    MDCSnackbar.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.deregisterKeyDownHandler_(this.handleKeyDown_);
+        this.deregisterSurfaceClickHandler_(this.handleSurfaceClick_);
+    };
+    MDCSnackbar.prototype.open = function () {
+        this.foundation_.open();
+    };
+    /**
+     * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
+     *     `event.detail.reason` property. Standard values are REASON_ACTION and REASON_DISMISS, but custom
+     *     client-specific values may also be used if desired.
+     */
+    MDCSnackbar.prototype.close = function (reason) {
+        if (reason === void 0) { reason = ''; }
+        this.foundation_.close(reason);
+    };
+    MDCSnackbar.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            announce: function () { return _this.announce_(_this.labelEl_); },
+            notifyClosed: function (reason) { return _this.emit(CLOSED_EVENT, reason ? { reason: reason } : {}); },
+            notifyClosing: function (reason) { return _this.emit(CLOSING_EVENT, reason ? { reason: reason } : {}); },
+            notifyOpened: function () { return _this.emit(OPENED_EVENT, {}); },
+            notifyOpening: function () { return _this.emit(OPENING_EVENT, {}); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCSnackbarFoundation"](adapter);
+    };
+    Object.defineProperty(MDCSnackbar.prototype, "timeoutMs", {
+        get: function () {
+            return this.foundation_.getTimeoutMs();
+        },
+        set: function (timeoutMs) {
+            this.foundation_.setTimeoutMs(timeoutMs);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbar.prototype, "closeOnEscape", {
+        get: function () {
+            return this.foundation_.getCloseOnEscape();
+        },
+        set: function (closeOnEscape) {
+            this.foundation_.setCloseOnEscape(closeOnEscape);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbar.prototype, "isOpen", {
+        get: function () {
+            return this.foundation_.isOpen();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbar.prototype, "labelText", {
+        get: function () {
+            // This property only returns null if the node is a document, DOCTYPE, or notation.
+            // On Element nodes, it always returns a string.
+            return this.labelEl_.textContent;
+        },
+        set: function (labelText) {
+            this.labelEl_.textContent = labelText;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbar.prototype, "actionButtonText", {
+        get: function () {
+            return this.actionEl_.textContent;
+        },
+        set: function (actionButtonText) {
+            this.actionEl_.textContent = actionButtonText;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSnackbar.prototype.registerKeyDownHandler_ = function (handler) {
+        this.listen('keydown', handler);
+    };
+    MDCSnackbar.prototype.deregisterKeyDownHandler_ = function (handler) {
+        this.unlisten('keydown', handler);
+    };
+    MDCSnackbar.prototype.registerSurfaceClickHandler_ = function (handler) {
+        this.surfaceEl_.addEventListener('click', handler);
+    };
+    MDCSnackbar.prototype.deregisterSurfaceClickHandler_ = function (handler) {
+        this.surfaceEl_.removeEventListener('click', handler);
+    };
+    MDCSnackbar.prototype.isActionButton_ = function (target) {
+        return Boolean(Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["closest"])(target, ACTION_SELECTOR));
+    };
+    MDCSnackbar.prototype.isActionIcon_ = function (target) {
+        return Boolean(Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_2__["closest"])(target, DISMISS_SELECTOR));
+    };
+    return MDCSnackbar;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/snackbar/constants.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/snackbar/constants.js ***!
+  \******************************************************/
+/*! exports provided: cssClasses, strings, numbers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    CLOSING: 'mdc-snackbar--closing',
+    OPEN: 'mdc-snackbar--open',
+    OPENING: 'mdc-snackbar--opening',
+};
+var strings = {
+    ACTION_SELECTOR: '.mdc-snackbar__action',
+    ARIA_LIVE_LABEL_TEXT_ATTR: 'data-mdc-snackbar-label-text',
+    CLOSED_EVENT: 'MDCSnackbar:closed',
+    CLOSING_EVENT: 'MDCSnackbar:closing',
+    DISMISS_SELECTOR: '.mdc-snackbar__dismiss',
+    LABEL_SELECTOR: '.mdc-snackbar__label',
+    OPENED_EVENT: 'MDCSnackbar:opened',
+    OPENING_EVENT: 'MDCSnackbar:opening',
+    REASON_ACTION: 'action',
+    REASON_DISMISS: 'dismiss',
+    SURFACE_SELECTOR: '.mdc-snackbar__surface',
+};
+var numbers = {
+    DEFAULT_AUTO_DISMISS_TIMEOUT_MS: 5000,
+    INDETERMINATE: -1,
+    MAX_AUTO_DISMISS_TIMEOUT_MS: 10000,
+    MIN_AUTO_DISMISS_TIMEOUT_MS: 4000,
+    // These variables need to be kept in sync with the values in _variables.scss.
+    SNACKBAR_ANIMATION_CLOSE_TIME_MS: 75,
+    SNACKBAR_ANIMATION_OPEN_TIME_MS: 150,
+    /**
+     * Number of milliseconds to wait between temporarily clearing the label text
+     * in the DOM and subsequently restoring it. This is necessary to force IE 11
+     * to pick up the `aria-live` content change and announce it to the user.
+     */
+    ARIA_LIVE_DELAY_MS: 1000,
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/snackbar/foundation.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material/snackbar/foundation.js ***!
+  \*******************************************************/
+/*! exports provided: MDCSnackbarFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSnackbarFoundation", function() { return MDCSnackbarFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/snackbar/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var OPENING = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING, OPEN = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN, CLOSING = _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING;
+var REASON_ACTION = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].REASON_ACTION, REASON_DISMISS = _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].REASON_DISMISS;
+var MDCSnackbarFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSnackbarFoundation, _super);
+    function MDCSnackbarFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCSnackbarFoundation.defaultAdapter, adapter)) || this;
+        _this.isOpen_ = false;
+        _this.animationFrame_ = 0;
+        _this.animationTimer_ = 0;
+        _this.autoDismissTimer_ = 0;
+        _this.autoDismissTimeoutMs_ = _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
+        _this.closeOnEscape_ = true;
+        return _this;
+    }
+    Object.defineProperty(MDCSnackbarFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbarFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbarFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSnackbarFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                announce: function () { return undefined; },
+                notifyClosed: function () { return undefined; },
+                notifyClosing: function () { return undefined; },
+                notifyOpened: function () { return undefined; },
+                notifyOpening: function () { return undefined; },
+                removeClass: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSnackbarFoundation.prototype.destroy = function () {
+        this.clearAutoDismissTimer_();
+        cancelAnimationFrame(this.animationFrame_);
+        this.animationFrame_ = 0;
+        clearTimeout(this.animationTimer_);
+        this.animationTimer_ = 0;
+        this.adapter_.removeClass(OPENING);
+        this.adapter_.removeClass(OPEN);
+        this.adapter_.removeClass(CLOSING);
+    };
+    MDCSnackbarFoundation.prototype.open = function () {
+        var _this = this;
+        this.clearAutoDismissTimer_();
+        this.isOpen_ = true;
+        this.adapter_.notifyOpening();
+        this.adapter_.removeClass(CLOSING);
+        this.adapter_.addClass(OPENING);
+        this.adapter_.announce();
+        // Wait a frame once display is no longer "none", to establish basis for animation
+        this.runNextAnimationFrame_(function () {
+            _this.adapter_.addClass(OPEN);
+            _this.animationTimer_ = setTimeout(function () {
+                var timeoutMs = _this.getTimeoutMs();
+                _this.handleAnimationTimerEnd_();
+                _this.adapter_.notifyOpened();
+                if (timeoutMs !== _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].INDETERMINATE) {
+                    _this.autoDismissTimer_ = setTimeout(function () {
+                        _this.close(REASON_DISMISS);
+                    }, timeoutMs);
+                }
+            }, _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].SNACKBAR_ANIMATION_OPEN_TIME_MS);
+        });
+    };
+    /**
+     * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
+     *     `event.detail.reason` property. Standard values are REASON_ACTION and REASON_DISMISS, but custom
+     *     client-specific values may also be used if desired.
+     */
+    MDCSnackbarFoundation.prototype.close = function (reason) {
+        var _this = this;
+        if (reason === void 0) { reason = ''; }
+        if (!this.isOpen_) {
+            // Avoid redundant close calls (and events), e.g. repeated interactions as the snackbar is animating closed
+            return;
+        }
+        cancelAnimationFrame(this.animationFrame_);
+        this.animationFrame_ = 0;
+        this.clearAutoDismissTimer_();
+        this.isOpen_ = false;
+        this.adapter_.notifyClosing(reason);
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING);
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPEN);
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING);
+        clearTimeout(this.animationTimer_);
+        this.animationTimer_ = setTimeout(function () {
+            _this.handleAnimationTimerEnd_();
+            _this.adapter_.notifyClosed(reason);
+        }, _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].SNACKBAR_ANIMATION_CLOSE_TIME_MS);
+    };
+    MDCSnackbarFoundation.prototype.isOpen = function () {
+        return this.isOpen_;
+    };
+    MDCSnackbarFoundation.prototype.getTimeoutMs = function () {
+        return this.autoDismissTimeoutMs_;
+    };
+    MDCSnackbarFoundation.prototype.setTimeoutMs = function (timeoutMs) {
+        // Use shorter variable names to make the code more readable
+        var minValue = _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].MIN_AUTO_DISMISS_TIMEOUT_MS;
+        var maxValue = _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].MAX_AUTO_DISMISS_TIMEOUT_MS;
+        var indeterminateValue = _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].INDETERMINATE;
+        if (timeoutMs === _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].INDETERMINATE || (timeoutMs <= maxValue && timeoutMs >= minValue)) {
+            this.autoDismissTimeoutMs_ = timeoutMs;
+        }
+        else {
+            throw new Error("\n        timeoutMs must be an integer in the range " + minValue + "\u2013" + maxValue + "\n        (or " + indeterminateValue + " to disable), but got '" + timeoutMs + "'");
+        }
+    };
+    MDCSnackbarFoundation.prototype.getCloseOnEscape = function () {
+        return this.closeOnEscape_;
+    };
+    MDCSnackbarFoundation.prototype.setCloseOnEscape = function (closeOnEscape) {
+        this.closeOnEscape_ = closeOnEscape;
+    };
+    MDCSnackbarFoundation.prototype.handleKeyDown = function (evt) {
+        var isEscapeKey = evt.key === 'Escape' || evt.keyCode === 27;
+        if (isEscapeKey && this.getCloseOnEscape()) {
+            this.close(REASON_DISMISS);
+        }
+    };
+    MDCSnackbarFoundation.prototype.handleActionButtonClick = function (_evt) {
+        this.close(REASON_ACTION);
+    };
+    MDCSnackbarFoundation.prototype.handleActionIconClick = function (_evt) {
+        this.close(REASON_DISMISS);
+    };
+    MDCSnackbarFoundation.prototype.clearAutoDismissTimer_ = function () {
+        clearTimeout(this.autoDismissTimer_);
+        this.autoDismissTimer_ = 0;
+    };
+    MDCSnackbarFoundation.prototype.handleAnimationTimerEnd_ = function () {
+        this.animationTimer_ = 0;
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].OPENING);
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CLOSING);
+    };
+    /**
+     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+     */
+    MDCSnackbarFoundation.prototype.runNextAnimationFrame_ = function (callback) {
+        var _this = this;
+        cancelAnimationFrame(this.animationFrame_);
+        this.animationFrame_ = requestAnimationFrame(function () {
+            _this.animationFrame_ = 0;
+            clearTimeout(_this.animationTimer_);
+            _this.animationTimer_ = setTimeout(callback, 0);
+        });
+    };
+    return MDCSnackbarFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSnackbarFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/snackbar/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@material/snackbar/index.js ***!
+  \**************************************************/
+/*! exports provided: util, MDCSnackbar, cssClasses, strings, numbers, MDCSnackbarFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/@material/snackbar/util.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "util", function() { return _util__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component */ "./node_modules/@material/snackbar/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSnackbar", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["MDCSnackbar"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/snackbar/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/snackbar/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSnackbarFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCSnackbarFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/snackbar/util.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@material/snackbar/util.js ***!
+  \*************************************************/
+/*! exports provided: announce */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "announce", function() { return announce; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/snackbar/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+var ARIA_LIVE_DELAY_MS = _constants__WEBPACK_IMPORTED_MODULE_0__["numbers"].ARIA_LIVE_DELAY_MS;
+var ARIA_LIVE_LABEL_TEXT_ATTR = _constants__WEBPACK_IMPORTED_MODULE_0__["strings"].ARIA_LIVE_LABEL_TEXT_ATTR;
+function announce(ariaEl, labelEl) {
+    if (labelEl === void 0) { labelEl = ariaEl; }
+    var priority = ariaEl.getAttribute('aria-live');
+    // Trim text to ignore `&nbsp;` (see below).
+    // textContent is only null if the node is a document, DOCTYPE, or notation.
+    var labelText = labelEl.textContent.trim();
+    if (!labelText || !priority) {
+        return;
+    }
+    // Temporarily disable `aria-live` to prevent JAWS+Firefox from announcing the message twice.
+    ariaEl.setAttribute('aria-live', 'off');
+    // Temporarily clear `textContent` to force a DOM mutation event that will be detected by screen readers.
+    // `aria-live` elements are only announced when the element's `textContent` *changes*, so snackbars
+    // sent to the browser in the initial HTML response won't be read unless we clear the element's `textContent` first.
+    // Similarly, displaying the same snackbar message twice in a row doesn't trigger a DOM mutation event,
+    // so screen readers won't announce the second message unless we first clear `textContent`.
+    //
+    // We have to clear the label text two different ways to make it work in all browsers and screen readers:
+    //
+    //   1. `textContent = ''` is required for IE11 + JAWS
+    //   2. `innerHTML = '&nbsp;'` is required for Chrome + JAWS and NVDA
+    //
+    // All other browser/screen reader combinations support both methods.
+    //
+    // The wrapper `<span>` visually hides the space character so that it doesn't cause jank when added/removed.
+    // N.B.: Setting `position: absolute`, `opacity: 0`, or `height: 0` prevents Chrome from detecting the DOM change.
+    //
+    // This technique has been tested in:
+    //
+    //   * JAWS 2019:
+    //       - Chrome 70
+    //       - Firefox 60 (ESR)
+    //       - IE 11
+    //   * NVDA 2018:
+    //       - Chrome 70
+    //       - Firefox 60 (ESR)
+    //       - IE 11
+    //   * ChromeVox 53
+    labelEl.textContent = '';
+    labelEl.innerHTML = '<span style="display: inline-block; width: 0; height: 1px;">&nbsp;</span>';
+    // Prevent visual jank by temporarily displaying the label text in the ::before pseudo-element.
+    // CSS generated content is normally announced by screen readers
+    // (except in IE 11; see https://tink.uk/accessibility-support-for-css-generated-content/);
+    // however, `aria-live` is turned off, so this DOM update will be ignored by screen readers.
+    labelEl.setAttribute(ARIA_LIVE_LABEL_TEXT_ATTR, labelText);
+    setTimeout(function () {
+        // Allow screen readers to announce changes to the DOM again.
+        ariaEl.setAttribute('aria-live', priority);
+        // Remove the message from the ::before pseudo-element.
+        labelEl.removeAttribute(ARIA_LIVE_LABEL_TEXT_ATTR);
+        // Restore the original label text, which will be announced by screen readers.
+        labelEl.textContent = labelText;
+    }, ARIA_LIVE_DELAY_MS);
+}
+
+//# sourceMappingURL=util.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/switch/component.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/switch/component.js ***!
+  \****************************************************/
+/*! exports provided: MDCSwitch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSwitch", function() { return MDCSwitch; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/events */ "./node_modules/@material/dom/events.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/dom/ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material/ripple/foundation */ "./node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/switch/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+var MDCSwitch = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSwitch, _super);
+    function MDCSwitch() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.ripple_ = _this.createRipple_();
+        return _this;
+    }
+    MDCSwitch.attachTo = function (root) {
+        return new MDCSwitch(root);
+    };
+    MDCSwitch.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.ripple_.destroy();
+        this.nativeControl_.removeEventListener('change', this.changeHandler_);
+    };
+    MDCSwitch.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.changeHandler_ = function () {
+            var _a;
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return (_a = _this.foundation_).handleChange.apply(_a, tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"](args));
+        };
+        this.nativeControl_.addEventListener('change', this.changeHandler_);
+        // Sometimes the checked state of the input element is saved in the history.
+        // The switch styling should match the checked state of the input element.
+        // Do an initial sync between the native control and the foundation.
+        this.checked = this.checked;
+    };
+    MDCSwitch.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            setNativeControlChecked: function (checked) { return _this.nativeControl_.checked = checked; },
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
+        };
+        return new _foundation__WEBPACK_IMPORTED_MODULE_6__["MDCSwitchFoundation"](adapter);
+    };
+    Object.defineProperty(MDCSwitch.prototype, "ripple", {
+        get: function () {
+            return this.ripple_;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSwitch.prototype, "checked", {
+        get: function () {
+            return this.nativeControl_.checked;
+        },
+        set: function (checked) {
+            this.foundation_.setChecked(checked);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSwitch.prototype, "disabled", {
+        get: function () {
+            return this.nativeControl_.disabled;
+        },
+        set: function (disabled) {
+            this.foundation_.setDisabled(disabled);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSwitch.prototype.createRipple_ = function () {
+        var _this = this;
+        var RIPPLE_SURFACE_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_6__["MDCSwitchFoundation"].strings.RIPPLE_SURFACE_SELECTOR;
+        var rippleSurface = this.root_.querySelector(RIPPLE_SURFACE_SELECTOR);
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_4__["MDCRipple"].createAdapter(this), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
+                _this.nativeControl_.removeEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+            }, isSurfaceActive: function () { return Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__["matches"])(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
+                _this.nativeControl_.addEventListener(evtType, handler, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+            }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) {
+                rippleSurface.style.setProperty(varName, value);
+            } });
+        return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_4__["MDCRipple"](this.root_, new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCRippleFoundation"](adapter));
+    };
+    Object.defineProperty(MDCSwitch.prototype, "nativeControl_", {
+        get: function () {
+            var NATIVE_CONTROL_SELECTOR = _foundation__WEBPACK_IMPORTED_MODULE_6__["MDCSwitchFoundation"].strings.NATIVE_CONTROL_SELECTOR;
+            return this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return MDCSwitch;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/switch/constants.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@material/switch/constants.js ***!
+  \****************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+/** CSS classes used by the switch. */
+var cssClasses = {
+    /** Class used for a switch that is in the "checked" (on) position. */
+    CHECKED: 'mdc-switch--checked',
+    /** Class used for a switch that is disabled. */
+    DISABLED: 'mdc-switch--disabled',
+};
+/** String constants used by the switch. */
+var strings = {
+    /** A CSS selector used to locate the native HTML control for the switch.  */
+    NATIVE_CONTROL_SELECTOR: '.mdc-switch__native-control',
+    /** A CSS selector used to locate the ripple surface element for the switch. */
+    RIPPLE_SURFACE_SELECTOR: '.mdc-switch__thumb-underlay',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/switch/foundation.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/switch/foundation.js ***!
+  \*****************************************************/
+/*! exports provided: MDCSwitchFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSwitchFoundation", function() { return MDCSwitchFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/switch/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCSwitchFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSwitchFoundation, _super);
+    function MDCSwitchFoundation(adapter) {
+        return _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCSwitchFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCSwitchFoundation, "strings", {
+        /** The string constants used by the switch. */
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSwitchFoundation, "cssClasses", {
+        /** The CSS classes used by the switch. */
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSwitchFoundation, "defaultAdapter", {
+        /** The default Adapter for the switch. */
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                setNativeControlChecked: function () { return undefined; },
+                setNativeControlDisabled: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /** Sets the checked state of the switch. */
+    MDCSwitchFoundation.prototype.setChecked = function (checked) {
+        this.adapter_.setNativeControlChecked(checked);
+        this.updateCheckedStyling_(checked);
+    };
+    /** Sets the disabled state of the switch. */
+    MDCSwitchFoundation.prototype.setDisabled = function (disabled) {
+        this.adapter_.setNativeControlDisabled(disabled);
+        if (disabled) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].DISABLED);
+        }
+        else {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].DISABLED);
+        }
+    };
+    /** Handles the change event for the switch native control. */
+    MDCSwitchFoundation.prototype.handleChange = function (evt) {
+        var nativeControl = evt.target;
+        this.updateCheckedStyling_(nativeControl.checked);
+    };
+    /** Updates the styling of the switch based on its checked state. */
+    MDCSwitchFoundation.prototype.updateCheckedStyling_ = function (checked) {
+        if (checked) {
+            this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CHECKED);
+        }
+        else {
+            this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].CHECKED);
+        }
+    };
+    return MDCSwitchFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSwitchFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/switch/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/@material/switch/index.js ***!
+  \************************************************/
+/*! exports provided: MDCSwitch, cssClasses, strings, MDCSwitchFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/switch/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSwitch", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCSwitch"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/switch/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/switch/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSwitchFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCSwitchFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-bar/component.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/tab-bar/component.js ***!
+  \*****************************************************/
+/*! exports provided: MDCTabBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabBar", function() { return MDCTabBar; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_tab_scroller_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/tab-scroller/component */ "./node_modules/@material/tab-scroller/component.js");
+/* harmony import */ var _material_tab_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/tab/component */ "./node_modules/@material/tab/component.js");
+/* harmony import */ var _material_tab_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/tab/foundation */ "./node_modules/@material/tab/foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-bar/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var strings = _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabBarFoundation"].strings;
+var tabIdCounter = 0;
+var MDCTabBar = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabBar, _super);
+    function MDCTabBar() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabBar.attachTo = function (root) {
+        return new MDCTabBar(root);
+    };
+    Object.defineProperty(MDCTabBar.prototype, "focusOnActivate", {
+        set: function (focusOnActivate) {
+            this.tabList_.forEach(function (tab) { return tab.focusOnActivate = focusOnActivate; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabBar.prototype, "useAutomaticActivation", {
+        set: function (useAutomaticActivation) {
+            this.foundation_.setUseAutomaticActivation(useAutomaticActivation);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabBar.prototype.initialize = function (tabFactory, tabScrollerFactory) {
+        if (tabFactory === void 0) { tabFactory = function (el) { return new _material_tab_component__WEBPACK_IMPORTED_MODULE_3__["MDCTab"](el); }; }
+        if (tabScrollerFactory === void 0) { tabScrollerFactory = function (el) { return new _material_tab_scroller_component__WEBPACK_IMPORTED_MODULE_2__["MDCTabScroller"](el); }; }
+        this.tabList_ = this.instantiateTabs_(tabFactory);
+        this.tabScroller_ = this.instantiateTabScroller_(tabScrollerFactory);
+    };
+    MDCTabBar.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleTabInteraction_ = function (evt) { return _this.foundation_.handleTabInteraction(evt); };
+        this.handleKeyDown_ = function (evt) { return _this.foundation_.handleKeyDown(evt); };
+        this.listen(_material_tab_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabFoundation"].strings.INTERACTED_EVENT, this.handleTabInteraction_);
+        this.listen('keydown', this.handleKeyDown_);
+        for (var i = 0; i < this.tabList_.length; i++) {
+            if (this.tabList_[i].active) {
+                this.scrollIntoView(i);
+                break;
+            }
+        }
+    };
+    MDCTabBar.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.unlisten(_material_tab_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabFoundation"].strings.INTERACTED_EVENT, this.handleTabInteraction_);
+        this.unlisten('keydown', this.handleKeyDown_);
+        this.tabList_.forEach(function (tab) { return tab.destroy(); });
+        if (this.tabScroller_) {
+            this.tabScroller_.destroy();
+        }
+    };
+    MDCTabBar.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            scrollTo: function (scrollX) { return _this.tabScroller_.scrollTo(scrollX); },
+            incrementScroll: function (scrollXIncrement) { return _this.tabScroller_.incrementScroll(scrollXIncrement); },
+            getScrollPosition: function () { return _this.tabScroller_.getScrollPosition(); },
+            getScrollContentWidth: function () { return _this.tabScroller_.getScrollContentWidth(); },
+            getOffsetWidth: function () { return _this.root_.offsetWidth; },
+            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
+            setActiveTab: function (index) { return _this.foundation_.activateTab(index); },
+            activateTabAtIndex: function (index, clientRect) { return _this.tabList_[index].activate(clientRect); },
+            deactivateTabAtIndex: function (index) { return _this.tabList_[index].deactivate(); },
+            focusTabAtIndex: function (index) { return _this.tabList_[index].focus(); },
+            getTabIndicatorClientRectAtIndex: function (index) { return _this.tabList_[index].computeIndicatorClientRect(); },
+            getTabDimensionsAtIndex: function (index) { return _this.tabList_[index].computeDimensions(); },
+            getPreviousActiveTabIndex: function () {
+                for (var i = 0; i < _this.tabList_.length; i++) {
+                    if (_this.tabList_[i].active) {
+                        return i;
+                    }
+                }
+                return -1;
+            },
+            getFocusedTabIndex: function () {
+                var tabElements = _this.getTabElements_();
+                var activeElement = document.activeElement;
+                return tabElements.indexOf(activeElement);
+            },
+            getIndexOfTabById: function (id) {
+                for (var i = 0; i < _this.tabList_.length; i++) {
+                    if (_this.tabList_[i].id === id) {
+                        return i;
+                    }
+                }
+                return -1;
+            },
+            getTabListLength: function () { return _this.tabList_.length; },
+            notifyTabActivated: function (index) {
+                return _this.emit(strings.TAB_ACTIVATED_EVENT, { index: index }, true);
+            },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabBarFoundation"](adapter);
+    };
+    /**
+     * Activates the tab at the given index
+     * @param index The index of the tab
+     */
+    MDCTabBar.prototype.activateTab = function (index) {
+        this.foundation_.activateTab(index);
+    };
+    /**
+     * Scrolls the tab at the given index into view
+     * @param index THe index of the tab
+     */
+    MDCTabBar.prototype.scrollIntoView = function (index) {
+        this.foundation_.scrollIntoView(index);
+    };
+    /**
+     * Returns all the tab elements in a nice clean array
+     */
+    MDCTabBar.prototype.getTabElements_ = function () {
+        return [].slice.call(this.root_.querySelectorAll(strings.TAB_SELECTOR));
+    };
+    /**
+     * Instantiates tab components on all child tab elements
+     */
+    MDCTabBar.prototype.instantiateTabs_ = function (tabFactory) {
+        return this.getTabElements_().map(function (el) {
+            el.id = el.id || "mdc-tab-" + ++tabIdCounter;
+            return tabFactory(el);
+        });
+    };
+    /**
+     * Instantiates tab scroller component on the child tab scroller element
+     */
+    MDCTabBar.prototype.instantiateTabScroller_ = function (tabScrollerFactory) {
+        var tabScrollerElement = this.root_.querySelector(strings.TAB_SCROLLER_SELECTOR);
+        if (tabScrollerElement) {
+            return tabScrollerFactory(tabScrollerElement);
+        }
+        return null;
+    };
+    return MDCTabBar;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-bar/constants.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/tab-bar/constants.js ***!
+  \*****************************************************/
+/*! exports provided: numbers, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return numbers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var strings = {
+    ARROW_LEFT_KEY: 'ArrowLeft',
+    ARROW_RIGHT_KEY: 'ArrowRight',
+    END_KEY: 'End',
+    ENTER_KEY: 'Enter',
+    HOME_KEY: 'Home',
+    SPACE_KEY: 'Space',
+    TAB_ACTIVATED_EVENT: 'MDCTabBar:activated',
+    TAB_SCROLLER_SELECTOR: '.mdc-tab-scroller',
+    TAB_SELECTOR: '.mdc-tab',
+};
+var numbers = {
+    ARROW_LEFT_KEYCODE: 37,
+    ARROW_RIGHT_KEYCODE: 39,
+    END_KEYCODE: 35,
+    ENTER_KEYCODE: 13,
+    EXTRA_SCROLL_AMOUNT: 20,
+    HOME_KEYCODE: 36,
+    SPACE_KEYCODE: 32,
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-bar/foundation.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/tab-bar/foundation.js ***!
+  \******************************************************/
+/*! exports provided: MDCTabBarFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabBarFoundation", function() { return MDCTabBarFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-bar/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var ACCEPTABLE_KEYS = new Set();
+// IE11 has no support for new Set with iterable so we need to initialize this by hand
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].HOME_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY);
+ACCEPTABLE_KEYS.add(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACE_KEY);
+var KEYCODE_MAP = new Map();
+// IE11 has no support for new Map with iterable so we need to initialize this by hand
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ARROW_LEFT_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ARROW_RIGHT_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].END_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].HOME_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].HOME_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].ENTER_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY);
+KEYCODE_MAP.set(_constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].SPACE_KEYCODE, _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACE_KEY);
+var MDCTabBarFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabBarFoundation, _super);
+    function MDCTabBarFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCTabBarFoundation.defaultAdapter, adapter)) || this;
+        _this.useAutomaticActivation_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCTabBarFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabBarFoundation, "numbers", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabBarFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                scrollTo: function () { return undefined; },
+                incrementScroll: function () { return undefined; },
+                getScrollPosition: function () { return 0; },
+                getScrollContentWidth: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                isRTL: function () { return false; },
+                setActiveTab: function () { return undefined; },
+                activateTabAtIndex: function () { return undefined; },
+                deactivateTabAtIndex: function () { return undefined; },
+                focusTabAtIndex: function () { return undefined; },
+                getTabIndicatorClientRectAtIndex: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                getTabDimensionsAtIndex: function () { return ({ rootLeft: 0, rootRight: 0, contentLeft: 0, contentRight: 0 }); },
+                getPreviousActiveTabIndex: function () { return -1; },
+                getFocusedTabIndex: function () { return -1; },
+                getIndexOfTabById: function () { return -1; },
+                getTabListLength: function () { return 0; },
+                notifyTabActivated: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Switches between automatic and manual activation modes.
+     * See https://www.w3.org/TR/wai-aria-practices/#tabpanel for examples.
+     */
+    MDCTabBarFoundation.prototype.setUseAutomaticActivation = function (useAutomaticActivation) {
+        this.useAutomaticActivation_ = useAutomaticActivation;
+    };
+    MDCTabBarFoundation.prototype.activateTab = function (index) {
+        var previousActiveIndex = this.adapter_.getPreviousActiveTabIndex();
+        if (!this.indexIsInRange_(index) || index === previousActiveIndex) {
+            return;
+        }
+        var previousClientRect;
+        if (previousActiveIndex !== -1) {
+            this.adapter_.deactivateTabAtIndex(previousActiveIndex);
+            previousClientRect = this.adapter_.getTabIndicatorClientRectAtIndex(previousActiveIndex);
+        }
+        this.adapter_.activateTabAtIndex(index, previousClientRect);
+        this.scrollIntoView(index);
+        this.adapter_.notifyTabActivated(index);
+    };
+    MDCTabBarFoundation.prototype.handleKeyDown = function (evt) {
+        // Get the key from the event
+        var key = this.getKeyFromEvent_(evt);
+        // Early exit if the event key isn't one of the keyboard navigation keys
+        if (key === undefined) {
+            return;
+        }
+        // Prevent default behavior for movement keys, but not for activation keys, since :active is used to apply ripple
+        if (!this.isActivationKey_(key)) {
+            evt.preventDefault();
+        }
+        if (this.useAutomaticActivation_) {
+            if (this.isActivationKey_(key)) {
+                return;
+            }
+            var index = this.determineTargetFromKey_(this.adapter_.getPreviousActiveTabIndex(), key);
+            this.adapter_.setActiveTab(index);
+            this.scrollIntoView(index);
+        }
+        else {
+            var focusedTabIndex = this.adapter_.getFocusedTabIndex();
+            if (this.isActivationKey_(key)) {
+                this.adapter_.setActiveTab(focusedTabIndex);
+            }
+            else {
+                var index = this.determineTargetFromKey_(focusedTabIndex, key);
+                this.adapter_.focusTabAtIndex(index);
+                this.scrollIntoView(index);
+            }
+        }
+    };
+    /**
+     * Handles the MDCTab:interacted event
+     */
+    MDCTabBarFoundation.prototype.handleTabInteraction = function (evt) {
+        this.adapter_.setActiveTab(this.adapter_.getIndexOfTabById(evt.detail.tabId));
+    };
+    /**
+     * Scrolls the tab at the given index into view
+     * @param index The tab index to make visible
+     */
+    MDCTabBarFoundation.prototype.scrollIntoView = function (index) {
+        // Early exit if the index is out of range
+        if (!this.indexIsInRange_(index)) {
+            return;
+        }
+        // Always scroll to 0 if scrolling to the 0th index
+        if (index === 0) {
+            return this.adapter_.scrollTo(0);
+        }
+        // Always scroll to the max value if scrolling to the Nth index
+        // MDCTabScroller.scrollTo() will never scroll past the max possible value
+        if (index === this.adapter_.getTabListLength() - 1) {
+            return this.adapter_.scrollTo(this.adapter_.getScrollContentWidth());
+        }
+        if (this.isRTL_()) {
+            return this.scrollIntoViewRTL_(index);
+        }
+        this.scrollIntoView_(index);
+    };
+    /**
+     * Private method for determining the index of the destination tab based on what key was pressed
+     * @param origin The original index from which to determine the destination
+     * @param key The name of the key
+     */
+    MDCTabBarFoundation.prototype.determineTargetFromKey_ = function (origin, key) {
+        var isRTL = this.isRTL_();
+        var maxIndex = this.adapter_.getTabListLength() - 1;
+        var shouldGoToEnd = key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].END_KEY;
+        var shouldDecrement = key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && !isRTL || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && isRTL;
+        var shouldIncrement = key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_RIGHT_KEY && !isRTL || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARROW_LEFT_KEY && isRTL;
+        var index = origin;
+        if (shouldGoToEnd) {
+            index = maxIndex;
+        }
+        else if (shouldDecrement) {
+            index -= 1;
+        }
+        else if (shouldIncrement) {
+            index += 1;
+        }
+        else {
+            index = 0;
+        }
+        if (index < 0) {
+            index = maxIndex;
+        }
+        else if (index > maxIndex) {
+            index = 0;
+        }
+        return index;
+    };
+    /**
+     * Calculates the scroll increment that will make the tab at the given index visible
+     * @param index The index of the tab
+     * @param nextIndex The index of the next tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the Tab Bar
+     */
+    MDCTabBarFoundation.prototype.calculateScrollIncrement_ = function (index, nextIndex, scrollPosition, barWidth) {
+        var nextTabDimensions = this.adapter_.getTabDimensionsAtIndex(nextIndex);
+        var relativeContentLeft = nextTabDimensions.contentLeft - scrollPosition - barWidth;
+        var relativeContentRight = nextTabDimensions.contentRight - scrollPosition;
+        var leftIncrement = relativeContentRight - _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        var rightIncrement = relativeContentLeft + _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        if (nextIndex < index) {
+            return Math.min(leftIncrement, 0);
+        }
+        return Math.max(rightIncrement, 0);
+    };
+    /**
+     * Calculates the scroll increment that will make the tab at the given index visible in RTL
+     * @param index The index of the tab
+     * @param nextIndex The index of the next tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the Tab Bar
+     * @param scrollContentWidth The width of the scroll content
+     */
+    MDCTabBarFoundation.prototype.calculateScrollIncrementRTL_ = function (index, nextIndex, scrollPosition, barWidth, scrollContentWidth) {
+        var nextTabDimensions = this.adapter_.getTabDimensionsAtIndex(nextIndex);
+        var relativeContentLeft = scrollContentWidth - nextTabDimensions.contentLeft - scrollPosition;
+        var relativeContentRight = scrollContentWidth - nextTabDimensions.contentRight - scrollPosition - barWidth;
+        var leftIncrement = relativeContentRight + _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        var rightIncrement = relativeContentLeft - _constants__WEBPACK_IMPORTED_MODULE_2__["numbers"].EXTRA_SCROLL_AMOUNT;
+        if (nextIndex > index) {
+            return Math.max(leftIncrement, 0);
+        }
+        return Math.min(rightIncrement, 0);
+    };
+    /**
+     * Determines the index of the adjacent tab closest to either edge of the Tab Bar
+     * @param index The index of the tab
+     * @param tabDimensions The dimensions of the tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the tab bar
+     */
+    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdge_ = function (index, tabDimensions, scrollPosition, barWidth) {
+        /**
+         * Tabs are laid out in the Tab Scroller like this:
+         *
+         *    Scroll Position
+         *    +---+
+         *    |   |   Bar Width
+         *    |   +-----------------------------------+
+         *    |   |                                   |
+         *    |   V                                   V
+         *    |   +-----------------------------------+
+         *    V   |             Tab Scroller          |
+         *    +------------+--------------+-------------------+
+         *    |    Tab     |      Tab     |        Tab        |
+         *    +------------+--------------+-------------------+
+         *        |                                   |
+         *        +-----------------------------------+
+         *
+         * To determine the next adjacent index, we look at the Tab root left and
+         * Tab root right, both relative to the scroll position. If the Tab root
+         * left is less than 0, then we know it's out of view to the left. If the
+         * Tab root right minus the bar width is greater than 0, we know the Tab is
+         * out of view to the right. From there, we either increment or decrement
+         * the index.
+         */
+        var relativeRootLeft = tabDimensions.rootLeft - scrollPosition;
+        var relativeRootRight = tabDimensions.rootRight - scrollPosition - barWidth;
+        var relativeRootDelta = relativeRootLeft + relativeRootRight;
+        var leftEdgeIsCloser = relativeRootLeft < 0 || relativeRootDelta < 0;
+        var rightEdgeIsCloser = relativeRootRight > 0 || relativeRootDelta > 0;
+        if (leftEdgeIsCloser) {
+            return index - 1;
+        }
+        if (rightEdgeIsCloser) {
+            return index + 1;
+        }
+        return -1;
+    };
+    /**
+     * Determines the index of the adjacent tab closest to either edge of the Tab Bar in RTL
+     * @param index The index of the tab
+     * @param tabDimensions The dimensions of the tab
+     * @param scrollPosition The current scroll position
+     * @param barWidth The width of the tab bar
+     * @param scrollContentWidth The width of the scroller content
+     */
+    MDCTabBarFoundation.prototype.findAdjacentTabIndexClosestToEdgeRTL_ = function (index, tabDimensions, scrollPosition, barWidth, scrollContentWidth) {
+        var rootLeft = scrollContentWidth - tabDimensions.rootLeft - barWidth - scrollPosition;
+        var rootRight = scrollContentWidth - tabDimensions.rootRight - scrollPosition;
+        var rootDelta = rootLeft + rootRight;
+        var leftEdgeIsCloser = rootLeft > 0 || rootDelta > 0;
+        var rightEdgeIsCloser = rootRight < 0 || rootDelta < 0;
+        if (leftEdgeIsCloser) {
+            return index + 1;
+        }
+        if (rightEdgeIsCloser) {
+            return index - 1;
+        }
+        return -1;
+    };
+    /**
+     * Returns the key associated with a keydown event
+     * @param evt The keydown event
+     */
+    MDCTabBarFoundation.prototype.getKeyFromEvent_ = function (evt) {
+        if (ACCEPTABLE_KEYS.has(evt.key)) {
+            return evt.key;
+        }
+        return KEYCODE_MAP.get(evt.keyCode);
+    };
+    MDCTabBarFoundation.prototype.isActivationKey_ = function (key) {
+        return key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].SPACE_KEY || key === _constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ENTER_KEY;
+    };
+    /**
+     * Returns whether a given index is inclusively between the ends
+     * @param index The index to test
+     */
+    MDCTabBarFoundation.prototype.indexIsInRange_ = function (index) {
+        return index >= 0 && index < this.adapter_.getTabListLength();
+    };
+    /**
+     * Returns the view's RTL property
+     */
+    MDCTabBarFoundation.prototype.isRTL_ = function () {
+        return this.adapter_.isRTL();
+    };
+    /**
+     * Scrolls the tab at the given index into view for left-to-right user agents.
+     * @param index The index of the tab to scroll into view
+     */
+    MDCTabBarFoundation.prototype.scrollIntoView_ = function (index) {
+        var scrollPosition = this.adapter_.getScrollPosition();
+        var barWidth = this.adapter_.getOffsetWidth();
+        var tabDimensions = this.adapter_.getTabDimensionsAtIndex(index);
+        var nextIndex = this.findAdjacentTabIndexClosestToEdge_(index, tabDimensions, scrollPosition, barWidth);
+        if (!this.indexIsInRange_(nextIndex)) {
+            return;
+        }
+        var scrollIncrement = this.calculateScrollIncrement_(index, nextIndex, scrollPosition, barWidth);
+        this.adapter_.incrementScroll(scrollIncrement);
+    };
+    /**
+     * Scrolls the tab at the given index into view in RTL
+     * @param index The tab index to make visible
+     */
+    MDCTabBarFoundation.prototype.scrollIntoViewRTL_ = function (index) {
+        var scrollPosition = this.adapter_.getScrollPosition();
+        var barWidth = this.adapter_.getOffsetWidth();
+        var tabDimensions = this.adapter_.getTabDimensionsAtIndex(index);
+        var scrollWidth = this.adapter_.getScrollContentWidth();
+        var nextIndex = this.findAdjacentTabIndexClosestToEdgeRTL_(index, tabDimensions, scrollPosition, barWidth, scrollWidth);
+        if (!this.indexIsInRange_(nextIndex)) {
+            return;
+        }
+        var scrollIncrement = this.calculateScrollIncrementRTL_(index, nextIndex, scrollPosition, barWidth, scrollWidth);
+        this.adapter_.incrementScroll(scrollIncrement);
+    };
+    return MDCTabBarFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabBarFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-bar/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@material/tab-bar/index.js ***!
+  \*************************************************/
+/*! exports provided: MDCTabBar, numbers, strings, MDCTabBarFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/tab-bar/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabBar", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTabBar"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-bar/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "numbers", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["numbers"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-bar/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabBarFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTabBarFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-indicator/component.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material/tab-indicator/component.js ***!
+  \***********************************************************/
+/*! exports provided: MDCTabIndicator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicator", function() { return MDCTabIndicator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _fading_foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fading-foundation */ "./node_modules/@material/tab-indicator/fading-foundation.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-indicator/foundation.js");
+/* harmony import */ var _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sliding-foundation */ "./node_modules/@material/tab-indicator/sliding-foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+var MDCTabIndicator = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabIndicator, _super);
+    function MDCTabIndicator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabIndicator.attachTo = function (root) {
+        return new MDCTabIndicator(root);
+    };
+    MDCTabIndicator.prototype.initialize = function () {
+        this.content_ = this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCTabIndicatorFoundation"].strings.CONTENT_SELECTOR);
+    };
+    MDCTabIndicator.prototype.computeContentClientRect = function () {
+        return this.foundation_.computeContentClientRect();
+    };
+    MDCTabIndicator.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            computeContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
+            setContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        if (this.root_.classList.contains(_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCTabIndicatorFoundation"].cssClasses.FADE)) {
+            return new _fading_foundation__WEBPACK_IMPORTED_MODULE_2__["MDCFadingTabIndicatorFoundation"](adapter);
+        }
+        // Default to the sliding indicator
+        return new _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCSlidingTabIndicatorFoundation"](adapter);
+    };
+    MDCTabIndicator.prototype.activate = function (previousIndicatorClientRect) {
+        this.foundation_.activate(previousIndicatorClientRect);
+    };
+    MDCTabIndicator.prototype.deactivate = function () {
+        this.foundation_.deactivate();
+    };
+    return MDCTabIndicator;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-indicator/constants.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material/tab-indicator/constants.js ***!
+  \***********************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ACTIVE: 'mdc-tab-indicator--active',
+    FADE: 'mdc-tab-indicator--fade',
+    NO_TRANSITION: 'mdc-tab-indicator--no-transition',
+};
+var strings = {
+    CONTENT_SELECTOR: '.mdc-tab-indicator__content',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-indicator/fading-foundation.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material/tab-indicator/fading-foundation.js ***!
+  \*******************************************************************/
+/*! exports provided: MDCFadingTabIndicatorFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCFadingTabIndicatorFoundation", function() { return MDCFadingTabIndicatorFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-indicator/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCFadingTabIndicatorFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCFadingTabIndicatorFoundation, _super);
+    function MDCFadingTabIndicatorFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCFadingTabIndicatorFoundation.prototype.activate = function () {
+        this.adapter_.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+    };
+    MDCFadingTabIndicatorFoundation.prototype.deactivate = function () {
+        this.adapter_.removeClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+    };
+    return MDCFadingTabIndicatorFoundation;
+}(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCFadingTabIndicatorFoundation);
+//# sourceMappingURL=fading-foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-indicator/foundation.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material/tab-indicator/foundation.js ***!
+  \************************************************************/
+/*! exports provided: MDCTabIndicatorFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicatorFoundation", function() { return MDCTabIndicatorFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-indicator/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCTabIndicatorFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabIndicatorFoundation, _super);
+    function MDCTabIndicatorFoundation(adapter) {
+        return _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCTabIndicatorFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCTabIndicatorFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabIndicatorFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabIndicatorFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                computeContentClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                setContentStyleProperty: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabIndicatorFoundation.prototype.computeContentClientRect = function () {
+        return this.adapter_.computeContentClientRect();
+    };
+    return MDCTabIndicatorFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabIndicatorFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-indicator/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material/tab-indicator/index.js ***!
+  \*******************************************************/
+/*! exports provided: MDCTabIndicator, cssClasses, strings, MDCTabIndicatorFoundation, MDCFadingTabIndicatorFoundation, MDCSlidingTabIndicatorFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/tab-indicator/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicator", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTabIndicator"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-indicator/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-indicator/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabIndicatorFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTabIndicatorFoundation"]; });
+
+/* harmony import */ var _fading_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fading-foundation */ "./node_modules/@material/tab-indicator/fading-foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCFadingTabIndicatorFoundation", function() { return _fading_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCFadingTabIndicatorFoundation"]; });
+
+/* harmony import */ var _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sliding-foundation */ "./node_modules/@material/tab-indicator/sliding-foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCSlidingTabIndicatorFoundation", function() { return _sliding_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCSlidingTabIndicatorFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-indicator/sliding-foundation.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@material/tab-indicator/sliding-foundation.js ***!
+  \********************************************************************/
+/*! exports provided: MDCSlidingTabIndicatorFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCSlidingTabIndicatorFoundation", function() { return MDCSlidingTabIndicatorFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-indicator/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCSlidingTabIndicatorFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCSlidingTabIndicatorFoundation, _super);
+    function MDCSlidingTabIndicatorFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCSlidingTabIndicatorFoundation.prototype.activate = function (previousIndicatorClientRect) {
+        // Early exit if no indicator is present to handle cases where an indicator
+        // may be activated without a prior indicator state
+        if (!previousIndicatorClientRect) {
+            this.adapter_.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+            return;
+        }
+        // This animation uses the FLIP approach. You can read more about it at the link below:
+        // https://aerotwist.com/blog/flip-your-animations/
+        // Calculate the dimensions based on the dimensions of the previous indicator
+        var currentClientRect = this.computeContentClientRect();
+        var widthDelta = previousIndicatorClientRect.width / currentClientRect.width;
+        var xPosition = previousIndicatorClientRect.left - currentClientRect.left;
+        this.adapter_.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.NO_TRANSITION);
+        this.adapter_.setContentStyleProperty('transform', "translateX(" + xPosition + "px) scaleX(" + widthDelta + ")");
+        // Force repaint before updating classes and transform to ensure the transform properly takes effect
+        this.computeContentClientRect();
+        this.adapter_.removeClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.NO_TRANSITION);
+        this.adapter_.addClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+        this.adapter_.setContentStyleProperty('transform', '');
+    };
+    MDCSlidingTabIndicatorFoundation.prototype.deactivate = function () {
+        this.adapter_.removeClass(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"].cssClasses.ACTIVE);
+    };
+    return MDCSlidingTabIndicatorFoundation;
+}(_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCTabIndicatorFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCSlidingTabIndicatorFoundation);
+//# sourceMappingURL=sliding-foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/component.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/component.js ***!
+  \**********************************************************/
+/*! exports provided: MDCTabScroller */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScroller", function() { return MDCTabScroller; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_dom_events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/dom/events */ "./node_modules/@material/dom/events.js");
+/* harmony import */ var _material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/dom/ponyfill */ "./node_modules/@material/dom/ponyfill.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-scroller/foundation.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./node_modules/@material/tab-scroller/util.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCTabScroller = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabScroller, _super);
+    function MDCTabScroller() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScroller.attachTo = function (root) {
+        return new MDCTabScroller(root);
+    };
+    MDCTabScroller.prototype.initialize = function () {
+        this.area_ = this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerFoundation"].strings.AREA_SELECTOR);
+        this.content_ = this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerFoundation"].strings.CONTENT_SELECTOR);
+    };
+    MDCTabScroller.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleInteraction_ = function () { return _this.foundation_.handleInteraction(); };
+        this.handleTransitionEnd_ = function (evt) { return _this.foundation_.handleTransitionEnd(evt); };
+        this.area_.addEventListener('wheel', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('touchstart', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('pointerdown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('mousedown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.addEventListener('keydown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.content_.addEventListener('transitionend', this.handleTransitionEnd_);
+    };
+    MDCTabScroller.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.area_.removeEventListener('wheel', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('touchstart', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('pointerdown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('mousedown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.area_.removeEventListener('keydown', this.handleInteraction_, Object(_material_dom_events__WEBPACK_IMPORTED_MODULE_2__["applyPassive"])());
+        this.content_.removeEventListener('transitionend', this.handleTransitionEnd_);
+    };
+    MDCTabScroller.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            eventTargetMatchesSelector: function (evtTarget, selector) { return Object(_material_dom_ponyfill__WEBPACK_IMPORTED_MODULE_3__["matches"])(evtTarget, selector); },
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },
+            setScrollAreaStyleProperty: function (prop, value) { return _this.area_.style.setProperty(prop, value); },
+            setScrollContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
+            getScrollContentStyleValue: function (propName) { return window.getComputedStyle(_this.content_).getPropertyValue(propName); },
+            setScrollAreaScrollLeft: function (scrollX) { return _this.area_.scrollLeft = scrollX; },
+            getScrollAreaScrollLeft: function () { return _this.area_.scrollLeft; },
+            getScrollContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+            getScrollAreaOffsetWidth: function () { return _this.area_.offsetWidth; },
+            computeScrollAreaClientRect: function () { return _this.area_.getBoundingClientRect(); },
+            computeScrollContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
+            computeHorizontalScrollbarHeight: function () { return _util__WEBPACK_IMPORTED_MODULE_5__["computeHorizontalScrollbarHeight"](document); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerFoundation"](adapter);
+    };
+    /**
+     * Returns the current visual scroll position
+     */
+    MDCTabScroller.prototype.getScrollPosition = function () {
+        return this.foundation_.getScrollPosition();
+    };
+    /**
+     * Returns the width of the scroll content
+     */
+    MDCTabScroller.prototype.getScrollContentWidth = function () {
+        return this.content_.offsetWidth;
+    };
+    /**
+     * Increments the scroll value by the given amount
+     * @param scrollXIncrement The pixel value by which to increment the scroll value
+     */
+    MDCTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
+        this.foundation_.incrementScroll(scrollXIncrement);
+    };
+    /**
+     * Scrolls to the given pixel position
+     * @param scrollX The pixel value to scroll to
+     */
+    MDCTabScroller.prototype.scrollTo = function (scrollX) {
+        this.foundation_.scrollTo(scrollX);
+    };
+    return MDCTabScroller;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/constants.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/constants.js ***!
+  \**********************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ANIMATING: 'mdc-tab-scroller--animating',
+    SCROLL_AREA_SCROLL: 'mdc-tab-scroller__scroll-area--scroll',
+    SCROLL_TEST: 'mdc-tab-scroller__test',
+};
+var strings = {
+    AREA_SELECTOR: '.mdc-tab-scroller__scroll-area',
+    CONTENT_SELECTOR: '.mdc-tab-scroller__scroll-content',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/foundation.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/foundation.js ***!
+  \***********************************************************/
+/*! exports provided: MDCTabScrollerFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerFoundation", function() { return MDCTabScrollerFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-scroller/constants.js");
+/* harmony import */ var _rtl_default_scroller__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./rtl-default-scroller */ "./node_modules/@material/tab-scroller/rtl-default-scroller.js");
+/* harmony import */ var _rtl_negative_scroller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rtl-negative-scroller */ "./node_modules/@material/tab-scroller/rtl-negative-scroller.js");
+/* harmony import */ var _rtl_reverse_scroller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./rtl-reverse-scroller */ "./node_modules/@material/tab-scroller/rtl-reverse-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCTabScrollerFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabScrollerFoundation, _super);
+    function MDCTabScrollerFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCTabScrollerFoundation.defaultAdapter, adapter)) || this;
+        /**
+         * Controls whether we should handle the transitionend and interaction events during the animation.
+         */
+        _this.isAnimating_ = false;
+        return _this;
+    }
+    Object.defineProperty(MDCTabScrollerFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabScrollerFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabScrollerFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                eventTargetMatchesSelector: function () { return false; },
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                addScrollAreaClass: function () { return undefined; },
+                setScrollAreaStyleProperty: function () { return undefined; },
+                setScrollContentStyleProperty: function () { return undefined; },
+                getScrollContentStyleValue: function () { return ''; },
+                setScrollAreaScrollLeft: function () { return undefined; },
+                getScrollAreaScrollLeft: function () { return 0; },
+                getScrollContentOffsetWidth: function () { return 0; },
+                getScrollAreaOffsetWidth: function () { return 0; },
+                computeScrollAreaClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeScrollContentClientRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeHorizontalScrollbarHeight: function () { return 0; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabScrollerFoundation.prototype.init = function () {
+        // Compute horizontal scrollbar height on scroller with overflow initially hidden, then update overflow to scroll
+        // and immediately adjust bottom margin to avoid the scrollbar initially appearing before JS runs.
+        var horizontalScrollbarHeight = this.adapter_.computeHorizontalScrollbarHeight();
+        this.adapter_.setScrollAreaStyleProperty('margin-bottom', -horizontalScrollbarHeight + 'px');
+        this.adapter_.addScrollAreaClass(MDCTabScrollerFoundation.cssClasses.SCROLL_AREA_SCROLL);
+    };
+    /**
+     * Computes the current visual scroll position
+     */
+    MDCTabScrollerFoundation.prototype.getScrollPosition = function () {
+        if (this.isRTL_()) {
+            return this.computeCurrentScrollPositionRTL_();
+        }
+        var currentTranslateX = this.calculateCurrentTranslateX_();
+        var scrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        return scrollLeft - currentTranslateX;
+    };
+    /**
+     * Handles interaction events that occur during transition
+     */
+    MDCTabScrollerFoundation.prototype.handleInteraction = function () {
+        // Early exit if we aren't animating
+        if (!this.isAnimating_) {
+            return;
+        }
+        // Prevent other event listeners from handling this event
+        this.stopScrollAnimation_();
+    };
+    /**
+     * Handles the transitionend event
+     */
+    MDCTabScrollerFoundation.prototype.handleTransitionEnd = function (evt) {
+        // Early exit if we aren't animating or the event was triggered by a different element.
+        var evtTarget = evt.target;
+        if (!this.isAnimating_ ||
+            !this.adapter_.eventTargetMatchesSelector(evtTarget, MDCTabScrollerFoundation.strings.CONTENT_SELECTOR)) {
+            return;
+        }
+        this.isAnimating_ = false;
+        this.adapter_.removeClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
+    };
+    /**
+     * Increment the scroll value by the scrollXIncrement using animation.
+     * @param scrollXIncrement The value by which to increment the scroll position
+     */
+    MDCTabScrollerFoundation.prototype.incrementScroll = function (scrollXIncrement) {
+        // Early exit for non-operational increment values
+        if (scrollXIncrement === 0) {
+            return;
+        }
+        this.animate_(this.getIncrementScrollOperation_(scrollXIncrement));
+    };
+    /**
+     * Increment the scroll value by the scrollXIncrement without animation.
+     * @param scrollXIncrement The value by which to increment the scroll position
+     */
+    MDCTabScrollerFoundation.prototype.incrementScrollImmediate = function (scrollXIncrement) {
+        // Early exit for non-operational increment values
+        if (scrollXIncrement === 0) {
+            return;
+        }
+        var operation = this.getIncrementScrollOperation_(scrollXIncrement);
+        if (operation.scrollDelta === 0) {
+            return;
+        }
+        this.stopScrollAnimation_();
+        this.adapter_.setScrollAreaScrollLeft(operation.finalScrollPosition);
+    };
+    /**
+     * Scrolls to the given scrollX value
+     */
+    MDCTabScrollerFoundation.prototype.scrollTo = function (scrollX) {
+        if (this.isRTL_()) {
+            return this.scrollToRTL_(scrollX);
+        }
+        this.scrollTo_(scrollX);
+    };
+    /**
+     * @return Browser-specific {@link MDCTabScrollerRTL} instance.
+     */
+    MDCTabScrollerFoundation.prototype.getRTLScroller = function () {
+        if (!this.rtlScrollerInstance_) {
+            this.rtlScrollerInstance_ = this.rtlScrollerFactory_();
+        }
+        return this.rtlScrollerInstance_;
+    };
+    /**
+     * @return translateX value from a CSS matrix transform function string.
+     */
+    MDCTabScrollerFoundation.prototype.calculateCurrentTranslateX_ = function () {
+        var transformValue = this.adapter_.getScrollContentStyleValue('transform');
+        // Early exit if no transform is present
+        if (transformValue === 'none') {
+            return 0;
+        }
+        // The transform value comes back as a matrix transformation in the form
+        // of `matrix(a, b, c, d, tx, ty)`. We only care about tx (translateX) so
+        // we're going to grab all the parenthesized values, strip out tx, and
+        // parse it.
+        var match = /\((.+?)\)/.exec(transformValue);
+        if (!match) {
+            return 0;
+        }
+        var matrixParams = match[1];
+        // tslint:disable-next-line:ban-ts-ignore "Unused vars" should be a linter warning, not a compiler error.
+        // @ts-ignore These unused variables should retain their semantic names for clarity.
+        var _a = tslib__WEBPACK_IMPORTED_MODULE_0__["__read"](matrixParams.split(','), 6), a = _a[0], b = _a[1], c = _a[2], d = _a[3], tx = _a[4], ty = _a[5];
+        return parseFloat(tx); // tslint:disable-line:ban
+    };
+    /**
+     * Calculates a safe scroll value that is > 0 and < the max scroll value
+     * @param scrollX The distance to scroll
+     */
+    MDCTabScrollerFoundation.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.left, scrollX), edges.right);
+    };
+    MDCTabScrollerFoundation.prototype.computeCurrentScrollPositionRTL_ = function () {
+        var translateX = this.calculateCurrentTranslateX_();
+        return this.getRTLScroller().getScrollPositionRTL(translateX);
+    };
+    MDCTabScrollerFoundation.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        return {
+            left: 0,
+            right: contentWidth - rootWidth,
+        };
+    };
+    /**
+     * Internal scroll method
+     * @param scrollX The new scroll position
+     */
+    MDCTabScrollerFoundation.prototype.scrollTo_ = function (scrollX) {
+        var currentScrollX = this.getScrollPosition();
+        var safeScrollX = this.clampScrollValue_(scrollX);
+        var scrollDelta = safeScrollX - currentScrollX;
+        this.animate_({
+            finalScrollPosition: safeScrollX,
+            scrollDelta: scrollDelta,
+        });
+    };
+    /**
+     * Internal RTL scroll method
+     * @param scrollX The new scroll position
+     */
+    MDCTabScrollerFoundation.prototype.scrollToRTL_ = function (scrollX) {
+        var animation = this.getRTLScroller().scrollToRTL(scrollX);
+        this.animate_(animation);
+    };
+    /**
+     * Internal method to compute the increment scroll operation values.
+     * @param scrollX The desired scroll position increment
+     * @return MDCTabScrollerAnimation with the sanitized values for performing the scroll operation.
+     */
+    MDCTabScrollerFoundation.prototype.getIncrementScrollOperation_ = function (scrollX) {
+        if (this.isRTL_()) {
+            return this.getRTLScroller().incrementScrollRTL(scrollX);
+        }
+        var currentScrollX = this.getScrollPosition();
+        var targetScrollX = scrollX + currentScrollX;
+        var safeScrollX = this.clampScrollValue_(targetScrollX);
+        var scrollDelta = safeScrollX - currentScrollX;
+        return {
+            finalScrollPosition: safeScrollX,
+            scrollDelta: scrollDelta,
+        };
+    };
+    /**
+     * Animates the tab scrolling
+     * @param animation The animation to apply
+     */
+    MDCTabScrollerFoundation.prototype.animate_ = function (animation) {
+        var _this = this;
+        // Early exit if translateX is 0, which means there's no animation to perform
+        if (animation.scrollDelta === 0) {
+            return;
+        }
+        this.stopScrollAnimation_();
+        // This animation uses the FLIP approach.
+        // Read more here: https://aerotwist.com/blog/flip-your-animations/
+        this.adapter_.setScrollAreaScrollLeft(animation.finalScrollPosition);
+        this.adapter_.setScrollContentStyleProperty('transform', "translateX(" + animation.scrollDelta + "px)");
+        // Force repaint
+        this.adapter_.computeScrollAreaClientRect();
+        requestAnimationFrame(function () {
+            _this.adapter_.addClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
+            _this.adapter_.setScrollContentStyleProperty('transform', 'none');
+        });
+        this.isAnimating_ = true;
+    };
+    /**
+     * Stops scroll animation
+     */
+    MDCTabScrollerFoundation.prototype.stopScrollAnimation_ = function () {
+        this.isAnimating_ = false;
+        var currentScrollPosition = this.getAnimatingScrollPosition_();
+        this.adapter_.removeClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
+        this.adapter_.setScrollContentStyleProperty('transform', 'translateX(0px)');
+        this.adapter_.setScrollAreaScrollLeft(currentScrollPosition);
+    };
+    /**
+     * Gets the current scroll position during animation
+     */
+    MDCTabScrollerFoundation.prototype.getAnimatingScrollPosition_ = function () {
+        var currentTranslateX = this.calculateCurrentTranslateX_();
+        var scrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        if (this.isRTL_()) {
+            return this.getRTLScroller().getAnimatingScrollPosition(scrollLeft, currentTranslateX);
+        }
+        return scrollLeft - currentTranslateX;
+    };
+    /**
+     * Determines the RTL Scroller to use
+     */
+    MDCTabScrollerFoundation.prototype.rtlScrollerFactory_ = function () {
+        // Browsers have three different implementations of scrollLeft in RTL mode,
+        // dependent on the browser. The behavior is based off the max LTR
+        // scrollLeft value and 0.
+        //
+        // * Default scrolling in RTL *
+        //    - Left-most value: 0
+        //    - Right-most value: Max LTR scrollLeft value
+        //
+        // * Negative scrolling in RTL *
+        //    - Left-most value: Negated max LTR scrollLeft value
+        //    - Right-most value: 0
+        //
+        // * Reverse scrolling in RTL *
+        //    - Left-most value: Max LTR scrollLeft value
+        //    - Right-most value: 0
+        //
+        // We use those principles below to determine which RTL scrollLeft
+        // behavior is implemented in the current browser.
+        var initialScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        this.adapter_.setScrollAreaScrollLeft(initialScrollLeft - 1);
+        var newScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        // If the newScrollLeft value is negative,then we know that the browser has
+        // implemented negative RTL scrolling, since all other implementations have
+        // only positive values.
+        if (newScrollLeft < 0) {
+            // Undo the scrollLeft test check
+            this.adapter_.setScrollAreaScrollLeft(initialScrollLeft);
+            return new _rtl_negative_scroller__WEBPACK_IMPORTED_MODULE_4__["MDCTabScrollerRTLNegative"](this.adapter_);
+        }
+        var rootClientRect = this.adapter_.computeScrollAreaClientRect();
+        var contentClientRect = this.adapter_.computeScrollContentClientRect();
+        var rightEdgeDelta = Math.round(contentClientRect.right - rootClientRect.right);
+        // Undo the scrollLeft test check
+        this.adapter_.setScrollAreaScrollLeft(initialScrollLeft);
+        // By calculating the clientRect of the root element and the clientRect of
+        // the content element, we can determine how much the scroll value changed
+        // when we performed the scrollLeft subtraction above.
+        if (rightEdgeDelta === newScrollLeft) {
+            return new _rtl_reverse_scroller__WEBPACK_IMPORTED_MODULE_5__["MDCTabScrollerRTLReverse"](this.adapter_);
+        }
+        return new _rtl_default_scroller__WEBPACK_IMPORTED_MODULE_3__["MDCTabScrollerRTLDefault"](this.adapter_);
+    };
+    MDCTabScrollerFoundation.prototype.isRTL_ = function () {
+        return this.adapter_.getScrollContentStyleValue('direction') === 'rtl';
+    };
+    return MDCTabScrollerFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/index.js ***!
+  \******************************************************/
+/*! exports provided: util, MDCTabScroller, cssClasses, strings, MDCTabScrollerFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./node_modules/@material/tab-scroller/util.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "util", function() { return _util__WEBPACK_IMPORTED_MODULE_0__; });
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./component */ "./node_modules/@material/tab-scroller/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabScroller", function() { return _component__WEBPACK_IMPORTED_MODULE_1__["MDCTabScroller"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-scroller/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab-scroller/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_3__["MDCTabScrollerFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/rtl-default-scroller.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/rtl-default-scroller.js ***!
+  \*********************************************************************/
+/*! exports provided: MDCTabScrollerRTLDefault, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTLDefault", function() { return MDCTabScrollerRTLDefault; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _rtl_scroller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rtl-scroller */ "./node_modules/@material/tab-scroller/rtl-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabScrollerRTLDefault, _super);
+    function MDCTabScrollerRTLDefault() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLDefault.prototype.getScrollPositionRTL = function () {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var right = this.calculateScrollEdges_().right;
+        // Scroll values on most browsers are ints instead of floats so we round
+        return Math.round(right - currentScrollLeft);
+    };
+    MDCTabScrollerRTLDefault.prototype.scrollToRTL = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(edges.right - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.getAnimatingScrollPosition = function (scrollX) {
+        return scrollX;
+    };
+    MDCTabScrollerRTLDefault.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        return {
+            left: 0,
+            right: contentWidth - rootWidth,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.left, scrollX), edges.right);
+    };
+    return MDCTabScrollerRTLDefault;
+}(_rtl_scroller__WEBPACK_IMPORTED_MODULE_1__["MDCTabScrollerRTL"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTLDefault);
+//# sourceMappingURL=rtl-default-scroller.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/rtl-negative-scroller.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/rtl-negative-scroller.js ***!
+  \**********************************************************************/
+/*! exports provided: MDCTabScrollerRTLNegative, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTLNegative", function() { return MDCTabScrollerRTLNegative; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _rtl_scroller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rtl-scroller */ "./node_modules/@material/tab-scroller/rtl-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabScrollerRTLNegative, _super);
+    function MDCTabScrollerRTLNegative() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLNegative.prototype.getScrollPositionRTL = function (translateX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        return Math.round(translateX - currentScrollLeft);
+    };
+    MDCTabScrollerRTLNegative.prototype.scrollToRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(-scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLNegative.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLNegative.prototype.getAnimatingScrollPosition = function (scrollX, translateX) {
+        return scrollX - translateX;
+    };
+    MDCTabScrollerRTLNegative.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        return {
+            left: rootWidth - contentWidth,
+            right: 0,
+        };
+    };
+    MDCTabScrollerRTLNegative.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.max(Math.min(edges.right, scrollX), edges.left);
+    };
+    return MDCTabScrollerRTLNegative;
+}(_rtl_scroller__WEBPACK_IMPORTED_MODULE_1__["MDCTabScrollerRTL"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTLNegative);
+//# sourceMappingURL=rtl-negative-scroller.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/rtl-reverse-scroller.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/rtl-reverse-scroller.js ***!
+  \*********************************************************************/
+/*! exports provided: MDCTabScrollerRTLReverse, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTLReverse", function() { return MDCTabScrollerRTLReverse; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _rtl_scroller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rtl-scroller */ "./node_modules/@material/tab-scroller/rtl-scroller.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+var MDCTabScrollerRTLReverse = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabScrollerRTLReverse, _super);
+    function MDCTabScrollerRTLReverse() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLReverse.prototype.getScrollPositionRTL = function (translateX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        // Scroll values on most browsers are ints instead of floats so we round
+        return Math.round(currentScrollLeft - translateX);
+    };
+    MDCTabScrollerRTLReverse.prototype.scrollToRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: currentScrollLeft - clampedScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLReverse.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft + scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: currentScrollLeft - clampedScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLReverse.prototype.getAnimatingScrollPosition = function (scrollX, translateX) {
+        return scrollX + translateX;
+    };
+    MDCTabScrollerRTLReverse.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        return {
+            left: contentWidth - rootWidth,
+            right: 0,
+        };
+    };
+    MDCTabScrollerRTLReverse.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.right, scrollX), edges.left);
+    };
+    return MDCTabScrollerRTLReverse;
+}(_rtl_scroller__WEBPACK_IMPORTED_MODULE_1__["MDCTabScrollerRTL"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTLReverse);
+//# sourceMappingURL=rtl-reverse-scroller.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/rtl-scroller.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/rtl-scroller.js ***!
+  \*************************************************************/
+/*! exports provided: MDCTabScrollerRTL, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabScrollerRTL", function() { return MDCTabScrollerRTL; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var MDCTabScrollerRTL = /** @class */ (function () {
+    function MDCTabScrollerRTL(adapter) {
+        this.adapter_ = adapter;
+    }
+    return MDCTabScrollerRTL;
+}());
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabScrollerRTL);
+//# sourceMappingURL=rtl-scroller.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab-scroller/util.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@material/tab-scroller/util.js ***!
+  \*****************************************************/
+/*! exports provided: computeHorizontalScrollbarHeight */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "computeHorizontalScrollbarHeight", function() { return computeHorizontalScrollbarHeight; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab-scroller/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/**
+ * Stores result from computeHorizontalScrollbarHeight to avoid redundant processing.
+ */
+var horizontalScrollbarHeight_;
+/**
+ * Computes the height of browser-rendered horizontal scrollbars using a self-created test element.
+ * May return 0 (e.g. on OS X browsers under default configuration).
+ */
+function computeHorizontalScrollbarHeight(documentObj, shouldCacheResult) {
+    if (shouldCacheResult === void 0) { shouldCacheResult = true; }
+    if (shouldCacheResult && typeof horizontalScrollbarHeight_ !== 'undefined') {
+        return horizontalScrollbarHeight_;
+    }
+    var el = documentObj.createElement('div');
+    el.classList.add(_constants__WEBPACK_IMPORTED_MODULE_0__["cssClasses"].SCROLL_TEST);
+    documentObj.body.appendChild(el);
+    var horizontalScrollbarHeight = el.offsetHeight - el.clientHeight;
+    documentObj.body.removeChild(el);
+    if (shouldCacheResult) {
+        horizontalScrollbarHeight_ = horizontalScrollbarHeight;
+    }
+    return horizontalScrollbarHeight;
+}
+//# sourceMappingURL=util.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab/component.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@material/tab/component.js ***!
+  \*************************************************/
+/*! exports provided: MDCTab */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTab", function() { return MDCTab; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/component */ "./node_modules/@material/base/component.js");
+/* harmony import */ var _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/ripple/component */ "./node_modules/@material/ripple/component.js");
+/* harmony import */ var _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/ripple/foundation */ "./node_modules/@material/ripple/foundation.js");
+/* harmony import */ var _material_tab_indicator_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/tab-indicator/component */ "./node_modules/@material/tab-indicator/component.js");
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab/foundation.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+var MDCTab = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTab, _super);
+    function MDCTab() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTab.attachTo = function (root) {
+        return new MDCTab(root);
+    };
+    MDCTab.prototype.initialize = function (rippleFactory, tabIndicatorFactory) {
+        if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"](el, foundation); }; }
+        if (tabIndicatorFactory === void 0) { tabIndicatorFactory = function (el) { return new _material_tab_indicator_component__WEBPACK_IMPORTED_MODULE_4__["MDCTabIndicator"](el); }; }
+        this.id = this.root_.id;
+        var rippleSurface = this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.RIPPLE_SELECTOR);
+        var rippleAdapter = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, _material_ripple_component__WEBPACK_IMPORTED_MODULE_2__["MDCRipple"].createAdapter(this), { addClass: function (className) { return rippleSurface.classList.add(className); }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) { return rippleSurface.style.setProperty(varName, value); } });
+        var rippleFoundation = new _material_ripple_foundation__WEBPACK_IMPORTED_MODULE_3__["MDCRippleFoundation"](rippleAdapter);
+        this.ripple_ = rippleFactory(this.root_, rippleFoundation);
+        var tabIndicatorElement = this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.TAB_INDICATOR_SELECTOR);
+        this.tabIndicator_ = tabIndicatorFactory(tabIndicatorElement);
+        this.content_ = this.root_.querySelector(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.CONTENT_SELECTOR);
+    };
+    MDCTab.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.handleClick_ = function () { return _this.foundation_.handleClick(); };
+        this.listen('click', this.handleClick_);
+    };
+    MDCTab.prototype.destroy = function () {
+        this.unlisten('click', this.handleClick_);
+        this.ripple_.destroy();
+        _super.prototype.destroy.call(this);
+    };
+    MDCTab.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        var adapter = {
+            setAttr: function (attr, value) { return _this.root_.setAttribute(attr, value); },
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            activateIndicator: function (previousIndicatorClientRect) { return _this.tabIndicator_.activate(previousIndicatorClientRect); },
+            deactivateIndicator: function () { return _this.tabIndicator_.deactivate(); },
+            notifyInteracted: function () { return _this.emit(_foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"].strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
+            getOffsetLeft: function () { return _this.root_.offsetLeft; },
+            getOffsetWidth: function () { return _this.root_.offsetWidth; },
+            getContentOffsetLeft: function () { return _this.content_.offsetLeft; },
+            getContentOffsetWidth: function () { return _this.content_.offsetWidth; },
+            focus: function () { return _this.root_.focus(); },
+        };
+        // tslint:enable:object-literal-sort-keys
+        return new _foundation__WEBPACK_IMPORTED_MODULE_5__["MDCTabFoundation"](adapter);
+    };
+    Object.defineProperty(MDCTab.prototype, "active", {
+        /**
+         * Getter for the active state of the tab
+         */
+        get: function () {
+            return this.foundation_.isActive();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTab.prototype, "focusOnActivate", {
+        set: function (focusOnActivate) {
+            this.foundation_.setFocusOnActivate(focusOnActivate);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Activates the tab
+     */
+    MDCTab.prototype.activate = function (computeIndicatorClientRect) {
+        this.foundation_.activate(computeIndicatorClientRect);
+    };
+    /**
+     * Deactivates the tab
+     */
+    MDCTab.prototype.deactivate = function () {
+        this.foundation_.deactivate();
+    };
+    /**
+     * Returns the indicator's client rect
+     */
+    MDCTab.prototype.computeIndicatorClientRect = function () {
+        return this.tabIndicator_.computeContentClientRect();
+    };
+    MDCTab.prototype.computeDimensions = function () {
+        return this.foundation_.computeDimensions();
+    };
+    /**
+     * Focuses the tab
+     */
+    MDCTab.prototype.focus = function () {
+        this.root_.focus();
+    };
+    return MDCTab;
+}(_material_base_component__WEBPACK_IMPORTED_MODULE_1__["MDCComponent"]));
+
+//# sourceMappingURL=component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab/constants.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@material/tab/constants.js ***!
+  \*************************************************/
+/*! exports provided: cssClasses, strings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return strings; });
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+var cssClasses = {
+    ACTIVE: 'mdc-tab--active',
+};
+var strings = {
+    ARIA_SELECTED: 'aria-selected',
+    CONTENT_SELECTOR: '.mdc-tab__content',
+    INTERACTED_EVENT: 'MDCTab:interacted',
+    RIPPLE_SELECTOR: '.mdc-tab__ripple',
+    TABINDEX: 'tabIndex',
+    TAB_INDICATOR_SELECTOR: '.mdc-tab-indicator',
+};
+
+//# sourceMappingURL=constants.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab/foundation.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@material/tab/foundation.js ***!
+  \**************************************************/
+/*! exports provided: MDCTabFoundation, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MDCTabFoundation", function() { return MDCTabFoundation; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _material_base_foundation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/foundation */ "./node_modules/@material/base/foundation.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab/constants.js");
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+var MDCTabFoundation = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](MDCTabFoundation, _super);
+    function MDCTabFoundation(adapter) {
+        var _this = _super.call(this, tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, MDCTabFoundation.defaultAdapter, adapter)) || this;
+        _this.focusOnActivate_ = true;
+        return _this;
+    }
+    Object.defineProperty(MDCTabFoundation, "cssClasses", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabFoundation, "strings", {
+        get: function () {
+            return _constants__WEBPACK_IMPORTED_MODULE_2__["strings"];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setAttr: function () { return undefined; },
+                activateIndicator: function () { return undefined; },
+                deactivateIndicator: function () { return undefined; },
+                notifyInteracted: function () { return undefined; },
+                getOffsetLeft: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                getContentOffsetLeft: function () { return 0; },
+                getContentOffsetWidth: function () { return 0; },
+                focus: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabFoundation.prototype.handleClick = function () {
+        // It's up to the parent component to keep track of the active Tab and
+        // ensure we don't activate a Tab that's already active.
+        this.adapter_.notifyInteracted();
+    };
+    MDCTabFoundation.prototype.isActive = function () {
+        return this.adapter_.hasClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ACTIVE);
+    };
+    /**
+     * Sets whether the tab should focus itself when activated
+     */
+    MDCTabFoundation.prototype.setFocusOnActivate = function (focusOnActivate) {
+        this.focusOnActivate_ = focusOnActivate;
+    };
+    /**
+     * Activates the Tab
+     */
+    MDCTabFoundation.prototype.activate = function (previousIndicatorClientRect) {
+        this.adapter_.addClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ACTIVE);
+        this.adapter_.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_SELECTED, 'true');
+        this.adapter_.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TABINDEX, '0');
+        this.adapter_.activateIndicator(previousIndicatorClientRect);
+        if (this.focusOnActivate_) {
+            this.adapter_.focus();
+        }
+    };
+    /**
+     * Deactivates the Tab
+     */
+    MDCTabFoundation.prototype.deactivate = function () {
+        // Early exit
+        if (!this.isActive()) {
+            return;
+        }
+        this.adapter_.removeClass(_constants__WEBPACK_IMPORTED_MODULE_2__["cssClasses"].ACTIVE);
+        this.adapter_.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].ARIA_SELECTED, 'false');
+        this.adapter_.setAttr(_constants__WEBPACK_IMPORTED_MODULE_2__["strings"].TABINDEX, '-1');
+        this.adapter_.deactivateIndicator();
+    };
+    /**
+     * Returns the dimensions of the Tab
+     */
+    MDCTabFoundation.prototype.computeDimensions = function () {
+        var rootWidth = this.adapter_.getOffsetWidth();
+        var rootLeft = this.adapter_.getOffsetLeft();
+        var contentWidth = this.adapter_.getContentOffsetWidth();
+        var contentLeft = this.adapter_.getContentOffsetLeft();
+        return {
+            contentLeft: rootLeft + contentLeft,
+            contentRight: rootLeft + contentLeft + contentWidth,
+            rootLeft: rootLeft,
+            rootRight: rootLeft + rootWidth,
+        };
+    };
+    return MDCTabFoundation;
+}(_material_base_foundation__WEBPACK_IMPORTED_MODULE_1__["MDCFoundation"]));
+
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+/* harmony default export */ __webpack_exports__["default"] = (MDCTabFoundation);
+//# sourceMappingURL=foundation.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@material/tab/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/@material/tab/index.js ***!
+  \*********************************************/
+/*! exports provided: MDCTab, cssClasses, strings, MDCTabFoundation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ "./node_modules/@material/tab/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTab", function() { return _component__WEBPACK_IMPORTED_MODULE_0__["MDCTab"]; });
+
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./node_modules/@material/tab/constants.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["cssClasses"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "strings", function() { return _constants__WEBPACK_IMPORTED_MODULE_1__["strings"]; });
+
+/* harmony import */ var _foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation */ "./node_modules/@material/tab/foundation.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MDCTabFoundation", function() { return _foundation__WEBPACK_IMPORTED_MODULE_2__["MDCTabFoundation"]; });
+
+/**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 
 
@@ -9526,6 +18661,160 @@ module.exports = focusTrap;
 
 /***/ }),
 
+/***/ "./node_modules/material-components-web/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/material-components-web/index.js ***!
+  \*******************************************************/
+/*! exports provided: autoInit, base, checkbox, chips, dataTable, dialog, dom, drawer, floatingLabel, formField, gridList, iconButton, lineRipple, linearProgress, list, menu, menuSurface, notchedOutline, radio, ripple, select, slider, snackbar, switchControl, tab, tabBar, tabIndicator, tabScroller, textField, topAppBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material/auto-init/index */ "./node_modules/@material/auto-init/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "autoInit", function() { return _material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _material_base_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material/base/index */ "./node_modules/@material/base/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "base", function() { return _material_base_index__WEBPACK_IMPORTED_MODULE_1__; });
+/* harmony import */ var _material_checkbox_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material/checkbox/index */ "./node_modules/@material/checkbox/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "checkbox", function() { return _material_checkbox_index__WEBPACK_IMPORTED_MODULE_2__; });
+/* harmony import */ var _material_chips_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material/chips/index */ "./node_modules/@material/chips/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "chips", function() { return _material_chips_index__WEBPACK_IMPORTED_MODULE_3__; });
+/* harmony import */ var _material_data_table_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/data-table/index */ "./node_modules/@material/data-table/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "dataTable", function() { return _material_data_table_index__WEBPACK_IMPORTED_MODULE_4__; });
+/* harmony import */ var _material_dialog_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material/dialog/index */ "./node_modules/@material/dialog/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "dialog", function() { return _material_dialog_index__WEBPACK_IMPORTED_MODULE_5__; });
+/* harmony import */ var _material_dom_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material/dom/index */ "./node_modules/@material/dom/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "dom", function() { return _material_dom_index__WEBPACK_IMPORTED_MODULE_6__; });
+/* harmony import */ var _material_drawer_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material/drawer/index */ "./node_modules/@material/drawer/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "drawer", function() { return _material_drawer_index__WEBPACK_IMPORTED_MODULE_7__; });
+/* harmony import */ var _material_floating_label_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material/floating-label/index */ "./node_modules/@material/floating-label/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "floatingLabel", function() { return _material_floating_label_index__WEBPACK_IMPORTED_MODULE_8__; });
+/* harmony import */ var _material_form_field_index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material/form-field/index */ "./node_modules/@material/form-field/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "formField", function() { return _material_form_field_index__WEBPACK_IMPORTED_MODULE_9__; });
+/* harmony import */ var _material_grid_list_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material/grid-list/index */ "./node_modules/@material/grid-list/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "gridList", function() { return _material_grid_list_index__WEBPACK_IMPORTED_MODULE_10__; });
+/* harmony import */ var _material_icon_button_index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material/icon-button/index */ "./node_modules/@material/icon-button/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "iconButton", function() { return _material_icon_button_index__WEBPACK_IMPORTED_MODULE_11__; });
+/* harmony import */ var _material_line_ripple_index__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material/line-ripple/index */ "./node_modules/@material/line-ripple/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "lineRipple", function() { return _material_line_ripple_index__WEBPACK_IMPORTED_MODULE_12__; });
+/* harmony import */ var _material_linear_progress_index__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material/linear-progress/index */ "./node_modules/@material/linear-progress/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "linearProgress", function() { return _material_linear_progress_index__WEBPACK_IMPORTED_MODULE_13__; });
+/* harmony import */ var _material_list_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material/list/index */ "./node_modules/@material/list/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "list", function() { return _material_list_index__WEBPACK_IMPORTED_MODULE_14__; });
+/* harmony import */ var _material_menu_surface_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material/menu-surface/index */ "./node_modules/@material/menu-surface/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "menuSurface", function() { return _material_menu_surface_index__WEBPACK_IMPORTED_MODULE_15__; });
+/* harmony import */ var _material_menu_index__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material/menu/index */ "./node_modules/@material/menu/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "menu", function() { return _material_menu_index__WEBPACK_IMPORTED_MODULE_16__; });
+/* harmony import */ var _material_notched_outline_index__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material/notched-outline/index */ "./node_modules/@material/notched-outline/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "notchedOutline", function() { return _material_notched_outline_index__WEBPACK_IMPORTED_MODULE_17__; });
+/* harmony import */ var _material_radio_index__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material/radio/index */ "./node_modules/@material/radio/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "radio", function() { return _material_radio_index__WEBPACK_IMPORTED_MODULE_18__; });
+/* harmony import */ var _material_ripple_index__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material/ripple/index */ "./node_modules/@material/ripple/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "ripple", function() { return _material_ripple_index__WEBPACK_IMPORTED_MODULE_19__; });
+/* harmony import */ var _material_select_index__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material/select/index */ "./node_modules/@material/select/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "select", function() { return _material_select_index__WEBPACK_IMPORTED_MODULE_20__; });
+/* harmony import */ var _material_slider_index__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material/slider/index */ "./node_modules/@material/slider/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "slider", function() { return _material_slider_index__WEBPACK_IMPORTED_MODULE_21__; });
+/* harmony import */ var _material_snackbar_index__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material/snackbar/index */ "./node_modules/@material/snackbar/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "snackbar", function() { return _material_snackbar_index__WEBPACK_IMPORTED_MODULE_22__; });
+/* harmony import */ var _material_switch_index__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material/switch/index */ "./node_modules/@material/switch/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "switchControl", function() { return _material_switch_index__WEBPACK_IMPORTED_MODULE_23__; });
+/* harmony import */ var _material_tab_bar_index__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material/tab-bar/index */ "./node_modules/@material/tab-bar/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "tabBar", function() { return _material_tab_bar_index__WEBPACK_IMPORTED_MODULE_24__; });
+/* harmony import */ var _material_tab_indicator_index__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material/tab-indicator/index */ "./node_modules/@material/tab-indicator/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "tabIndicator", function() { return _material_tab_indicator_index__WEBPACK_IMPORTED_MODULE_25__; });
+/* harmony import */ var _material_tab_scroller_index__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @material/tab-scroller/index */ "./node_modules/@material/tab-scroller/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "tabScroller", function() { return _material_tab_scroller_index__WEBPACK_IMPORTED_MODULE_26__; });
+/* harmony import */ var _material_tab_index__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @material/tab/index */ "./node_modules/@material/tab/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "tab", function() { return _material_tab_index__WEBPACK_IMPORTED_MODULE_27__; });
+/* harmony import */ var _material_textfield_index__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @material/textfield/index */ "./node_modules/@material/textfield/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "textField", function() { return _material_textfield_index__WEBPACK_IMPORTED_MODULE_28__; });
+/* harmony import */ var _material_top_app_bar_index__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @material/top-app-bar/index */ "./node_modules/@material/top-app-bar/index.js");
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "topAppBar", function() { return _material_top_app_bar_index__WEBPACK_IMPORTED_MODULE_29__; });
+/**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Register all components
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCCheckbox', _material_checkbox_index__WEBPACK_IMPORTED_MODULE_2__["MDCCheckbox"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCChip', _material_chips_index__WEBPACK_IMPORTED_MODULE_3__["MDCChip"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCChipSet', _material_chips_index__WEBPACK_IMPORTED_MODULE_3__["MDCChipSet"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCDataTable', _material_data_table_index__WEBPACK_IMPORTED_MODULE_4__["MDCDataTable"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCDialog', _material_dialog_index__WEBPACK_IMPORTED_MODULE_5__["MDCDialog"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCDrawer', _material_drawer_index__WEBPACK_IMPORTED_MODULE_7__["MDCDrawer"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCFloatingLabel', _material_floating_label_index__WEBPACK_IMPORTED_MODULE_8__["MDCFloatingLabel"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCFormField', _material_form_field_index__WEBPACK_IMPORTED_MODULE_9__["MDCFormField"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCGridList', _material_grid_list_index__WEBPACK_IMPORTED_MODULE_10__["MDCGridList"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCIconButtonToggle', _material_icon_button_index__WEBPACK_IMPORTED_MODULE_11__["MDCIconButtonToggle"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCLineRipple', _material_line_ripple_index__WEBPACK_IMPORTED_MODULE_12__["MDCLineRipple"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCLinearProgress', _material_linear_progress_index__WEBPACK_IMPORTED_MODULE_13__["MDCLinearProgress"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCList', _material_list_index__WEBPACK_IMPORTED_MODULE_14__["MDCList"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCMenu', _material_menu_index__WEBPACK_IMPORTED_MODULE_16__["MDCMenu"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCMenuSurface', _material_menu_surface_index__WEBPACK_IMPORTED_MODULE_15__["MDCMenuSurface"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCNotchedOutline', _material_notched_outline_index__WEBPACK_IMPORTED_MODULE_17__["MDCNotchedOutline"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCRadio', _material_radio_index__WEBPACK_IMPORTED_MODULE_18__["MDCRadio"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCRipple', _material_ripple_index__WEBPACK_IMPORTED_MODULE_19__["MDCRipple"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCSelect', _material_select_index__WEBPACK_IMPORTED_MODULE_20__["MDCSelect"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCSlider', _material_slider_index__WEBPACK_IMPORTED_MODULE_21__["MDCSlider"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCSnackbar', _material_snackbar_index__WEBPACK_IMPORTED_MODULE_22__["MDCSnackbar"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCSwitch', _material_switch_index__WEBPACK_IMPORTED_MODULE_23__["MDCSwitch"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCTabBar', _material_tab_bar_index__WEBPACK_IMPORTED_MODULE_24__["MDCTabBar"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCTextField', _material_textfield_index__WEBPACK_IMPORTED_MODULE_28__["MDCTextField"]);
+_material_auto_init_index__WEBPACK_IMPORTED_MODULE_0__["default"].register('MDCTopAppBar', _material_top_app_bar_index__WEBPACK_IMPORTED_MODULE_29__["MDCTopAppBar"]);
+// Export all components.
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/tabbable/index.js":
 /*!****************************************!*\
   !*** ./node_modules/tabbable/index.js ***!
@@ -9965,6 +19254,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_textfield__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material/textfield */ "./node_modules/@material/textfield/index.js");
 /* harmony import */ var _material_auto_init__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material/auto-init */ "./node_modules/@material/auto-init/index.js");
 /* harmony import */ var _material_select__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material/select */ "./node_modules/@material/select/index.js");
+/* harmony import */ var _material_snackbar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material/snackbar */ "./node_modules/@material/snackbar/index.js");
+/* harmony import */ var material_components_web__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! material-components-web */ "./node_modules/material-components-web/index.js");
+
+
 
 
 
@@ -9999,14 +19292,17 @@ coursemenutoggle.addEventListener('click', function () {
 
   coursemenu.setAnchorElement(coursemenutoggle);
 });
-var textField = new _material_textfield__WEBPACK_IMPORTED_MODULE_4__["MDCTextField"](document.querySelector('.mdc-text-field'));
-_material_auto_init__WEBPACK_IMPORTED_MODULE_5__["default"].register('MDCTextField', _material_textfield__WEBPACK_IMPORTED_MODULE_4__["MDCTextField"]);
-window.mdcAutoInit = _material_auto_init__WEBPACK_IMPORTED_MODULE_5__["default"]; // menu.open = true;
+var textField = new _material_textfield__WEBPACK_IMPORTED_MODULE_4__["MDCTextField"](document.querySelector('.mdc-text-field')); // mdcAutoInit.register('MDCTextField', MDCTextField);
+// menu.open = true;
 
 var select = new _material_select__WEBPACK_IMPORTED_MODULE_6__["MDCSelect"](document.querySelector('.mdc-select')); // select.listen('MDCSelect:change', () => {
 //     alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
 //   });
-// const anc = document.querySelector('.course-menu-toggle');
+
+window.mdc = material_components_web__WEBPACK_IMPORTED_MODULE_8__; // const anc = document.querySelector('.course-menu-toggle');
+
+var snackbar = new _material_snackbar__WEBPACK_IMPORTED_MODULE_7__["MDCSnackbar"](document.querySelector('.mdc-snackbar')); // mdcAutoInit.register('MDCSnackbar', MDCSnackbar);
+// window.mdcAutoInit = mdcAutoInit;
 
 /***/ }),
 

@@ -11,3 +11,10 @@
 @import "@material/textfield/mdc-text-field";
 @import "@material/select/mdc-select";
 @import "@material/elevation/mdc-elevation";
+@import "@material/snackbar/mdc-snackbar";
+
+@media (max-width: $mdc-snackbar-mobile-breakpoint) {
+    .my-snackbar {
+      @include mdc-snackbar-layout-stacked;
+    }
+}
