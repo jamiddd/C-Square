@@ -26,4 +26,8 @@
             </div>
           </div>
     </main>
+    <script>
+        var drawerNavLink = document.getElementById("about-nav");
+        drawerNavLink.classList.add("mdc-list-item--activated");
+    </script>
 @endsection

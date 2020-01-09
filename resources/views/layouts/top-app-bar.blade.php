@@ -42,15 +42,15 @@
 <aside class="mdc-drawer mdc-drawer--modal">
     <div class="mdc-drawer__content">
         <nav class="mdc-list">
-            <a class="mdc-list-item mdc-list-item--activated" href="/" aria-current="page">
+            <a id="home-nav" class="mdc-list-item" href="/" aria-current="page" tabindex="0">
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
               <span class="mdc-list-item__text">Home</span>
             </a>
-            <a class="mdc-list-item" href="/about">
+            <a id="about-nav" class="mdc-list-item" href="/about" tabindex="1">
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>
               <span class="mdc-list-item__text">About</span>
             </a>
-            <a class="mdc-list-item" href="/career">
+            <a id="career-nav" class="mdc-list-item" href="/career" tabindex="2">
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>
               <span class="mdc-list-item__text">Career</span>
             </a>

@@ -68,6 +68,18 @@
         text-align: justify;
     }
 
+    .big-text {
+        font-size: 4vw;
+        line-height: 4vw;
+    }
+
+    @media only screen and (max-width: 500px) {
+        .big-text {
+            font-size: 4vh;
+            line-height: 4vh;
+        }
+    }
+
     </style>
     <main class="main-content">
         <div class="intro-section">
@@ -131,7 +143,7 @@
                     <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/app_development.jpg')}}" alt="">
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
-                    <span style="font-size:6vw; line-height:7vw;">Learn the best practices</span>
+                    <span class="big-text">Learn the best practices</span>
                     <p style="text-align:justify;">Learning the right way of programming is essential. Especially important when the world runs on efficiency. To get the best output of work and passion, we'll put your effort in the right direction. The best coding practices can make you a good programmer right away. </p>
                 </div>
             </div>
@@ -139,7 +151,7 @@
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
-                    <span style="font-size:6vw; line-height:7vw;">Always Up-To-Date</span>
+                    <span class="big-text">Always Up-To-Date</span>
                     <p>In the new era of technology, being up-to-date is excrutiatingly crucial. You can learn the best and updated topics right here. Our learning curve will always follow the most updated route of programming.</p>
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
@@ -153,7 +165,7 @@
                     <img style="object-fit:cover; width:100%; height:400px;" src="{{asset('images/com.jpg')}}" alt="">
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
-                    <span style="font-size:6vw; line-height:7vw;">Community Building</span>
+                    <span class="big-text" >Community Building</span>
                     <p style="text-align:justify;">As a programmer we always need to be connected to learn new topics everyday and to challenge ourselves on a daily basis. Getting help from your co-learners when you need them will improve the learning process.</p>
                 </div>
             </div>
@@ -161,7 +173,7 @@
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone" style="padding:16px;">
-                    <span style="font-size:6vw; line-height:7vw;">Support for Personal Development</span>
+                    <span class="big-text">Support for Personal Development</span>
                     <p>We can support you in your personal projects. Bugs be damned.</p>
                 </div>
                 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
@@ -170,4 +182,8 @@
             </div>
         </div>
     </main>
+    <script>
+        var drawerNavLink = document.getElementById("home-nav");
+        drawerNavLink.classList.add("mdc-list-item--activated");
+    </script>
 @endsection

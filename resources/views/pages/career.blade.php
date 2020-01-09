@@ -180,7 +180,8 @@
         }
     }
 
-    
+    var drawerNavLink = document.getElementById("career-nav");
+    drawerNavLink.classList.add("mdc-list-item--activated");
 
 //     $(function(){
 // 	$("#get").click(function(){
